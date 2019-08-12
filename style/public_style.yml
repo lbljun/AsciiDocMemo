@@ -115,16 +115,20 @@ footer:
   line_height: 1
   padding: [$base_line_height_length / 2, 1, 0, 1]
   vertical_align: top
-  recto_content:
-    left: Public                                               # <-- フッダー（左）に機密区分表記（Public）
-    center: |                                                  # <-- フッダー（中央）
-      {page-number} +                                          # <-- ... ページ番号
-      Copyright &#169; HogeHoge CO.,LTD. All right reserved.   # <-- ... コピーライト
-  verso_content:
-    left: Internal Use Only                                    # <-- フッダー（左）に機密区分表記（Public）
-    center: |                                                  # <-- フッダー（中央）
-      {page-number} +                                          # <-- ページ番号
-      Copyright (c) HogeHoge CO.,LTD. All right reserved.   # <-- コピーライト
+  recto:
+    left:
+      content: 'Internal Use Only'                                       # <-- フッダー（左）に機密区分表記（Public）
+    center:
+      content: 'Copyright (c) HogeHoge CO.,LTD. All right reserved.'     # <-- コピーライト
+    right:
+      content: '{page-number} / {page-count}'                            # <-- ページ番号
+  verso:
+    left:
+      content: 'Internal Use Only'                                       # <-- フッダー（左）に機密区分表記（Public）
+    center:
+      content: 'Copyright (c) HogeHoge CO.,LTD. All right reserved.'     # <-- コピーライト
+    right:
+      content: '{page-number} / {page-count}'                            # <-- ページ番号
 #------
 # Heading Section
 #------

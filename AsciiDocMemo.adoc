@@ -84,7 +84,7 @@ https://qiita.com/NaoyaOura/items/1081884068fe3ea79570
 * chocolateyのリポジトリに登録されているパッケージをコマンドラインから一発でインストールできる
 
 .メリット
-* 使いたいソフトのインストーラをダウンロードして毎回YES等をクリックする**手間が省ける**
+* 使いたいソフトのインストーラをダウンロードして毎回YESをクリックする**手間が省ける**
 * chocolateyでインストールしたソフトは**一括アップデート**できる
 
 
@@ -156,7 +156,7 @@ windowの場合は以下に入っているのでyamlファイルをコピーし�
 +
 [NOTE]
 ====
-public-style.ymlとリネームし、下記サイトを参考に編集 +
+public_style.ymlとリネームし、下記サイトを参考に編集 +
 https://qiita.com/tamikura@github/items/5d3f62dae55617ee42bb
 ====
 
@@ -192,7 +192,7 @@ windowsの場合は以下に入っているので中身を全てコピーして�
    |-images
    |-style
       |-default-theme.yml
-      |-public-style.yml
+      |-public_style.yml
 ----
 
 
