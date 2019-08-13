@@ -22,6 +22,11 @@ font:
       bold: mplus1p-regular-fallback.ttf
       italic: mplus1p-regular-fallback.ttf
       bold_italic: mplus1p-regular-fallback.ttf
+    IPA PGothic:                # 追加箇所
+      normal: ipagp.ttf         # 追加箇所
+      bold: ipagp.ttf           # 追加箇所
+      italic: ipagp.ttf         # 追加箇所
+      bold_italic: ipagp.ttf    # 追加箇所
   fallbacks:
     - M+ 1p Fallback
 #------
@@ -39,6 +44,7 @@ base:
   align: left
   font_color: 333333
   font_family: Noto Serif
+  font_family: IPA PGothic      # 追加箇所
   font_size: 10.5
   line_height_length: 14
   line_height: $base_line_height_length / $base_font_size
@@ -61,12 +67,12 @@ vertical_spacing: $vertical_rhythm
 # Title Page Section
 #------
 title_page:
-  align: left
+  align: right
   logo:                                      # ロゴ
     top: 5%                                  # <-- 紙面上部から5%の位置にロゴを置く
     align: right                             # <-- 右寄せ
   title:                                     # タイトル
-    top: 45%                                 # <-- 紙面上部から45%の位置にタイトルを置く
+    top: 60%                                 # <-- 紙面上部から45%の位置にタイトルを置く
     font_size: $heading_h1_font_size         # <-- 見出しレベル1
     font_stye: bold                          # <-- 太字
     font_color: [122,30,28]                  # <-- 見出しフォント（強調色）

@@ -39,6 +39,11 @@
 // ここから本文
 //////////////////////////////////////////////////////////////////////
 
+//ヘッダーに入るドキュメント名
+= AsciiDoc環境構築 覚え書き
+
+
+
 == asciidocについて
 
 .asciidocとは？
@@ -47,7 +52,7 @@
 * 可読性が高くmarkdownよりも表現力が高い
 
 .メリット
-* テキスト形式なのでgitで管理しやすい
+* テキスト形式なのでGitで管理しやすい
 * インクルード機能により外部ファイルの読み込みができる
 * html、pdfに変換できる
 
@@ -80,11 +85,10 @@ https://qiita.com/NaoyaOura/items/1081884068fe3ea79570
 ====
 
 .chocolateyとは？
-* windows上で動作するソフトウェアをコマンドラインからインストールすることができるパッケージマネージャー
-* chocolateyのリポジトリに登録されているパッケージをコマンドラインから一発でインストールできる
+* windows上で動作するソフトウェアをコマンドラインでパッケージ管理可能なツール
 
 .メリット
-* 使いたいソフトのインストーラをダウンロードして毎回YESをクリックする**手間が省ける**
+* chocolateyのリポジトリに登録されているパッケージを**一発でインストール**できる
 * chocolateyでインストールしたソフトは**一括アップデート**できる
 
 
@@ -129,6 +133,14 @@ gem install coderay //<5>
 <4> PlantUML等の図の記述用
 <5> コードのシンタックスハイライト用
 
+[NOTE]
+====
+社内のネットワークから実施する場合はgemにproxyを指定する +
+例) gem install xxxx **-p proxy http://アドレス:ポート** +
+proxy確認方法は以下参考 +
+https://pasokatu.hateblo.jp/entry/2017/07/04/111147
+====
+
 
 
 === 作業ディレクトリを作成する
@@ -156,17 +168,17 @@ windowの場合は以下に入っているのでyamlファイルをコピーし�
 +
 [NOTE]
 ====
-public_style.ymlとリネームし、下記サイトを参考に編集 +
+public_style.ymlにリネームし、下記サイトを参考に編集 +
 https://qiita.com/tamikura@github/items/5d3f62dae55617ee42bb
 ====
 
-* フォントファイル
+* フォントファイル +
 windowsの場合は以下に入っているので中身を全てコピーして格納
 
  // ruby2.6でasciidoctor-pdfのverが1.5.0.beta.2の場合
  C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-pdf-1.5.0.beta.2\data\fonts\*
 
-* ドキュメントファイル
+* ドキュメントファイル +
 適当にメモ帳で以下の設定で作成して格納
 
  拡張子 : .adoc
@@ -302,12 +314,12 @@ asciidoctorの設定を変更します +
 https://qiita.com/hyt126/items/fdeff36f09bb221dfac0 +
 画面上部の[ファイル]→[基本設定]→[設定]から `asciidoctor` を検索し、以下の設定を行う
 ----
-asciidoctor_command : asciidoctor -r asciidoctor-diagram
-asciidoctorpdf_command : asciidoctor-pdf -r asciidoctor-diagram -r asciidoctor-pdf-cjk
+asciidoctor_command : asciidoctor -n -r asciidoctor-diagram -o-
+asciidoctorpdf_command : asciidoctor-pdf -n -r asciidoctor-diagram -r asciidoctor-pdf-cjk -o-
 use_asciidoctor_js  : false(チェックを外す)
 ----
 
-参考までに 3.2.テストサンプル のプレビュー結果を以下に示す
+参考までに「3.2.テストサンプル」のプレビュー結果を以下に示す
 
 image::TestPreviewResult.png[]
 
@@ -316,20 +328,70 @@ image::TestPreviewResult.png[]
 === htmlやpdfに変換する
 .コマンドプロンプトで以下を実行
 * htmlファイルに変換
++
 ----
-asciidoctor -o dist/*.html *.adoc
+asciidoctor -r asciidoctor-diagram -o dist/*.html *.adoc
 ----
 
 * pdfファイルに変換
++
 ----
-asciidoctor-pdf -o dist/*.pdf *.adoc
+asciidoctor-pdf -r asciidoctor-diagram -r asciidoctor-pdf-cjk -o dist/*.pdf *.adoc
 ----
 
+[NOTE]
+====
+いちいちビルドコマンドを叩くのは面倒なのでビルドスクリプトのバッチファイルを作っておくとよい +
 
-[plantuml]
+.make_html.bat
 ----
-actor ユーザー as user
-user -> ログイン : ログインする
-ログイン --> user:
+@echo off +
+asciidoctor -r asciidoctor-diagram -o dist/*html *.adoc
 ----
+
+.make_pdf.bat
+----
+@echo off +
+asciidoctor-pdf -r asciidoctor-diagram -r asciidoctor-pdf-cjk -o dist/*pdf *.adoc
+----
+====
+
+
+
+== その他情報
+* pdfへ変換時に文字の色が変わらない
+下記サイトの「2.2 asciidoctor-pdfのソースを修正する」を参考 +
+https://blog.siwa32.com/asciidoctor_pdf_color/
+
+* pdfのフッター等の体裁や文言をカスタマイズ
+下記サイトを参考 +
+https://qiita.com/tamikura@github/items/5d3f62dae55617ee42bb +
+
+* PlantUMLの内容を編集する度に画像ファイルが増えていくのを防ぎたい +
+[plantuml,画像ファイル名]としてファイル名を指定するとよい +
++
+----
+ [plantuml,test]
+ ----
+ class Animal {
+   run()
+ }
+ 
+ class Cat extends Animal {
+ }
+ ----
+----
++
+↓ プレビュー結果
++
+[plantuml,test]
+----
+class Animal {
+ run()
+}
+
+class Cat extends Animal {
+}
+----
+
 

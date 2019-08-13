@@ -2,10 +2,10 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.10">
-<title>asciidocについて</title>
+<meta name="generator" content="Asciidoctor 1.5.6.1">
+<title>AsciiDoc環境構築 覚え書き</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
 /* Uncomment @import statement to use as custom stylesheet */
@@ -435,10 +435,102 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 
 </style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<style>
+/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+/*pre.CodeRay {background-color:#f7f7f8;}*/
+.CodeRay .line-numbers{border-right:1px solid #d8d8d8;padding:0 0.5em 0 .25em}
+.CodeRay span.line-numbers{display:inline-block;margin-right:.5em;color:rgba(0,0,0,.3)}
+.CodeRay .line-numbers strong{color:rgba(0,0,0,.4)}
+table.CodeRay{border-collapse:separate;border-spacing:0;margin-bottom:0;border:0;background:none}
+table.CodeRay td{vertical-align: top;line-height:1.45}
+table.CodeRay td.line-numbers{text-align:right}
+table.CodeRay td.line-numbers>pre{padding:0;color:rgba(0,0,0,.3)}
+table.CodeRay td.code{padding:0 0 0 .5em}
+table.CodeRay td.code>pre{padding:0}
+.CodeRay .debug{color:#fff !important;background:#000080 !important}
+.CodeRay .annotation{color:#007}
+.CodeRay .attribute-name{color:#000080}
+.CodeRay .attribute-value{color:#700}
+.CodeRay .binary{color:#509}
+.CodeRay .comment{color:#998;font-style:italic}
+.CodeRay .char{color:#04d}
+.CodeRay .char .content{color:#04d}
+.CodeRay .char .delimiter{color:#039}
+.CodeRay .class{color:#458;font-weight:bold}
+.CodeRay .complex{color:#a08}
+.CodeRay .constant,.CodeRay .predefined-constant{color:#008080}
+.CodeRay .color{color:#099}
+.CodeRay .class-variable{color:#369}
+.CodeRay .decorator{color:#b0b}
+.CodeRay .definition{color:#099}
+.CodeRay .delimiter{color:#000}
+.CodeRay .doc{color:#970}
+.CodeRay .doctype{color:#34b}
+.CodeRay .doc-string{color:#d42}
+.CodeRay .escape{color:#666}
+.CodeRay .entity{color:#800}
+.CodeRay .error{color:#808}
+.CodeRay .exception{color:inherit}
+.CodeRay .filename{color:#099}
+.CodeRay .function{color:#900;font-weight:bold}
+.CodeRay .global-variable{color:#008080}
+.CodeRay .hex{color:#058}
+.CodeRay .integer,.CodeRay .float{color:#099}
+.CodeRay .include{color:#555}
+.CodeRay .inline{color:#000}
+.CodeRay .inline .inline{background:#ccc}
+.CodeRay .inline .inline .inline{background:#bbb}
+.CodeRay .inline .inline-delimiter{color:#d14}
+.CodeRay .inline-delimiter{color:#d14}
+.CodeRay .important{color:#555;font-weight:bold}
+.CodeRay .interpreted{color:#b2b}
+.CodeRay .instance-variable{color:#008080}
+.CodeRay .label{color:#970}
+.CodeRay .local-variable{color:#963}
+.CodeRay .octal{color:#40e}
+.CodeRay .predefined{color:#369}
+.CodeRay .preprocessor{color:#579}
+.CodeRay .pseudo-class{color:#555}
+.CodeRay .directive{font-weight:bold}
+.CodeRay .type{font-weight:bold}
+.CodeRay .predefined-type{color:inherit}
+.CodeRay .reserved,.CodeRay .keyword {color:#000;font-weight:bold}
+.CodeRay .key{color:#808}
+.CodeRay .key .delimiter{color:#606}
+.CodeRay .key .char{color:#80f}
+.CodeRay .value{color:#088}
+.CodeRay .regexp .delimiter{color:#808}
+.CodeRay .regexp .content{color:#808}
+.CodeRay .regexp .modifier{color:#808}
+.CodeRay .regexp .char{color:#d14}
+.CodeRay .regexp .function{color:#404;font-weight:bold}
+.CodeRay .string{color:#d20}
+.CodeRay .string .string .string{background:#ffd0d0}
+.CodeRay .string .content{color:#d14}
+.CodeRay .string .char{color:#d14}
+.CodeRay .string .delimiter{color:#d14}
+.CodeRay .shell{color:#d14}
+.CodeRay .shell .delimiter{color:#d14}
+.CodeRay .symbol{color:#990073}
+.CodeRay .symbol .content{color:#a60}
+.CodeRay .symbol .delimiter{color:#630}
+.CodeRay .tag{color:#008080}
+.CodeRay .tag-special{color:#d70}
+.CodeRay .variable{color:#036}
+.CodeRay .insert{background:#afa}
+.CodeRay .delete{background:#faa}
+.CodeRay .change{color:#aaf;background:#007}
+.CodeRay .head{color:#f8f;background:#505}
+.CodeRay .insert .insert{color:#080}
+.CodeRay .delete .delete{color:#800}
+.CodeRay .change .change{color:#66f}
+.CodeRay .head .head{color:#f4f}
+</style>
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
+<h1>AsciiDoc環境構築 覚え書き</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">目次</div>
 <ul class="sectlevel1">
@@ -459,6 +551,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_htmlやpdfに変換する">3.4. htmlやpdfに変換する</a></li>
 </ul>
 </li>
+<li><a href="#_その他情報">4. その他情報</a></li>
 </ul>
 </div>
 </div>
@@ -484,7 +577,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="title">メリット</div>
 <ul>
 <li>
-<p>テキスト形式なのでgitで管理しやすい</p>
+<p>テキスト形式なのでGitで管理しやすい</p>
 </li>
 <li>
 <p>インクルード機能により外部ファイルの読み込みができる</p>
@@ -549,10 +642,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="title">chocolateyとは？</div>
 <ul>
 <li>
-<p>windows上で動作するソフトウェアをコマンドラインからインストールすることができるパッケージマネージャー</p>
-</li>
-<li>
-<p>chocolateyのリポジトリに登録されているパッケージをコマンドラインから一発でインストールできる</p>
+<p>windows上で動作するソフトウェアをコマンドラインでパッケージ管理可能なツール</p>
 </li>
 </ul>
 </div>
@@ -560,10 +650,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="title">メリット</div>
 <ul>
 <li>
-<p>使いたいソフトのインストーラをダウンロードして毎回YESをクリックする <strong>手間が省ける</strong></p>
+<p>chocolateyのリポジトリに登録されているパッケージを<strong>一発でインストール</strong>できる</p>
 </li>
 <li>
-<p>chocolateyでインストールしたソフトは <strong>一括アップデート</strong> できる</p>
+<p>chocolateyでインストールしたソフトは<strong>一括アップデート</strong>できる</p>
 </li>
 </ul>
 </div>
@@ -655,6 +745,23 @@ gem install coderay <i class="conum" data-value="5"></i><b>(5)</b></pre>
 </tr>
 </table>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>社内のネットワークから実施する場合はgemにproxyを指定する<br>
+例) gem install xxxx <strong>-p proxy <a href="http://アドレス:ポート" class="bare">http://アドレス:ポート</a></strong><br>
+proxy確認方法は以下参考<br>
+<a href="https://pasokatu.hateblo.jp/entry/2017/07/04/111147" class="bare">https://pasokatu.hateblo.jp/entry/2017/07/04/111147</a></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_作業ディレクトリを作成する">2.4. 作業ディレクトリを作成する</h3>
@@ -698,7 +805,7 @@ C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-pdf-1.5.0.beta.2\data\theme
 </td>
 <td class="content">
 <div class="paragraph">
-<p>public_style.ymlとリネームし、下記サイトを参考に編集<br>
+<p>public_style.ymlにリネームし、下記サイトを参考に編集<br>
 <a href="https://qiita.com/tamikura@github/items/5d3f62dae55617ee42bb" class="bare">https://qiita.com/tamikura@github/items/5d3f62dae55617ee42bb</a></p>
 </div>
 </td>
@@ -707,7 +814,7 @@ C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-pdf-1.5.0.beta.2\data\theme
 </div>
 </li>
 <li>
-<p>フォントファイル
+<p>フォントファイル<br>
 windowsの場合は以下に入っているので中身を全てコピーして格納</p>
 <div class="literalblock">
 <div class="content">
@@ -717,7 +824,7 @@ C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-pdf-1.5.0.beta.2\data\fonts
 </div>
 </li>
 <li>
-<p>ドキュメントファイル
+<p>ドキュメントファイル<br>
 適当にメモ帳で以下の設定で作成して格納</p>
 <div class="literalblock">
 <div class="content">
@@ -874,13 +981,13 @@ C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-pdf-1.5.0.beta.2\data\fonts
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>asciidoctor_command : asciidoctor -r asciidoctor-diagram
-asciidoctorpdf_command : asciidoctor-pdf -r asciidoctor-diagram -r asciidoctor-pdf-cjk
+<pre>asciidoctor_command : asciidoctor -n -r asciidoctor-diagram -o-
+asciidoctorpdf_command : asciidoctor-pdf -n -r asciidoctor-diagram -r asciidoctor-pdf-cjk -o-
 use_asciidoctor_js  : false(チェックを外す)</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>参考までに 3.2.テストサンプル のプレビュー結果を以下に示す</p>
+<p>参考までに「3.2.テストサンプル」のプレビュー結果を以下に示す</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -895,40 +1002,101 @@ use_asciidoctor_js  : false(チェックを外す)</pre>
 <ul>
 <li>
 <p>htmlファイルに変換</p>
+<div class="listingblock">
+<div class="content">
+<pre>asciidoctor -r asciidoctor-diagram -o dist/*.html *.adoc</pre>
+</div>
+</div>
+</li>
+<li>
+<p>pdfファイルに変換</p>
+<div class="listingblock">
+<div class="content">
+<pre>asciidoctor-pdf -r asciidoctor-diagram -r asciidoctor-pdf-cjk -o dist/*.pdf *.adoc</pre>
+</div>
+</div>
 </li>
 </ul>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>いちいちビルドコマンドを叩くのは面倒なのでビルドスクリプトのバッチファイルを作っておくとよい<br></p>
+</div>
 <div class="listingblock">
+<div class="title">make_html.bat</div>
 <div class="content">
-<pre>asciidoctor -o dist/*.html *.adoc</pre>
+<pre>@echo off +
+asciidoctor -r asciidoctor-diagram -o dist/*html *.adoc</pre>
 </div>
 </div>
+<div class="listingblock">
+<div class="title">make_pdf.bat</div>
+<div class="content">
+<pre>@echo off +
+asciidoctor-pdf -r asciidoctor-diagram -r asciidoctor-pdf-cjk -o dist/*pdf *.adoc</pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_その他情報">4. その他情報</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>pdfファイルに変換</p>
+<p>pdfへ変換時に文字の色が変わらない
+下記サイトの「2.2 asciidoctor-pdfのソースを修正する」を参考<br>
+<a href="https://blog.siwa32.com/asciidoctor_pdf_color/" class="bare">https://blog.siwa32.com/asciidoctor_pdf_color/</a></p>
+</li>
+<li>
+<p>pdfのフッター等の体裁や文言をカスタマイズ
+下記サイトを参考<br>
+<a href="https://qiita.com/tamikura@github/items/5d3f62dae55617ee42bb" class="bare">https://qiita.com/tamikura@github/items/5d3f62dae55617ee42bb</a><br></p>
+</li>
+<li>
+<p>PlantUMLの内容を編集する度に画像ファイルが増えていくのを防ぎたい<br>
+[plantuml,画像ファイル名]としてファイル名を指定するとよい<br></p>
+<div class="listingblock">
+<div class="content">
+<pre> [plantuml,test]
+ ----
+ class Animal {
+   run()
+ }
+
+ class Cat extends Animal {
+ }
+ ----</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>↓ プレビュー結果</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="data:image/png;base64,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" alt="test" width="86" height="188">
+</div>
+</div>
 </li>
 </ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>asciidoctor-pdf -o dist/*.pdf *.adoc</pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>actor ユーザー as user
-user -&gt; ログイン : ログインする
-ログイン --&gt; user:</pre>
-</div>
-</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-08-13 01:39:29 +0900
+Last updated 2019-08-13 14:11:01 東京 (標準時)
 </div>
 </div>
 </body>
