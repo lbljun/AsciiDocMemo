@@ -14,23 +14,25 @@
 :toc-title: 目次
 //章見出し番号を出力する
 :sectnums:
-//章見出しのChapte.が表示されないようにする
+//PDF化時の章見出しのChapter.が表示されないようにする
 :chapter-label:
 //シンタックスハイライトを使用する
 :source-highlighter: coderay
+//アイコンフォントを利用するフラグ
+:icons: font
+//マクロを使用する（ショートカットキーとか）
+:experimental:
 //画像をdata-uriとして埋め込む
 :data-uri:
 //イメージファイルを置くフォルダ
 :imagesdir: ./images
-//アイコンフォントを利用するフラグ
-:icons: font
-//pdf化時のフォントファイルを置くフォルダ
+//PDF化時のフォントファイルを置くフォルダ
 :pdf-fontsdir: ./fonts
-//pdf化時のスタイルファイルを指定
+//PDF化時のスタイルファイルを指定
 :pdf-style: ./style/public_style.yml
-//html化時のスタイルファイルを置くフォルダ
+//HTML化時のスタイルファイルを置くフォルダ
 :stylesdir: ./style
-//html化時のスタイルファイルを指定
+//HTML化時のスタイルファイルを指定
 :stylesheet: asciidoctor-default.css
 
 
@@ -44,82 +46,82 @@
 
 
 
-== asciidocについて
+== AsciiDocについて
 
-.asciidocとは？
-* markdownのような軽量マークアップ言語の一つ
-* プレーンテキストで体裁が整った文章を書くのが得意
-* 可読性が高くmarkdownよりも表現力が高い
+.**AsciiDocとは？**
+* Markdownのような軽量マークアップ言語の一つ
+* プレーンテキストで体裁が整った文章が書ける
+* 可読性が高くMarkdownよりも表現力が高い
 
-.メリット
+.**メリット**
 * テキスト形式なのでGitで管理しやすい
 * インクルード機能により外部ファイルの読み込みができる
-* html、pdfに変換できる
+* HTML、PDFへの変換もできる
 
 
 
 == 環境構築手順
-. パッケージマネージャーのchocolateyをインストール
-. chcolateyのリポジトリに登録されているruby等のパッケージをインストール
-. ruby製のasciidoc関連ツールをインストール
+. パッケージマネージャーのChocolateyをインストール
+. Chcolateyのリポジトリに登録されているRuby等のパッケージをインストール
+. Ruby製のAsciiDoc関連ツールをインストール
 . 作業ディレクトリを作成
 
 
 
-=== chocolateyをインストール
-以下を参考にインストールします +
-https://chocolatey.org/install
-https://qiita.com/konta220/items/95b40b4647a737cb51aa
-https://qiita.com/NaoyaOura/items/1081884068fe3ea79570
+=== Chocolateyをインストール
 
-.コマンドプロンプト(管理者権限)で以下を実行
+.**コマンドプロンプト（管理者権限）で以下を実行**
 ----
 @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
 ----
+[NOTE]
+====
+公式サイト +
+https://chocolatey.org/install#installing-chocolatey +
+
+インストール手順解説（日本語） +
+https://qiita.com/konta220/items/95b40b4647a737cb51aa
+====
+
+.**Chocolateyとは？**
+* Windows上で動作するソフトウェアをコマンドラインでパッケージ管理可能なツール
+
+.**メリット**
+* Chocolateyのリポジトリに登録されているパッケージを**一発でインストール**できる
+* Chocolateyでインストールしたソフトは**一括アップデート**できる
+
+
+
+=== Ruby等のパッケージをインストール
+.**コマンドプロンプト（管理者権限）で以下を実行**
+----
+cinst ruby -y //<1>
+cinst graphviz -y //<2>
+cinst jdk8 -y //<3>
+cinst vscode -y //<4>
+cinst sourcetree --version 2.5.5 -y //<5>
+----
+<1> Ruby （AsciiDoc関連ツールを利用するのに必要）
+<2> Graphviz （PlantUML等で記述した図の表示に必要）
+<3> Java （PlantUML等で記述した図の表示に必要）
+<4> Visual Studio Code （AsciiDocをプレビュー可能な編集エディタ）
+<5> SourceTree （GitのGUIツール）
 
 [NOTE]
 ====
-必ず公式サイトからコマンドをコピペして実行すること +
-インストールが成功すれば以下のコマンドで確認することができる +
-`choco -v`
-====
-
-.chocolateyとは？
-* windows上で動作するソフトウェアをコマンドラインでパッケージ管理可能なツール
-
-.メリット
-* chocolateyのリポジトリに登録されているパッケージを**一発でインストール**できる
-* chocolateyでインストールしたソフトは**一括アップデート**できる
-
-
-
-=== ruby等のパッケージをインストール
-.コマンドプロンプト(管理者権限)で以下を実行
+Atlassianアカウントを作成してSourceTreeのサインインに成功したら +
+コマンドプロンプト（管理者権限）で以下を実行し、一括アップデートする +
 ----
-cinst -y ruby //<1>
-cinst -y graphviz //<2>
-cinst -y jdk8 //<3>
-cinst -y vscode //<4>
+choco upgrade all -y
 ----
-<1> ruby
-<2> Graphviz
-<3> Java
-<4> Visual Studio Code(テキストエディタ、以下`VScode`とする)
-
-[NOTE]
-====
-cinst = choco install の略コマンド +
-インストールが成功すれば以下のコマンドでverを確認できる +
-`ruby -v` +
-`gem -v` +
-GraphvizとJavaはPlantUML等で図のプレビューに必要となる +
-VScodeの拡張機能でasiidocをプレビューしながら編集が可能
+※初めから最新verをインストールしない理由は以下を参照 +
+https://hepokon365.hatenablog.com/entry/2019/03/25/222814
 ====
 
 
 
-=== asciidoc関連ツールをインストール
-.コマンドプロンプトで以下を実行
+=== AsciiDoc関連ツールをインストール
+.**コマンドプロンプトで以下を実行**
 ----
 gem install asciidoctor //<1>
 gem install --pre asciidoctor-pdf //<2>
@@ -127,69 +129,78 @@ gem install asciidoctor-pdf-cjk //<3>
 gem install asciidoctor-diagram //<4>
 gem install coderay //<5>
 ----
-<1> asciidoc→htmlに変換用
-<2> asciidoc→pdfに変換用
-<3> pdf変換のレイアウト崩れ対応用
+<1> AsciiDoc→HTMLに変換用
+<2> AsciiDoc→PDFに変換用
+<3> PDF変換のレイアウト崩れ対応用
 <4> PlantUML等の図の記述用
 <5> コードのシンタックスハイライト用
 
 [NOTE]
 ====
-社内のネットワークから実施する場合はgemにproxyを指定する +
-例) gem install xxxx **-p proxy http://アドレス:ポート** +
-proxy確認方法は以下参考 +
+社内のネットワークから実施する場合はgemにproxyを指定する
+----
+gem install xxxx -p proxy http://アドレス:ポート
+----
+
+proxyの確認手順 +
 https://pasokatu.hateblo.jp/entry/2017/07/04/111147
 ====
 
 
 
 === 作業ディレクトリを作成する
-.ドキュメントを作成するための作業ディレクトリを作っておく
+.**ドキュメント作成のための作業ディレクトリを用意**
 ----
-|-test          // ドキュメントを格納するフォルダ(任意の名前でOK)
-   |-dist       // pdfの出力先
+|-test          // ドキュメント(*.adoc)を格納するフォルダ
+   |-dist       // HTMLやPDFの出力先
    |-fonts      // フォントファイルを格納
    |-images     // イメージファイルを格納
    |-style      // スタイルファイルを格納
 ----
 
-.以下のファイルを作業ディレクトリに格納する
-* htmlのスタイルファイル +
+.**HTMLのスタイルファイル**
 windowsの場合は以下に入っているのでcssファイルをコピーして格納
 
  // ruby2.6でasciidoctorのverが2.0.10の場合
  C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-2.0.10\data\stylesheets\asciidoctor-default.css
 
-* pdfのスタイルファイル +
-windowの場合は以下に入っているのでyamlファイルをコピーして格納
+.**PDFのスタイルファイル**
+windowsの場合は以下に入っているのでyamlファイルをコピーして格納
 
  // ruby2.6でasciidoctor-pdfのverが1.5.0.beta.2の場合
  C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-pdf-1.5.0.beta.2\data\themes\default-theme.yml
-+
 [NOTE]
 ====
-public_style.ymlにリネームし、下記サイトを参考に編集 +
-https://qiita.com/tamikura@github/items/5d3f62dae55617ee42bb
+設定参考（public_style.ymlにリネームして使用）
+https://qiita.com/tamikura@github/items/5d3f62dae55617ee42bb +
+
+PDF化時に文字の色が変わるようにする
+https://blog.siwa32.com/asciidoctor_pdf_color/ +
+→「2.2 asciidoctor-pdfのソースを修正する」
 ====
 
-* フォントファイル +
-windowsの場合は以下に入っているので中身を全てコピーして格納
+.**フォントファイル**
+Windowsの場合は以下に入っているので中身を全てコピーして格納
+----
+// ruby2.6でasciidoctor-pdfのverが1.5.0.beta.2の場合
+C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-pdf-1.5.0.beta.2\data\fonts\*
+----
 
- // ruby2.6でasciidoctor-pdfのverが1.5.0.beta.2の場合
- C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-pdf-1.5.0.beta.2\data\fonts\*
-
-* ドキュメントファイル +
+.**ドキュメントファイル**
 適当にメモ帳で以下の設定で作成して格納
+----
+拡張子 : .adoc
+文字コード : UTF-8
+----
 
- 拡張子 : .adoc
- 文字コード : UTF-8
-
-.作業フォルダ内はこんな感じになる
+.**作業フォルダ内はこんな感じになる**
 ----
 |-test
    |-*.adoc
    |-dist
    |-fonts
+      |-IPA_Font_License_Agreement_v1.0.txt
+      |-ipagp.ttf
       |-LICENSE-mplus-testflight-58
       |-LICENSE-noto-2015-06-05
       |-mplus1mn-bold_italic-ascii.ttf
@@ -201,20 +212,22 @@ windowsの場合は以下に入っているので中身を全てコピーして�
       |-notoserif-bold-subset.ttf
       |-notoserif-italic-subset.ttf
       |-notoserif-regular-subset.ttf
+      |-Readme_IPAfont00303.txt
    |-images
    |-style
+      |-asciidoctor-default.css
       |-default-theme.yml
       |-public_style.yml
 ----
 
 
 
-== 実際にasciidocを書いてみる
+== 実際にAsciiDocを書いてみる
 VScodeで*.adocファイルを開く
 
 
 
-=== attributeを書く
+=== Attributeを書く
 とりあえず最低限の指定を行う
 ----
 //日本語ドキュメント
@@ -229,95 +242,107 @@ VScodeで*.adocファイルを開く
 :toc-title: 目次
 //章見出し番号を出力する
 :sectnums:
-//章見出しのChapte.が表示されないようにする
+//PDF化時の章見出しのChapter.が表示されないようにする
 :chapter-label:
 //シンタックスハイライトを使用する
 :source-highlighter: coderay
+//アイコンフォントを利用するフラグ
+:icons: font
+//マクロを使用する（ショートカットキーとか）
+:experimental:
 //画像をdata-uriとして埋め込む
 :data-uri:
 //イメージファイルを置くフォルダ
 :imagesdir: ./images
-//アイコンフォントを利用するフラグ
-:icons: font
-//pdf化時のフォントファイルを置くフォルダ
+//PDF化時のフォントファイルを置くフォルダ
 :pdf-fontsdir: ./fonts
-//pdf化時のスタイルファイルを指定
+//PDF化時のスタイルファイルを指定
 :pdf-style: ./style/public_style.yml
-//html化時のスタイルファイルを置くフォルダ
+//HTML化時のスタイルファイルを置くフォルダ
 :stylesdir: ./style
-//html化時のスタイルファイルを指定
+//HTML化時のスタイルファイルを指定
 :stylesheet: asciidoctor-default.css
 ----
 
 
 
 === テストサンプルを書く
-attributeに続けて下記のテストサンプルを書く
+Attributeに続けて下記のテストサンプルを書く
+--------
+= asciidocの使い方
+
+== asciidocとは？
+
+asciidocとは [blue]#軽量マークアップ言語# です
+
+詳しくは<<can_asciidoc,asciidocでできること>>を参照
+
+[[can_asciidoc]]
+== asciidocでできること
+
+.コードハイライト
+[source, json]
+{
+  "hoge" : "fuga",
+  "foo" : [1,2,3]
+}
+
+.結合＋箇条書例
+[cols="1,2a,3a"]
+|====
+|列1|列2|列3
+3+|3列結合
+.2+|2行縦結合|b-1|c-2
+|b-2|
+* c-3
+* c-4
+|====
+
+[NOTE]
+====
+* format="csv"ではできません
+====
+
+=== asciidoctorだとPlantUMLでシーケンス図作成
+
+[plantuml]
 ----
- = asciidocの使い方
-
- == asciidocとは？
-
- asciidocとは [blue]#軽量マークアップ言語# です
-
- 詳しくは<<can_asciidoc,asciidocでできること>>を参照
-
- [[can_asciidoc]]
- == asciidocでできること
-
- .コードハイライト
- [source, json]
- {
-   "hoge" : "fuga",
-   "foo" : [1,2,3]
- }
-
- .結合＋箇条書例
- [cols="1,2a,3a"]
- |====
- |列1|列2|列3
- 3+|3列結合
- .2+|2行縦結合|b-1|c-2
- |b-2|
- * c-3
- * c-4
- |====
-
- [NOTE]
- ====
- * format="csv"ではできません
- ====
-
- === asciidoctorだとPlantUMLでシーケンス図作成
-
- [plantuml]
- ----
- actor ユーザー as user
- user -> ログイン : ログインする
- ログイン --> user:
- ----
+actor ユーザー as user
+user -> ログイン : ログインする
+ログイン --> user:
 ----
-
-公式リファレンス +
+--------
+[NOTE]
+====
+文法リファレンス（日本語） +
 https://takumon.github.io/asciidoc-syntax-quick-reference-japanese-translation/#_%E8%84%9A%E6%B3%A8
+====
 
 
 
 === プレビューを行う
-VScodeの設定を行うことでプレビュー(ショートカット `Ctrl+K`→`V`)が可能
+VScodeの設定を行うことでプレビュー(ショートカット kbd:[Ctrl+K] → kbd:[V] )が可能
 
-拡張機能をインストールします +
+.**拡張機能をインストール**
+[表示]→[拡張機能]から `AsciiDoc` を検索しインストール
+[NOTE]
+====
+参考サイト +
 https://qiita.com/o_sol06/items/a07ebcb0b48295a4c3b3 +
-画面上部の[表示]→[拡張機能]から `AsciiDoc` を検索しインストール
+====
 
-asciidoctorの設定を変更します +
-https://qiita.com/hyt126/items/fdeff36f09bb221dfac0 +
-画面上部の[ファイル]→[基本設定]→[設定]から `asciidoctor` を検索し、以下の設定を行う
+.**asciidoctorの設定を変更**
+[ファイル]→[基本設定]→[設定]から `asciidoctor` を検索し、以下の設定を行う
 ----
 asciidoctor_command : asciidoctor -n -r asciidoctor-diagram -o-
 asciidoctorpdf_command : asciidoctor-pdf -n -r asciidoctor-diagram -r asciidoctor-pdf-cjk -o-
 use_asciidoctor_js  : false(チェックを外す)
 ----
+[NOTE]
+====
+参考サイト +
+https://qiita.com/hyt126/items/fdeff36f09bb221dfac0
+====
 
 参考までに「3.2.テストサンプル」のプレビュー結果を以下に示す
 
@@ -325,51 +350,25 @@ image::TestPreviewResult.png[]
 
 
 
-=== htmlやpdfに変換する
-.コマンドプロンプトで以下を実行
-* htmlファイルに変換
+=== HTMLやPDFに変換する
+.**コマンドプロンプトで以下を実行**（*にファイル名を指定）
+* HTMLファイルに変換
 +
 ----
 asciidoctor -r asciidoctor-diagram -o dist/*.html *.adoc
 ----
 
-* pdfファイルに変換
+* PDFファイルに変換
 +
 ----
 asciidoctor-pdf -r asciidoctor-diagram -r asciidoctor-pdf-cjk -o dist/*.pdf *.adoc
 ----
 
+
 [NOTE]
 ====
-いちいちビルドコマンドを叩くのは面倒なのでビルドスクリプトのバッチファイルを作っておくとよい +
-
-.make_html.bat
-----
-@echo off +
-asciidoctor -r asciidoctor-diagram -o dist/*html *.adoc
-----
-
-.make_pdf.bat
-----
-@echo off +
-asciidoctor-pdf -r asciidoctor-diagram -r asciidoctor-pdf-cjk -o dist/*pdf *.adoc
-----
-====
-
-
-
-== その他情報
-* pdfへ変換時に文字の色が変わらない
-下記サイトの「2.2 asciidoctor-pdfのソースを修正する」を参考 +
-https://blog.siwa32.com/asciidoctor_pdf_color/
-
-* pdfのフッター等の体裁や文言をカスタマイズ
-下記サイトを参考 +
-https://qiita.com/tamikura@github/items/5d3f62dae55617ee42bb +
-
-* PlantUMLの内容を編集する度に画像ファイルが増えていくのを防ぎたい +
-[plantuml,画像ファイル名]としてファイル名を指定するとよい +
-+
+PlantUMLの内容編集の度に画像ファイルが増えるのを防ぐため +
+[plantuml,画像ファイル名]としてファイル名を指定する +
 ----
  [plantuml,test]
  ----
@@ -381,9 +380,7 @@ https://qiita.com/tamikura@github/items/5d3f62dae55617ee42bb +
  }
  ----
 ----
-+
 ↓ プレビュー結果
-+
 [plantuml,test]
 ----
 class Animal {
@@ -393,5 +390,5 @@ class Animal {
 class Cat extends Animal {
 }
 ----
-
+====
 
