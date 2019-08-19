@@ -27,6 +27,11 @@ font:
       bold: ipagp.ttf           # 追加箇所
       italic: ipagp.ttf         # 追加箇所
       bold_italic: ipagp.ttf    # 追加箇所
+    GenShinGothic-P:                           # 追加箇所
+      normal: GenShinGothic-P-Normal.ttf       # 追加箇所
+      bold: GenShinGothic-P-Bold.ttf           # 追加箇所
+      italic: GenShinGothic-P-Normal.ttf       # 追加箇所
+      bold_italic: GenShinGothic-P-Bold.ttf    # 追加箇所
   fallbacks:
     - M+ 1p Fallback
 #------
@@ -43,8 +48,9 @@ page:
 base:
   align: left
   font_color: 333333
-  font_family: Noto Serif
-  font_family: IPA PGothic      # 追加箇所
+  #font_family: Noto Serif
+  #font_family: IPA PGothic      # 追加箇所
+  font_family: GenShinGothic-P  # 追加箇所
   font_size: 10.5
   line_height_length: 14
   line_height: $base_line_height_length / $base_font_size
@@ -157,12 +163,13 @@ heading:
 # Link Section
 #------
 link:
-  font_color: [231,52,64]
+  font_color: [0,102,203]
+  text-decoration: underline
 #------
 # literal is currently used for inline monospaced in prose and table cells
 #------
 literal:
-  font_color: [163,11,26]
+  font_color: $heading_font_color
   font_family: M+ 1mn
 #------
 # Code section
@@ -171,7 +178,7 @@ literal:
 code:
   font_color: $base_font_color
   font_family: $literal_font_family
-  font_size: ceil($base_font_size)
+  font_size: $base_font_size
   padding: $code_font_size
   line_height: 1.25
   background_color: [237,237,236]     # <-- 「背景色（コードブロック」
@@ -182,14 +189,32 @@ code:
 # Table section
 #------
 table:
+  font_family: $heading_font_family
   background_color: $page_background_color
+  head_background_color: f1eee8
   head_font_color: $base_font_color
   head_font_style: bold
-  head_background_color: [135,134,126]             # <-- ヘッダー行
-  foot_background_color: [135,134,126]             # <-- フッター行
-  even_row_background_color: [237,237,236]         # 偶数行
-  odd_row_background_color: $page_background_color # 奇数行
-  border_color: [87, 86, 79]
+  body_background_color: $page_background_color
+  body_stripe_background_color: fbfaf8
+  foot_background_color: f0f0f0
+  border_color: e0dccd
   border_width: $base_border_width
-  # HACK accounting for line-height
-  cell_padding: [3, 3, 6, 3]
+  cell_padding: 3
+#------
+# Caption section
+#------
+caption:
+  align: left
+  font_size: $base_font_size
+  font_family: $base_font_family
+  font_color: $heading_font_color
+  font_style: bold
+  # margin_inside: $vertical_rhythm / 3
+  margin_outside: 0
+#------
+# Admonition section
+#------
+admonition:
+  font-size: $base_font_size_min
+
+

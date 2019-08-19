@@ -1,0 +1,81 @@
+//////////////////////////////////////////////////////////////////////
+// Attribute
+//////////////////////////////////////////////////////////////////////
+//日本語ドキュメント
+:lang: ja
+//文書タイプはbookにする
+:doctype: book
+//目次を自動生成する
+:toc: left
+//対象とする階層数を指定する
+:toclevels: 3
+//タイトルを変更する
+:toc-title: 目次
+//章見出し番号を出力する
+:sectnums:
+//章見出しのChapte.が表示されないようにする
+:chapter-label:
+//シンタックスハイライトを使用する
+:source-highlighter: coderay
+//画像をdata-uriとして埋め込む
+:data-uri:
+//イメージファイルを置くフォルダ
+:imagesdir: ./images
+//アイコンフォントを利用するフラグ
+:icons: font
+//pdf化時のフォントファイルを置くフォルダ
+:pdf-fontsdir: ./fonts
+//pdf化時のスタイルファイルを指定
+:pdf-style: ./style/public_style.yml
+//html化時のスタイルファイルを置くフォルダ
+:stylesdir: ./style
+//html化時のスタイルファイルを指定
+:stylesheet: asciidoctor-default.css
+
+
+
+//////////////////////////////////////////////////////////////////////
+// ここから本文
+//////////////////////////////////////////////////////////////////////
+= asciidocの使い方
+
+== asciidocとは？
+
+asciidocとは [blue]#軽量マークアップ言語# です
+
+詳しくは<<can_asciidoc,asciidocでできること>>を参照
+
+[[can_asciidoc]]
+== asciidocでできること
+
+.コードハイライト
+[source, json]
+{
+  "hoge" : "fuga",
+  "foo" : [1,2,3]
+}
+
+.結合＋箇条書例
+[cols="1,2a,3a"]
+|====
+|列1|列2|列3
+3+|3列結合
+.2+|2行縦結合|b-1|c-2
+|b-2|
+* c-3
+* c-4
+|====
+
+[NOTE]
+====
+* format="csv"ではできません
+====
+
+=== asciidoctorだとPlantUMLでシーケンス図作成
+
+[plantuml]
+----
+actor ユーザー as user
+user -> ログイン : ログインする
+ログイン --> user:
+----

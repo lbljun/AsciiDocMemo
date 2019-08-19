@@ -468,7 +468,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_asciidocについて">1. AsciiDocについて</h2>
 <div class="sectionbody">
 <div class="ulist">
-<div class="title"><strong>AsciiDocとは？</strong></div>
+<div class="title">AsciiDocとは？</div>
 <ul>
 <li>
 <p>Markdownのような軽量マークアップ言語の一つ</p>
@@ -482,7 +482,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 <div class="ulist">
-<div class="title"><strong>メリット</strong></div>
+<div class="title">メリット</div>
 <ul>
 <li>
 <p>テキスト形式なのでGitで管理しやすい</p>
@@ -519,7 +519,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_chocolateyをインストール">2.1. Chocolateyをインストール</h3>
 <div class="listingblock">
-<div class="title"><strong>コマンドプロンプト（管理者権限）で以下を実行</strong></div>
+<div class="title">コマンドプロンプト（管理者権限）で以下を実行</div>
 <div class="content">
 <pre>@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" &amp;&amp; SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"</pre>
 </div>
@@ -544,7 +544,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="ulist">
-<div class="title"><strong>Chocolateyとは？</strong></div>
+<div class="title">Chocolateyとは？</div>
 <ul>
 <li>
 <p>Windows上で動作するソフトウェアをコマンドラインでパッケージ管理可能なツール</p>
@@ -552,7 +552,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 <div class="ulist">
-<div class="title"><strong>メリット</strong></div>
+<div class="title">メリット</div>
 <ul>
 <li>
 <p>Chocolateyのリポジトリに登録されているパッケージを<strong>一発でインストール</strong>できる</p>
@@ -566,7 +566,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_ruby等のパッケージをインストール">2.2. Ruby等のパッケージをインストール</h3>
 <div class="listingblock">
-<div class="title"><strong>コマンドプロンプト（管理者権限）で以下を実行</strong></div>
+<div class="title">コマンドプロンプト（管理者権限）で以下を実行</div>
 <div class="content">
 <pre>cinst ruby -y <i class="conum" data-value="1"></i><b>(1)</b>
 cinst graphviz -y <i class="conum" data-value="2"></i><b>(2)</b>
@@ -608,7 +608,7 @@ cinst sourcetree --version 2.5.5 -y <i class="conum" data-value="5"></i><b>(5)</
 <td class="content">
 <div class="paragraph">
 <p>Atlassianアカウントを作成してSourceTreeのサインインに成功したら<br>
-コマンドプロンプト（管理者権限）で以下を実行し、一括アップデートする<br></p>
+コマンドプロンプト（管理者権限）で以下を実行しアップデートする<br></p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -627,7 +627,7 @@ cinst sourcetree --version 2.5.5 -y <i class="conum" data-value="5"></i><b>(5)</
 <div class="sect2">
 <h3 id="_asciidoc関連ツールをインストール">2.3. AsciiDoc関連ツールをインストール</h3>
 <div class="listingblock">
-<div class="title"><strong>コマンドプロンプトで以下を実行</strong></div>
+<div class="title">コマンドプロンプトで以下を実行</div>
 <div class="content">
 <pre>gem install asciidoctor <i class="conum" data-value="1"></i><b>(1)</b>
 gem install --pre asciidoctor-pdf <i class="conum" data-value="2"></i><b>(2)</b>
@@ -687,7 +687,7 @@ gem install coderay <i class="conum" data-value="5"></i><b>(5)</b></pre>
 <div class="sect2">
 <h3 id="_作業ディレクトリを作成する">2.4. 作業ディレクトリを作成する</h3>
 <div class="listingblock">
-<div class="title"><strong>ドキュメント作成のための作業ディレクトリを用意</strong></div>
+<div class="title">ドキュメント作成のための作業ディレクトリを用意</div>
 <div class="content">
 <pre>|-test          // ドキュメント(*.adoc)を格納するフォルダ
    |-dist       // HTMLやPDFの出力先
@@ -697,20 +697,20 @@ gem install coderay <i class="conum" data-value="5"></i><b>(5)</b></pre>
 </div>
 </div>
 <div class="paragraph">
-<div class="title"><strong>HTMLのスタイルファイル</strong></div>
-<p>windowsの場合は以下に入っているのでcssファイルをコピーして格納</p>
+<div class="title">HTMLのスタイルファイル</div>
+<p>asciidoctor-pdf自身の配布ファイルがWindowsの場合は以下に入っているのでcssファイルをコピーして格納</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
 <pre>// ruby2.6でasciidoctorのverが2.0.10の場合
 C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-2.0.10\data\stylesheets\asciidoctor-default.css</pre>
 </div>
 </div>
 <div class="paragraph">
-<div class="title"><strong>PDFのスタイルファイル</strong></div>
-<p>windowsの場合は以下に入っているのでyamlファイルをコピーして格納</p>
+<div class="title">PDFのスタイルファイル</div>
+<p>asciidoctor-pdf自身の配布ファイルがWindowsの場合は以下に入っているのでyamlファイルをコピーして格納</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
 <pre>// ruby2.6でasciidoctor-pdfのverが1.5.0.beta.2の場合
 C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-pdf-1.5.0.beta.2\data\themes\default-theme.yml</pre>
@@ -724,11 +724,22 @@ C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-pdf-1.5.0.beta.2\data\theme
 </td>
 <td class="content">
 <div class="paragraph">
-<p>設定参考（public_style.ymlにリネームして使用）
+<p>本手順書内ではpublic_style.ymlにリネームして好みのスタイルに編集して使用する</p>
+</div>
+<div class="paragraph">
+<p>公式サイト<br>
+<a href="https://github.com/asciidoctor/asciidoctor-pdf/blob/master/docs/theming-guide.adoc" class="bare">https://github.com/asciidoctor/asciidoctor-pdf/blob/master/docs/theming-guide.adoc</a><br></p>
+</div>
+<div class="paragraph">
+<p>参考サイト<br>
 <a href="https://qiita.com/tamikura@github/items/5d3f62dae55617ee42bb" class="bare">https://qiita.com/tamikura@github/items/5d3f62dae55617ee42bb</a><br></p>
 </div>
 <div class="paragraph">
-<p>PDF化時に文字の色が変わるようにする
+<p>色表現方法<br>
+<a href="https://www.lab-nemoto.jp/www/leaflet_edu/ColorMaker.html" class="bare">https://www.lab-nemoto.jp/www/leaflet_edu/ColorMaker.html</a><br></p>
+</div>
+<div class="paragraph">
+<p>PDF化時に文字の色が変わるようにする<br>
 <a href="https://blog.siwa32.com/asciidoctor_pdf_color/" class="bare">https://blog.siwa32.com/asciidoctor_pdf_color/</a><br>
 →「2.2 asciidoctor-pdfのソースを修正する」</p>
 </div>
@@ -737,8 +748,8 @@ C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-pdf-1.5.0.beta.2\data\theme
 </table>
 </div>
 <div class="paragraph">
-<div class="title"><strong>フォントファイル</strong></div>
-<p>Windowsの場合は以下に入っているので中身を全てコピーして格納</p>
+<div class="title">フォントファイル</div>
+<p>asciidoctor-pdf自身の配布ファイルがWindowsの場合は以下に入っているので中身を全てコピーして格納</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -746,8 +757,24 @@ C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-pdf-1.5.0.beta.2\data\theme
 C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-pdf-1.5.0.beta.2\data\fonts\*</pre>
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<div class="title"><strong>ドキュメントファイル</strong></div>
+<p>参考サイト<br>
+<a href="https://ryuta46.com/267" class="bare">https://ryuta46.com/267</a><br>
+<a href="https://qiita.com/kuboaki/items/67774c5ebd41467b83e2" class="bare">https://qiita.com/kuboaki/items/67774c5ebd41467b83e2</a><br></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<div class="title">ドキュメントファイル</div>
 <p>適当にメモ帳で以下の設定で作成して格納</p>
 </div>
 <div class="listingblock">
@@ -757,7 +784,7 @@ C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-pdf-1.5.0.beta.2\data\fonts
 </div>
 </div>
 <div class="listingblock">
-<div class="title"><strong>作業フォルダ内はこんな感じになる</strong></div>
+<div class="title">作業フォルダ内はこんな感じになる</div>
 <div class="content">
 <pre>|-test
    |-*.adoc
@@ -796,7 +823,7 @@ C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-pdf-1.5.0.beta.2\data\fonts
 <div class="sect2">
 <h3 id="_attributeを書く">3.1. Attributeを書く</h3>
 <div class="paragraph">
-<p>とりあえず最低限の指定を行う</p>
+<p>とりあえず以下の指定を行う</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -908,7 +935,7 @@ user -&gt; ログイン : ログインする
 <p>VScodeの設定を行うことでプレビュー(ショートカット <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>K</kbd></span> → <kbd>V</kbd> )が可能</p>
 </div>
 <div class="paragraph">
-<div class="title"><strong>拡張機能をインストール</strong></div>
+<div class="title">拡張機能をインストール</div>
 <p>[表示]→[拡張機能]から <code>AsciiDoc</code> を検索しインストール</p>
 </div>
 <div class="admonitionblock note">
@@ -927,7 +954,7 @@ user -&gt; ログイン : ログインする
 </table>
 </div>
 <div class="paragraph">
-<div class="title"><strong>asciidoctorの設定を変更</strong></div>
+<div class="title">asciidoctorの設定を変更</div>
 <p>[ファイル]→[基本設定]→[設定]から <code>asciidoctor</code> を検索し、以下の設定を行う</p>
 </div>
 <div class="listingblock">
@@ -964,7 +991,7 @@ use_asciidoctor_js  : false(チェックを外す)</pre>
 <div class="sect2">
 <h3 id="_htmlやpdfに変換する">3.4. HTMLやPDFに変換する</h3>
 <div class="ulist">
-<div class="title"><strong>コマンドプロンプトで以下を実行</strong>（*にファイル名を指定）</div>
+<div class="title">コマンドプロンプトで以下を実行（*にファイル名を指定）</div>
 <ul>
 <li>
 <p>HTMLファイルに変換</p>
@@ -984,49 +1011,13 @@ use_asciidoctor_js  : false(チェックを外す)</pre>
 </li>
 </ul>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>PlantUMLの内容編集の度に画像ファイルが増えるのを防ぐため<br>
-[plantuml,画像ファイル名]としてファイル名を指定する<br></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre> [plantuml,test]
- ----
- class Animal {
-   run()
- }
-
- class Cat extends Animal {
- }
- ----</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>↓ プレビュー結果</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="data:image/png;base64,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" alt="test" width="86" height="188">
-</div>
-</div>
-</td>
-</tr>
-</table>
-</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-08-19 01:22:28 +0900
+Last updated 2019-08-20 01:39:04 +0900
 </div>
 </div>
 </body>
