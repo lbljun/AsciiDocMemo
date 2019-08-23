@@ -157,7 +157,7 @@ heading:
   h5_font_size: $base_font_size              # <-- 使わない想定
   h6_font_size: $base_font_size_small        # <-- 使わない想定
   line_height: 1
-  margin_top: $vertical_rhythm * 0.4
+  margin_top: $vertical_rhythm * 0.9
   margin_bottom: $vertical_rhythm * 0.9
 #------
 # Link Section

@@ -73,7 +73,7 @@ asciidocとは [blue]#軽量マークアップ言語# です
 
 === asciidoctorだとPlantUMLでシーケンス図作成
 
-[plantuml]
+[plantuml.test]
 ----
 actor ユーザー as user
 user -> ログイン : ログインする
