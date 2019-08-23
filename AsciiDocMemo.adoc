@@ -35,16 +35,26 @@
 //HTML化時のスタイルファイルを指定
 :stylesheet: asciidoctor-default.css
 
-
-
 //////////////////////////////////////////////////////////////////////
-// ここから本文
+// 表紙
 //////////////////////////////////////////////////////////////////////
 
-//ヘッダーに入るドキュメント名
+//ドキュメント名、表紙に入る
 = AsciiDoc環境構築 覚え書き
+//ドキュメント名、ヘッダーに入る
+:docname: AsciiDoc環境構築 覚え書き
+//作成者
+:author:
+//K版
+:revnumber: K0.1
+//改定日
+:revdate: 2019/08/24
+//versionのラベルを指定しない
+:version-label:
 
-
+//////////////////////////////////////////////////////////////////////
+// 本文
+//////////////////////////////////////////////////////////////////////
 
 == AsciiDocについて
 
@@ -331,7 +341,8 @@ user -> ログイン : ログインする
 [NOTE]
 ====
 文法リファレンス（日本語） +
-https://takumon.github.io/asciidoc-syntax-quick-reference-japanese-translation/#_%E8%84%9A%E6%B3%A8
+https://takumon.github.io/asciidoc-syntax-quick-reference-japanese-translation/#_%E8%84%9A%E6%B3%A8 +
+https://qiita.com/hbsnow/items/88e1414ac97501af17ff
 ====
 
 

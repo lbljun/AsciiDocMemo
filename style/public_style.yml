@@ -107,12 +107,16 @@ header:
   height: $base_line_height_length * 2.5
   vertical_align: bottom
   padding: [$base_line_height_length / 2, 1, 0, 1]
-  recto_content:                                     # 右見開きページ
-    left: '{document-title}'                         # <-- ドキュメントタイトル
-    right: 'v{revnumber}'                            # <-- ドキュメント版数
-  verso_content:                                     # 左見開きページ
-    left: '{document-title}'                         # <-- ドキュメントタイトル
-    right: 'v{revnumber}'                            # <-- ドキュメント版数
+  recto:                                             # 右見開きページ
+    left:
+      content: '{document-title}'                    # <-- ドキュメントタイトル
+    right:
+      content: '{revnumber} ({revdate})'             # <-- ドキュメント版数、改定日
+  verso:                                             # 左見開きページ
+    left:
+      content: '{document-title}'                    # <-- ドキュメントタイトル
+    right:
+      content: '{revnumber} ({revdate})'             # <-- ドキュメント版数、改定日
 #------
 # Footer Section
 #------
