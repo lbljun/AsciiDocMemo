@@ -459,10 +459,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_実際にasciidocを書いてみる">3. 実際にAsciiDocを書いてみる</a>
 <ul class="sectlevel2">
-<li><a href="#_attributeを書く">3.1. Attributeを書く</a></li>
-<li><a href="#_テストサンプルを書く">3.2. テストサンプルを書く</a></li>
-<li><a href="#_プレビューを行う">3.3. プレビューを行う</a></li>
-<li><a href="#_htmlやpdfに変換する">3.4. HTMLやPDFに変換する</a></li>
+<li><a href="#_テストサンプルを書く">3.1. テストサンプルを書く</a></li>
+<li><a href="#_プレビューを行う">3.2. プレビューを行う</a></li>
+<li><a href="#_htmlやpdfに変換する">3.3. HTMLやPDFに変換する</a></li>
 </ul>
 </li>
 </ul>
@@ -496,9 +495,24 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>インクルード機能により外部ファイルの読み込みができる</p>
 </li>
 <li>
-<p>HTML、PDFへの変換もできる</p>
+<p>HTML、PDFへの変換ができる</p>
 </li>
 </ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>AsciiDoc公式サイト<br>
+<a href="http://asciidoc.org/" class="bare">http://asciidoc.org/</a></p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -563,7 +577,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Chocolateyのリポジトリに登録されているパッケージを<strong>一発でインストール</strong>できる</p>
 </li>
 <li>
-<p>Chocolateyでインストールしたソフトは<strong>一括アップデート</strong>できる</p>
+<p>Chocolateyでインストールしたソフトは<strong>一括でアップデート</strong>できる</p>
 </li>
 </ul>
 </div>
@@ -592,11 +606,11 @@ cinst sourcetree --version 2.5.5 -y <i class="conum" data-value="5"></i><b>(5)</
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Java （PlantUML等で記述した図の表示に必要）</td>
+<td>Java （同上）</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Visual Studio Code （AsciiDocをプレビュー可能な編集エディタ）</td>
+<td>Visual Studio Code （AsciiDocをプレビュー可能なテキストエディタ）</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
@@ -621,7 +635,7 @@ cinst sourcetree --version 2.5.5 -y <i class="conum" data-value="5"></i><b>(5)</
 </div>
 </div>
 <div class="paragraph">
-<p>※初めから最新verをインストールしない理由は以下を参照<br>
+<p>※初めから最新verをインストールしないのはBitbucketに登録せずに利用するため<br>
 <a href="https://hepokon365.hatenablog.com/entry/2019/03/25/222814" class="bare">https://hepokon365.hatenablog.com/entry/2019/03/25/222814</a></p>
 </div>
 </td>
@@ -684,6 +698,10 @@ gem install coderay <i class="conum" data-value="5"></i><b>(5)</b></pre>
 <p>proxyの確認手順<br>
 <a href="https://pasokatu.hateblo.jp/entry/2017/07/04/111147" class="bare">https://pasokatu.hateblo.jp/entry/2017/07/04/111147</a></p>
 </div>
+<div class="paragraph">
+<p>asciidoctor公式サイト<br>
+<a href="https://asciidoctor.org/" class="bare">https://asciidoctor.org/</a></p>
+</div>
 </td>
 </tr>
 </table>
@@ -694,16 +712,16 @@ gem install coderay <i class="conum" data-value="5"></i><b>(5)</b></pre>
 <div class="listingblock">
 <div class="title">ドキュメント作成のための作業ディレクトリを用意</div>
 <div class="content">
-<pre>|-test          // ドキュメント(*.adoc)を格納するフォルダ
-   |-dist       // HTMLやPDFの出力先
-   |-fonts      // フォントファイルを格納
-   |-images     // イメージファイルを格納
-   |-style      // スタイルファイルを格納</pre>
+<pre>└ test          // ドキュメント(*.adoc)を格納するフォルダ
+   ├ dist       // HTMLやPDFの出力先
+   ├ fonts      // フォントファイルを格納
+   ├ images     // イメージファイルを格納
+   └ style      // スタイルファイルを格納</pre>
 </div>
 </div>
 <div class="paragraph">
 <div class="title">HTMLのスタイルファイル</div>
-<p>asciidoctor-pdf自身の配布ファイルがWindowsの場合は以下に入っているのでcssファイルをコピーして格納</p>
+<p>asciidoctorの配布ファイルがWindowsの場合は以下にあるのでコピペして利用</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -713,7 +731,7 @@ C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-2.0.10\data\stylesheets\asc
 </div>
 <div class="paragraph">
 <div class="title">PDFのスタイルファイル</div>
-<p>asciidoctor-pdf自身の配布ファイルがWindowsの場合は以下に入っているのでyamlファイルをコピーして格納</p>
+<p>asciidoctor-pdfの配布ファイルがWindowsの場合は以下にあるのでコピペして利用</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -729,18 +747,16 @@ C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-pdf-1.5.0.beta.2\data\theme
 </td>
 <td class="content">
 <div class="paragraph">
-<p>本手順書内ではpublic_style.ymlにリネームして好みのスタイルに編集して使用する</p>
+<p>デフォルトのスタイルファイル<br>
+css ：そのままでも十分使えそう<br>
+yaml：いまいちなのでHTML化時のスタイルに寄せた設定に修正してみた（public_style.ymlとして利用）<br></p>
 </div>
 <div class="paragraph">
 <p>公式サイト<br>
 <a href="https://github.com/asciidoctor/asciidoctor-pdf/blob/master/docs/theming-guide.adoc" class="bare">https://github.com/asciidoctor/asciidoctor-pdf/blob/master/docs/theming-guide.adoc</a><br></p>
 </div>
 <div class="paragraph">
-<p>参考サイト<br>
-<a href="https://qiita.com/tamikura@github/items/5d3f62dae55617ee42bb" class="bare">https://qiita.com/tamikura@github/items/5d3f62dae55617ee42bb</a><br></p>
-</div>
-<div class="paragraph">
-<p>色表現方法<br>
+<p>色表現<br>
 <a href="https://www.lab-nemoto.jp/www/leaflet_edu/ColorMaker.html" class="bare">https://www.lab-nemoto.jp/www/leaflet_edu/ColorMaker.html</a><br></p>
 </div>
 <div class="paragraph">
@@ -754,12 +770,12 @@ C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-pdf-1.5.0.beta.2\data\theme
 </div>
 <div class="paragraph">
 <div class="title">フォントファイル</div>
-<p>asciidoctor-pdf自身の配布ファイルがWindowsの場合は以下に入っているので中身を全てコピーして格納</p>
+<p>asciidoctor-pdfの配布ファイルがWindowsの場合は以下にあるのでコピペして利用</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre>// ruby2.6でasciidoctor-pdfのverが1.5.0.beta.2の場合
-C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-pdf-1.5.0.beta.2\data\fonts\*</pre>
+C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-pdf-1.5.0.beta.2\data\fonts\*.ttf</pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -780,7 +796,7 @@ C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-pdf-1.5.0.beta.2\data\fonts
 </div>
 <div class="paragraph">
 <div class="title">ドキュメントファイル</div>
-<p>適当にメモ帳で以下の設定で作成して格納</p>
+<p>適当にメモ帳で以下の設定で作成する</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -789,31 +805,19 @@ C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-pdf-1.5.0.beta.2\data\fonts
 </div>
 </div>
 <div class="listingblock">
-<div class="title">作業フォルダ内はこんな感じになる</div>
+<div class="title">格納後の作業フォルダ内はこんな感じになる</div>
 <div class="content">
-<pre>|-test
-   |-*.adoc
-   |-dist
-   |-fonts
-      |-IPA_Font_License_Agreement_v1.0.txt
-      |-ipagp.ttf
-      |-LICENSE-mplus-testflight-58
-      |-LICENSE-noto-2015-06-05
-      |-mplus1mn-bold_italic-ascii.ttf
-      |-mplus1mn-bold-ascii.ttf
-      |-mplus1mn-italic-ascii.ttf
-      |-mplus1mn-regular-ascii-conums.ttf
-      |-mplus1p-regular-fallback.ttf
-      |-notoserif-bold_italic-subset.ttf
-      |-notoserif-bold-subset.ttf
-      |-notoserif-italic-subset.ttf
-      |-notoserif-regular-subset.ttf
-      |-Readme_IPAfont00303.txt
-   |-images
-   |-style
-      |-asciidoctor-default.css
-      |-default-theme.yml
-      |-public_style.yml</pre>
+<pre>└ test
+   ├ dist
+   ├ fonts
+      ├ *.ttf
+      ├ ...
+   ├ images
+   ├ style
+      ├ asciidoctor-default.css
+      ├ default-theme.yml
+      └ public_style.yml
+   └ *.adoc</pre>
 </div>
 </div>
 </div>
@@ -826,56 +830,71 @@ C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-pdf-1.5.0.beta.2\data\fonts
 <p>VScodeで*.adocファイルを開く</p>
 </div>
 <div class="sect2">
-<h3 id="_attributeを書く">3.1. Attributeを書く</h3>
+<h3 id="_テストサンプルを書く">3.1. テストサンプルを書く</h3>
 <div class="paragraph">
-<p>とりあえず以下の指定を行う</p>
+<p>AsciiDocの文章の設定を行うAttributeと表紙の設定に続いて本文という構成にしてみた<br></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>//日本語ドキュメント
-:lang: ja
-//文書タイプはbookにする
-:doctype: book
-//目次を自動生成する
-:toc: left
-//対象とする階層数を指定する
-:toclevels: 3
-//タイトルを変更する
-:toc-title: 目次
-//章見出し番号を出力する
-:sectnums:
-//PDF化時の章見出しのChapter.が表示されないようにする
-:chapter-label:
-//シンタックスハイライトを使用する
-:source-highlighter: coderay
-//アイコンフォントを利用するフラグ
-:icons: font
-//マクロを使用する（ショートカットキーとか）
-:experimental:
-//画像をdata-uriとして埋め込む
-:data-uri:
-//イメージファイルを置くフォルダ
-:imagesdir: ./images
-//PDF化時のフォントファイルを置くフォルダ
-:pdf-fontsdir: ./fonts
-//PDF化時のスタイルファイルを指定
-:pdf-style: ./style/public_style.yml
-//HTML化時のスタイルファイルを置くフォルダ
-:stylesdir: ./style
-//HTML化時のスタイルファイルを指定
-:stylesheet: asciidoctor-default.css</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_テストサンプルを書く">3.2. テストサンプルを書く</h3>
-<div class="paragraph">
-<p>Attributeに続けて下記のテストサンプルを書く</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>= asciidocの使い方
+<pre>//////////////////////////////////////////////////////////////////////
+// Attribute
+//////////////////////////////////////////////////////////////////////
 
+//ドキュメント種類
+:doctype: book
+//ドキュメント言語
+:lang: ja
+//目次生成
+:toc: left
+//目次生成階層数
+:toclevels: 2
+//目次タイトル
+:toc-title: 目次
+//章番号生成
+:sectnums:
+//章番号生成階層数
+:sectlevels:
+//PDF化時の章タイトル
+:chapter-label:
+//シンタックスハイライト
+:source-highlighter: coderay
+//アイコンフォント
+:icons: font
+//UIマクロ
+:experimental:
+//HTML化時の画像のdata-uri要素化
+:data-uri:
+//画像ファイル格納先
+:imagesdir: ./images
+//HTML化時のスタイルファイル格納先
+:stylesdir: ./style
+//HTML化時のスタイルファイル
+:stylesheet: asciidoctor-default.css
+//PDF化時のスタイルファイル
+:pdf-style: ./style/public_style.yml
+//PDF化時のフォントファイル格納先
+:pdf-fontsdir: ./fonts
+
+//////////////////////////////////////////////////////////////////////
+// 表紙
+//////////////////////////////////////////////////////////////////////
+
+//ドキュメントタイトル、表紙に入る
+= asciidoctの使い方
+//ドキュメントタイトル、ヘッダーに入る
+:docname: asciidoctの使い方
+//著者
+:author:
+//改定番号
+:revnumber: K0.1
+//改定日
+:revdate: 2019/08/24
+//改定番号のラベル
+:version-label:
+//ロゴ画像
+//:title-logo-image:
+//表紙背景画像
+//:title-page-background-image:
 == asciidocとは？
 
 asciidocとは [blue]#軽量マークアップ言語# です
@@ -911,32 +930,16 @@ asciidocとは [blue]#軽量マークアップ言語# です
 === asciidoctorだとPlantUMLでシーケンス図作成
 
 [plantuml]
-----
+--
 actor ユーザー as user
 user -&gt; ログイン : ログインする
 ログイン --&gt; user:
-----</pre>
+--</pre>
 </div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>文法リファレンス（日本語）<br>
-<a href="https://takumon.github.io/asciidoc-syntax-quick-reference-japanese-translation/#_%E8%84%9A%E6%B3%A8" class="bare">https://takumon.github.io/asciidoc-syntax-quick-reference-japanese-translation/#_%E8%84%9A%E6%B3%A8</a><br>
-<a href="https://qiita.com/hbsnow/items/88e1414ac97501af17ff" class="bare">https://qiita.com/hbsnow/items/88e1414ac97501af17ff</a></p>
-</div>
-</td>
-</tr>
-</table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_プレビューを行う">3.3. プレビューを行う</h3>
+<h3 id="_プレビューを行う">3.2. プレビューを行う</h3>
 <div class="paragraph">
 <p>VScodeの設定を行うことでプレビュー(ショートカット <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>K</kbd></span> → <kbd>V</kbd> )が可能</p>
 </div>
@@ -954,6 +957,10 @@ user -&gt; ログイン : ログインする
 <div class="paragraph">
 <p>参考サイト<br>
 <a href="https://qiita.com/o_sol06/items/a07ebcb0b48295a4c3b3" class="bare">https://qiita.com/o_sol06/items/a07ebcb0b48295a4c3b3</a><br></p>
+</div>
+<div class="paragraph">
+<p>VScodeを日本語表示にする拡張機能<br>
+<a href="https://marketplace.visualstudio.com/items?itemName=MS-CEINTL.vscode-language-pack-ja" class="bare">https://marketplace.visualstudio.com/items?itemName=MS-CEINTL.vscode-language-pack-ja</a></p>
 </div>
 </td>
 </tr>
@@ -986,7 +993,7 @@ use_asciidoctor_js  : false(チェックを外す)</pre>
 </table>
 </div>
 <div class="paragraph">
-<p>参考までに「3.2.テストサンプル」のプレビュー結果を以下に示す</p>
+<p>参考までに「3.1.テストサンプル」のプレビュー結果を以下に示す</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -995,7 +1002,7 @@ use_asciidoctor_js  : false(チェックを外す)</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_htmlやpdfに変換する">3.4. HTMLやPDFに変換する</h3>
+<h3 id="_htmlやpdfに変換する">3.3. HTMLやPDFに変換する</h3>
 <div class="ulist">
 <div class="title">コマンドプロンプトで以下を実行（*にファイル名を指定）</div>
 <ul>
@@ -1024,7 +1031,7 @@ use_asciidoctor_js  : false(チェックを外す)</pre>
 <div id="footer">
 <div id="footer-text">
  K0.1<br>
-Last updated 2019-08-24 01:11:11 +0900
+Last updated 2019-08-25 00:05:22 +0900
 </div>
 </div>
 </body>

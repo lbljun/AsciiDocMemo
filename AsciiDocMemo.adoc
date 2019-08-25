@@ -2,55 +2,61 @@
 // Attribute
 //////////////////////////////////////////////////////////////////////
 
-//日本語ドキュメント
-:lang: ja
-//文書タイプはbookにする
+//ドキュメント種類
 :doctype: book
-//目次を自動生成する
+//ドキュメント言語
+:lang: ja
+//目次生成
 :toc: left
-//対象とする階層数を指定する
-:toclevels: 3
-//タイトルを変更する
+//目次生成階層数
+:toclevels: 2
+//目次タイトル
 :toc-title: 目次
-//章見出し番号を出力する
+//章番号生成
 :sectnums:
-//PDF化時の章見出しのChapter.が表示されないようにする
+//章番号生成階層数
+:sectlevels: 
+//PDF化時の章タイトル
 :chapter-label:
-//シンタックスハイライトを使用する
+//シンタックスハイライト
 :source-highlighter: coderay
-//アイコンフォントを利用するフラグ
+//アイコンフォント
 :icons: font
-//マクロを使用する（ショートカットキーとか）
+//UIマクロ
 :experimental:
-//画像をdata-uriとして埋め込む
+//HTML化時の画像のdata-uri要素化
 :data-uri:
-//イメージファイルを置くフォルダ
+//画像ファイル格納先
 :imagesdir: ./images
-//PDF化時のフォントファイルを置くフォルダ
-:pdf-fontsdir: ./fonts
-//PDF化時のスタイルファイルを指定
-:pdf-style: ./style/public_style.yml
-//HTML化時のスタイルファイルを置くフォルダ
+//HTML化時のスタイルファイル格納先
 :stylesdir: ./style
-//HTML化時のスタイルファイルを指定
+//HTML化時のスタイルファイル
 :stylesheet: asciidoctor-default.css
+//PDF化時のスタイルファイル
+:pdf-style: ./style/public_style.yml
+//PDF化時のフォントファイル格納先
+:pdf-fontsdir: ./fonts
 
 //////////////////////////////////////////////////////////////////////
 // 表紙
 //////////////////////////////////////////////////////////////////////
 
-//ドキュメント名、表紙に入る
+//ドキュメントタイトル、表紙に入る
 = AsciiDoc環境構築 覚え書き
-//ドキュメント名、ヘッダーに入る
+//ドキュメントタイトル、ヘッダーに入る
 :docname: AsciiDoc環境構築 覚え書き
-//作成者
+//著者
 :author:
-//K版
+//改定番号
 :revnumber: K0.1
 //改定日
 :revdate: 2019/08/24
-//versionのラベルを指定しない
+//改定番号のラベル
 :version-label:
+//ロゴ画像
+//:title-logo-image:
+//表紙背景画像 
+//:title-page-background-image:
 
 //////////////////////////////////////////////////////////////////////
 // 本文
@@ -66,7 +72,13 @@
 .メリット
 * テキスト形式なのでGitで管理しやすい
 * インクルード機能により外部ファイルの読み込みができる
-* HTML、PDFへの変換もできる
+* HTML、PDFへの変換ができる
+
+[NOTE]
+====
+AsciiDoc公式サイト +
+http://asciidoc.org/
+====
 
 
 
@@ -98,7 +110,7 @@ https://qiita.com/konta220/items/95b40b4647a737cb51aa
 
 .メリット
 * Chocolateyのリポジトリに登録されているパッケージを**一発でインストール**できる
-* Chocolateyでインストールしたソフトは**一括アップデート**できる
+* Chocolateyでインストールしたソフトは**一括でアップデート**できる
 
 
 
@@ -113,8 +125,8 @@ cinst sourcetree --version 2.5.5 -y //<5>
 ----
 <1> Ruby （AsciiDoc関連ツールを利用するのに必要）
 <2> Graphviz （PlantUML等で記述した図の表示に必要）
-<3> Java （PlantUML等で記述した図の表示に必要）
-<4> Visual Studio Code （AsciiDocをプレビュー可能な編集エディタ）
+<3> Java （同上）
+<4> Visual Studio Code （AsciiDocをプレビュー可能なテキストエディタ）
 <5> SourceTree （GitのGUIツール）
 
 [NOTE]
@@ -124,7 +136,7 @@ Atlassianアカウントを作成してSourceTreeのサインインに成功し�
 ----
 choco upgrade all -y
 ----
-※初めから最新verをインストールしない理由は以下を参照 +
+※初めから最新verをインストールしないのはBitbucketに登録せずに利用するため +
 https://hepokon365.hatenablog.com/entry/2019/03/25/222814
 ====
 
@@ -154,6 +166,9 @@ gem install xxxx -p proxy http://アドレス:ポート
 
 proxyの確認手順 +
 https://pasokatu.hateblo.jp/entry/2017/07/04/111147
+
+asciidoctor公式サイト +
+https://asciidoctor.org/
 ====
 
 
@@ -161,37 +176,36 @@ https://pasokatu.hateblo.jp/entry/2017/07/04/111147
 === 作業ディレクトリを作成する
 .ドキュメント作成のための作業ディレクトリを用意
 ----
-|-test          // ドキュメント(*.adoc)を格納するフォルダ
-   |-dist       // HTMLやPDFの出力先
-   |-fonts      // フォントファイルを格納
-   |-images     // イメージファイルを格納
-   |-style      // スタイルファイルを格納
+└ test          // ドキュメント(*.adoc)を格納するフォルダ
+   ├ dist       // HTMLやPDFの出力先
+   ├ fonts      // フォントファイルを格納
+   ├ images     // イメージファイルを格納
+   └ style      // スタイルファイルを格納
 ----
 
 .HTMLのスタイルファイル
-asciidoctor-pdf自身の配布ファイルがWindowsの場合は以下に入っているのでcssファイルをコピーして格納
+asciidoctorの配布ファイルがWindowsの場合は以下にあるのでコピペして利用
 ----
 // ruby2.6でasciidoctorのverが2.0.10の場合
 C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-2.0.10\data\stylesheets\asciidoctor-default.css
 ----
 
 .PDFのスタイルファイル
-asciidoctor-pdf自身の配布ファイルがWindowsの場合は以下に入っているのでyamlファイルをコピーして格納
+asciidoctor-pdfの配布ファイルがWindowsの場合は以下にあるのでコピペして利用
 ----
 // ruby2.6でasciidoctor-pdfのverが1.5.0.beta.2の場合
 C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-pdf-1.5.0.beta.2\data\themes\default-theme.yml
 ----
 [NOTE]
 ====
-本手順書内ではpublic_style.ymlにリネームして好みのスタイルに編集して使用する
+デフォルトのスタイルファイル +
+css ：そのままでも十分使えそう +
+yaml：いまいちなのでHTML化時のスタイルに寄せた設定に修正してみた（public_style.ymlとして利用） +
 
 公式サイト +
 https://github.com/asciidoctor/asciidoctor-pdf/blob/master/docs/theming-guide.adoc +
 
-参考サイト +
-https://qiita.com/tamikura@github/items/5d3f62dae55617ee42bb +
-
-色表現方法 +
+色表現 +
 https://www.lab-nemoto.jp/www/leaflet_edu/ColorMaker.html +
 
 PDF化時に文字の色が変わるようにする +
@@ -200,10 +214,10 @@ https://blog.siwa32.com/asciidoctor_pdf_color/ +
 ====
 
 .フォントファイル
-asciidoctor-pdf自身の配布ファイルがWindowsの場合は以下に入っているので中身を全てコピーして格納
+asciidoctor-pdfの配布ファイルがWindowsの場合は以下にあるのでコピペして利用
 ----
 // ruby2.6でasciidoctor-pdfのverが1.5.0.beta.2の場合
-C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-pdf-1.5.0.beta.2\data\fonts\*
+C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-pdf-1.5.0.beta.2\data\fonts\*.ttf
 ----
 [NOTE]
 ====
@@ -213,37 +227,25 @@ https://qiita.com/kuboaki/items/67774c5ebd41467b83e2 +
 ====
 
 .ドキュメントファイル
-適当にメモ帳で以下の設定で作成して格納
+適当にメモ帳で以下の設定で作成する
 ----
 拡張子 : .adoc
 文字コード : UTF-8
 ----
 
-.作業フォルダ内はこんな感じになる
+.格納後の作業フォルダ内はこんな感じになる
 ----
-|-test
-   |-*.adoc
-   |-dist
-   |-fonts
-      |-IPA_Font_License_Agreement_v1.0.txt
-      |-ipagp.ttf
-      |-LICENSE-mplus-testflight-58
-      |-LICENSE-noto-2015-06-05
-      |-mplus1mn-bold_italic-ascii.ttf
-      |-mplus1mn-bold-ascii.ttf
-      |-mplus1mn-italic-ascii.ttf
-      |-mplus1mn-regular-ascii-conums.ttf
-      |-mplus1p-regular-fallback.ttf
-      |-notoserif-bold_italic-subset.ttf
-      |-notoserif-bold-subset.ttf
-      |-notoserif-italic-subset.ttf
-      |-notoserif-regular-subset.ttf
-      |-Readme_IPAfont00303.txt
-   |-images
-   |-style
-      |-asciidoctor-default.css
-      |-default-theme.yml
-      |-public_style.yml
+└ test
+   ├ dist
+   ├ fonts
+      ├ *.ttf
+      ├ ...
+   ├ images
+   ├ style
+      ├ asciidoctor-default.css
+      ├ default-theme.yml
+      └ public_style.yml
+   └ *.adoc
 ----
 
 
@@ -253,50 +255,68 @@ VScodeで*.adocファイルを開く
 
 
 
-=== Attributeを書く
-とりあえず以下の指定を行う
-----
-//日本語ドキュメント
-:lang: ja
-//文書タイプはbookにする
-:doctype: book
-//目次を自動生成する
-:toc: left
-//対象とする階層数を指定する
-:toclevels: 3
-//タイトルを変更する
-:toc-title: 目次
-//章見出し番号を出力する
-:sectnums:
-//PDF化時の章見出しのChapter.が表示されないようにする
-:chapter-label:
-//シンタックスハイライトを使用する
-:source-highlighter: coderay
-//アイコンフォントを利用するフラグ
-:icons: font
-//マクロを使用する（ショートカットキーとか）
-:experimental:
-//画像をdata-uriとして埋め込む
-:data-uri:
-//イメージファイルを置くフォルダ
-:imagesdir: ./images
-//PDF化時のフォントファイルを置くフォルダ
-:pdf-fontsdir: ./fonts
-//PDF化時のスタイルファイルを指定
-:pdf-style: ./style/public_style.yml
-//HTML化時のスタイルファイルを置くフォルダ
-:stylesdir: ./style
-//HTML化時のスタイルファイルを指定
-:stylesheet: asciidoctor-default.css
-----
-
-
-
 === テストサンプルを書く
-Attributeに続けて下記のテストサンプルを書く
+AsciiDocの文章の設定を行うAttributeと表紙の設定に続いて本文という構成にしてみた +
 --------
-= asciidocの使い方
+//////////////////////////////////////////////////////////////////////
+// Attribute
+//////////////////////////////////////////////////////////////////////
 
+//ドキュメント種類
+:doctype: book
+//ドキュメント言語
+:lang: ja
+//目次生成
+:toc: left
+//目次生成階層数
+:toclevels: 2
+//目次タイトル
+:toc-title: 目次
+//章番号生成
+:sectnums:
+//章番号生成階層数
+:sectlevels: 
+//PDF化時の章タイトル
+:chapter-label:
+//シンタックスハイライト
+:source-highlighter: coderay
+//アイコンフォント
+:icons: font
+//UIマクロ
+:experimental:
+//HTML化時の画像のdata-uri要素化
+:data-uri:
+//画像ファイル格納先
+:imagesdir: ./images
+//HTML化時のスタイルファイル格納先
+:stylesdir: ./style
+//HTML化時のスタイルファイル
+:stylesheet: asciidoctor-default.css
+//PDF化時のスタイルファイル
+:pdf-style: ./style/public_style.yml
+//PDF化時のフォントファイル格納先
+:pdf-fontsdir: ./fonts
+
+//////////////////////////////////////////////////////////////////////
+// 表紙
+//////////////////////////////////////////////////////////////////////
+
+//ドキュメントタイトル、表紙に入る
+= asciidoctの使い方
+//ドキュメントタイトル、ヘッダーに入る
+:docname: asciidoctの使い方
+//著者
+:author:
+//改定番号
+:revnumber: K0.1
+//改定日
+:revdate: 2019/08/24
+//改定番号のラベル
+:version-label:
+//ロゴ画像
+//:title-logo-image:
+//表紙背景画像 
+//:title-page-background-image:
 == asciidocとは？
 
 asciidocとは [blue]#軽量マークアップ言語# です
@@ -332,18 +352,13 @@ asciidocとは [blue]#軽量マークアップ言語# です
 === asciidoctorだとPlantUMLでシーケンス図作成
 
 [plantuml]
-----
+--
 actor ユーザー as user
 user -> ログイン : ログインする
 ログイン --> user:
-----
+--
+
 --------
-[NOTE]
-====
-文法リファレンス（日本語） +
-https://takumon.github.io/asciidoc-syntax-quick-reference-japanese-translation/#_%E8%84%9A%E6%B3%A8 +
-https://qiita.com/hbsnow/items/88e1414ac97501af17ff
-====
 
 
 
@@ -356,6 +371,9 @@ VScodeの設定を行うことでプレビュー(ショートカット kbd:[Ctrl
 ====
 参考サイト +
 https://qiita.com/o_sol06/items/a07ebcb0b48295a4c3b3 +
+
+VScodeを日本語表示にする拡張機能 +
+https://marketplace.visualstudio.com/items?itemName=MS-CEINTL.vscode-language-pack-ja
 ====
 
 .asciidoctorの設定を変更
@@ -371,7 +389,7 @@ use_asciidoctor_js  : false(チェックを外す)
 https://qiita.com/hyt126/items/fdeff36f09bb221dfac0
 ====
 
-参考までに「3.2.テストサンプル」のプレビュー結果を以下に示す
+参考までに「3.1.テストサンプル」のプレビュー結果を以下に示す
 
 image::TestPreviewResult.png[]
 

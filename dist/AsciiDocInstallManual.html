@@ -468,20 +468,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="listingblock">
 <div class="title">中身は以下の通り</div>
 <div class="content">
-<pre>|-AsciiDocInstallManual.pdf     // 手順書
-|-tool                     　　 // インストールツール一式
-   |-①chocolateyをインストール.bat
-   |-②chocolateyのリポジトリから各種パッケージをインストール.bat
-   |-③asciidoc関連ツールをインストール.bat
-   |-④VScodeの拡張機能をインストール.bat
-|-template                      // このフォルダ一式が文章のテンプレートとなる
-   |-dist                  　　　    // HTMLやPDFの出力先
-   |-fonts                 　　　    // フォントファイルを格納
-   |-images                　　      // イメージファイルを格納
-   |-style                 　　    　// スタイルファイルを格納
-   |-make_html_test.bat              // AsciiDoc→HTML変換用スクリプト
-   |-make_pdf_test.bat               // AsciiDoc→PDF変換用スクリプト
-   |-test.adoc                       // AsciiDocドキュメントのテストサンプル</pre>
+<pre>AsciiDocInstallPackage/
+├ tool/                    　　 // インストール用バッチファイル
+   ├ ①chocolateyをインストール.bat
+   ├ ②chocolateyのリポジトリから各種パッケージをインストール.bat
+   ├ ③asciidoc関連ツールをインストール.bat
+   └ ④VScodeの拡張機能をインストール.bat
+├ template/                     // 文章のテンプレート一式
+   ├ dist/                 　　　    // HTMLやPDFの出力先
+   ├ fonts/                　　　    // フォントファイルを格納
+   ├ images/               　　      // イメージファイルを格納
+   ├ style/                　　    　// スタイルファイルを格納
+   ├ make_html_test.bat              // AsciiDoc→HTML変換用スクリプト
+   ├ make_pdf_test.bat               // AsciiDoc→PDF変換用スクリプト
+   └ test.adoc                       // AsciiDocドキュメントのテストサンプル
+└ AsciiDocInstallManual.pdf     // 手順書</pre>
 </div>
 </div>
 </div>
@@ -615,7 +616,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 プレビューやHTML/PDFへの変換のために必要なスタイルファイル等も整備したものを用意しています<br></p>
 </div>
 <div class="paragraph">
-<p>ここでは、環境構築が正しくできたことを確認するための最低限の解説にとどめますので、<br>
+<p>ここでは、環境構築が正しくできたことを確認するための最低限の説明にとどめますので、<br>
 あとはご自身でググってテキストベースの仕様書ライフを堪能しましょう！（どっかのサイトの受け売り）<br></p>
 </div>
 <div class="admonitionblock note">
@@ -634,11 +635,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="paragraph">
-<div class="title"><strong>templateフォルダをコピー</strong></div>
+<div class="title"><strong>templateフォルダをコピーする</strong></div>
 <p>このフォルダ一式が文章のテンプレートとなるので、必要に応じてコピーして文章作成に使う<br></p>
 </div>
 <div class="paragraph">
-<div class="title"><strong>VScode を起動</strong></div>
+<div class="title"><strong>VScode を起動する</strong></div>
 <p>AsciiDocで書くためのテキストエディタとして使用する<br>
 Windowsのスタートメニューから <code>Visual Studio Code</code> （以下、VScodeとする）を検索して起動する<br></p>
 </div>
@@ -647,7 +648,7 @@ Windowsのスタートメニューから <code>Visual Studio Code</code> （以�
 <p>[ファイル]→[ファイルを開く]から <code>template</code> フォルダ内の <code>test.adoc</code> ファイルを開く<br></p>
 </div>
 <div class="paragraph">
-<div class="title"><strong>asciidoctorの設定を変更</strong></div>
+<div class="title"><strong>asciidoctorの設定を変更する</strong></div>
 <p>VScode上でプレビュー表示を行うための設定を行う<br>
 [ファイル]→[基本設定]→[設定]から <code>asciidoctor</code> を検索し、以下の設定を行う</p>
 </div>
@@ -702,7 +703,7 @@ use_asciidoctor_js  : false(チェックを外す)</pre>
 <div id="footer">
 <div id="footer-text">
  K0.1<br>
-Last updated 2019-08-24 01:21:18 +0900
+Last updated 2019-08-25 00:21:45 +0900
 </div>
 </div>
 </body>

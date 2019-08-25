@@ -2,55 +2,61 @@
 // Attribute
 //////////////////////////////////////////////////////////////////////
 
-//日本語ドキュメント
-:lang: ja
-//文書タイプはbookにする
+//ドキュメント種類
 :doctype: book
-//目次を自動生成する
+//ドキュメント言語
+:lang: ja
+//目次生成
 :toc: left
-//対象とする階層数を指定する
-:toclevels: 3
-//タイトルを変更する
+//目次生成階層数
+:toclevels: 2
+//目次タイトル
 :toc-title: 目次
-//章見出し番号を出力する
+//章番号生成
 :sectnums:
-//PDF化時の章見出しのChapter.が表示されないようにする
+//章番号生成階層数
+:sectlevels: 
+//PDF化時の章タイトル
 :chapter-label:
-//シンタックスハイライトを使用する
+//シンタックスハイライト
 :source-highlighter: coderay
-//アイコンフォントを利用するフラグ
+//アイコンフォント
 :icons: font
-//マクロを使用する（ショートカットキーとか）
+//UIマクロ
 :experimental:
-//画像をdata-uriとして埋め込む
+//HTML化時の画像のdata-uri要素化
 :data-uri:
-//イメージファイルを置くフォルダ
+//画像ファイル格納先
 :imagesdir: ./images
-//PDF化時のフォントファイルを置くフォルダ
-:pdf-fontsdir: ./fonts
-//PDF化時のスタイルファイルを指定
-:pdf-style: ./style/public_style.yml
-//HTML化時のスタイルファイルを置くフォルダ
+//HTML化時のスタイルファイル格納先
 :stylesdir: ./style
-//HTML化時のスタイルファイルを指定
+//HTML化時のスタイルファイル
 :stylesheet: asciidoctor-default.css
+//PDF化時のスタイルファイル
+:pdf-style: ./style/public_style.yml
+//PDF化時のフォントファイル格納先
+:pdf-fontsdir: ./fonts
 
 //////////////////////////////////////////////////////////////////////
 // 表紙
 //////////////////////////////////////////////////////////////////////
 
-//ドキュメント名、表紙に入る
+//ドキュメントタイトル、表紙に入る
 = asciidocの使い方
-//ドキュメント名、ヘッダーに入る
+//ドキュメントタイトル、ヘッダーに入る
 :docname: asciidocの使い方
-//作成者
+//著者
 :author:
-//K版
+//改定番号
 :revnumber: K0.1
 //改定日
 :revdate: 2019/08/24
-//versionのラベルを指定しない
+//改定番号のラベル
 :version-label:
+//ロゴ画像
+//:title-logo-image:
+//表紙背景画像 
+//:title-page-background-image:
 
 //////////////////////////////////////////////////////////////////////
 // 本文
@@ -91,8 +97,8 @@ asciidocとは [blue]#軽量マークアップ言語# です
 === asciidoctorだとPlantUMLでシーケンス図作成
 
 [plantuml, test]
-----
+--
 actor ユーザー as user
 user -> ログイン : ログインする
 ログイン --> user:
-----
+--
