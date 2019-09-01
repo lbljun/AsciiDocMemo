@@ -1,3 +1,3 @@
 @echo off
 
-asciidoctor -r asciidoctor-diagram -o dist/AsciiDocInstallManual.html AsciiDocInstallManual.adoc
+asciidoctor -r asciidoctor-diagram -o AsciiDocInstallManual.html AsciiDocInstallManual.adoc

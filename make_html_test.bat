@@ -1,3 +1,3 @@
 @echo off
 
-asciidoctor -r asciidoctor-diagram -o dist/test.html test.adoc
+asciidoctor -r asciidoctor-diagram -o test.html test.adoc

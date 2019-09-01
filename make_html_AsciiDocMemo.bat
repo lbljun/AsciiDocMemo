@@ -1,3 +1,3 @@
 @echo off
 
-asciidoctor -r asciidoctor-diagram -o dist/AsciiDocMemo.html AsciiDocMemo.adoc
+asciidoctor -r asciidoctor-diagram -o AsciiDocMemo.html AsciiDocMemo.adoc
