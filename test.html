@@ -437,7 +437,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body class="book toc2 toc-left">
+<body class="book">
 <div id="header">
 <h1>テストサンプル</h1>
 <div class="details">
@@ -445,7 +445,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span id="revnumber"> K0.1,</span>
 <span id="revdate">2019/08/24</span>
 </div>
-<div id="toc" class="toc2">
+<div id="toc" class="toc">
 <div id="toctitle">目次</div>
 <ul class="sectlevel1">
 <li><a href="#_よく使う文法の紹介">1. よく使う文法の紹介</a>
@@ -460,10 +460,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_マーカー">1.8. マーカー</a></li>
 <li><a href="#_url">1.9. URL</a></li>
 <li><a href="#_コメント">1.10. コメント</a></li>
-<li><a href="#_画像">1.11. 画像</a></li>
-<li><a href="#_plantuml">1.12. PlantUML</a></li>
-<li><a href="#_テーブル">1.13. テーブル</a></li>
-<li><a href="#_外部ファイル">1.14. 外部ファイル</a></li>
+<li><a href="#_水平罫線改行">1.11. 水平罫線・改行</a></li>
+<li><a href="#_表示非表示">1.12. 表示・非表示</a></li>
+<li><a href="#_画像">1.13. 画像</a></li>
+<li><a href="#_plantuml">1.14. PlantUML</a></li>
+<li><a href="#_テーブル">1.15. テーブル</a></li>
+<li><a href="#_外部ファイル">1.16. 外部ファイル</a></li>
 </ul>
 </li>
 </ul>
@@ -745,7 +747,38 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_画像">1.11. 画像</h3>
+<h3 id="_水平罫線改行">1.11. 水平罫線・改行</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><code>---</code> で水平罫線</p>
+</li>
+<li>
+<p><code>&lt;&lt;&lt;</code> で改ページ</p>
+</li>
+</ul>
+</div>
+<hr>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="_表示非表示">1.12. 表示・非表示</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ifdef::xxx[] ～ endif::[]</code> を使う</p>
+</li>
+<li>
+<p>表示させる場合は、属性 <code>:xxx:</code> をAttributeに書く</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>この文章は外部用なので表示します</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_画像">1.13. 画像</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -766,7 +799,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_plantuml">1.12. PlantUML</h3>
+<h3 id="_plantuml">1.14. PlantUML</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -784,7 +817,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_テーブル">1.13. テーブル</h3>
+<h3 id="_テーブル">1.15. テーブル</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -958,7 +991,7 @@ options属性で、先頭行をヘッダー行扱いにするか指定が可能<
 </table>
 </div>
 <div class="sect2">
-<h3 id="_外部ファイル">1.14. 外部ファイル</h3>
+<h3 id="_外部ファイル">1.16. 外部ファイル</h3>
 <div class="paragraph">
 <p>csvファイル（CSV UTF-8）や別のadocファイルをインクルード可能</p>
 </div>
@@ -994,7 +1027,7 @@ options属性で、先頭行をヘッダー行扱いにするか指定が可能<
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="_adocファイルのインクルード">1.14.1. adocファイルのインクルード</h4>
+<h4 id="_adocファイルのインクルード">1.16.1. adocファイルのインクルード</h4>
 <div class="paragraph">
 <p>章ごとにファイルを分けて管理してもよい</p>
 </div>
@@ -1006,7 +1039,7 @@ options属性で、先頭行をヘッダー行扱いにするか指定が可能<
 <div id="footer">
 <div id="footer-text">
  K0.1<br>
-Last updated 2019-09-02 00:45:46 +0900
+Last updated 2019-09-08 23:02:17 +0900
 </div>
 </div>
 <style>

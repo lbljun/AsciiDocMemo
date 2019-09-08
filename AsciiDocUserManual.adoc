@@ -1,0 +1,551 @@
+//////////////////////////////////////////////////////////////////////
+// 文章の設定（Attribute）
+//////////////////////////////////////////////////////////////////////
+
+//ドキュメント種類
+:doctype: book
+//ドキュメント言語
+:lang: ja
+//目次生成
+:toc:
+//目次生成階層数
+:toclevels: 2
+//目次タイトル
+:toc-title: 目次
+//章番号生成
+:sectnums:
+//章番号生成階層数
+:sectlevels: 
+//PDF化時の章タイトル
+:chapter-label:
+//シンタックスハイライト
+:source-highlighter: coderay
+//アイコンフォント
+:icons: font
+//UIマクロ
+:experimental:
+//HTML化時の画像のdata-uri要素化
+:data-uri:
+//画像ファイル格納先
+:imagesdir: ./images
+//HTML化時のスタイルファイル格納先
+:stylesdir: ./style
+//HTML化時のスタイルファイル
+:stylesheet: asciidoctor-default.css
+//PDF化時のスタイルファイル
+:pdf-style: ./style/public_style.yml
+//PDF化時のフォントファイル格納先
+:pdf-fontsdir: ./fonts
+
+//////////////////////////////////////////////////////////////////////
+// 表紙
+//////////////////////////////////////////////////////////////////////
+
+//簡易版
+//:env-user:
+//詳細版
+:env-admin:
+
+//ドキュメントタイトル、表紙に入る
+ifdef::env-user[]
+= AsciiDoc ユーザーマニュアル
+endif::[]
+ifdef::env-admin[]
+= AsciiDoc ユーザーマニュアル（詳細版）
+endif::[]
+//ドキュメントタイトル、ヘッダーに入る
+ifdef::env-user[]
+:docname: AsciiDoc ユーザーマニュアル
+endif::[]
+ifdef::env-admin[]
+:docname: AsciiDoc ユーザーマニュアル（詳細版）
+endif::[]
+//著者
+:author:
+//改定番号
+:revnumber: K0.1
+//改定日
+:revdate: 2019/08/24
+//改定番号のラベル
+:version-label:
+//ロゴ画像
+//:title-logo-image:
+//表紙背景画像 
+//:title-page-background-image:
+
+//////////////////////////////////////////////////////////////////////
+// 本文
+//////////////////////////////////////////////////////////////////////
+
+
+
+
+== 配布パッケージについて
+
+.*中身は以下の通り*
+----
+AsciiDocPackage/
+├ template/                     // 文章のテンプレート一式
+   ├ csv/                            // CSVファイルを格納
+   ├ fonts/                　　　    // フォントファイルを格納
+   ├ images/               　　      // イメージファイルを格納
+   ├ style/                　　    　// スタイルファイルを格納
+   ├ make_pdf_test.bat               // AsciiDoc→PDF変換用スクリプト
+   └ test.adoc                       // AsciiDocドキュメントのテストサンプル
+   └ test2.adoc                      // AsciiDocドキュメントのテストサンプル2
+├ tool/                    　　 // インストール用バッチファイル
+   ├ ①ChocolateyInstall.bat
+   ├ ②ChocolateyPackageInstall.bat
+   ├ ③AsciiDocToolInstall.bat
+   └ ④VScodeExtensionInstall.bat
+└ AsciiDocUserManual.pdf       // 手順書
+----
+
+
+
+
+
+
+
+== AsciiDocについて
+
+.*AsciiDocとは？*
+* Markdownのような軽量マークアップ言語の一つ
+* プレーンテキストで体裁が整った文章が書ける
+* 可読性が高くMarkdownよりも表現力が高い
+
+.*メリット*
+* テキスト形式なのでGitで管理しやすい
+* インクルード機能により外部ファイルの読み込みができる
+* HTML、PDFへの変換ができる
+
+
+
+
+
+
+
+== 環境構築手順
+
+=== Chocolateyをインストール
+
+.*以下のバッチファイルをダブルクリックで実行する*
+----
+①ChocolateyInstall.bat
+----
+* ユーザーアカウント制御の許可のポップアップが出るので `はい` をクリック
+* コマンドプロンプトが表示されて処理が進むので自動的に閉じたら完了
+
+
+
+ifdef::env-admin[]
+---
+
+#*＜覚え書き＞実行内容について*#
+
+.*コマンドプロンプト（管理者権限）で以下を実行*
+----
+@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+----
+[NOTE]
+====
+公式サイト +
+https://chocolatey.org/install#installing-chocolatey +
+
+インストール手順解説（日本語） +
+https://qiita.com/konta220/items/95b40b4647a737cb51aa
+====
+
+
+.*Chocolateyとは？*
+* Windows上で動作するソフトウェアをコマンドラインでパッケージ管理可能なツール
+
+
+.*メリット*
+* Chocolateyのリポジトリに登録されているパッケージを**一発でインストール**できる
+* Chocolateyでインストールしたソフトは**一括でアップデート**できる
+
+---
+endif::[]
+
+
+
+
+
+
+
+
+<<<
+=== Chocolateyのリポジトリから各種パッケージをインストール
+
+.*以下のバッチファイルをダブルクリックで実行する*
+----
+②ChocolateyPackageInstall.bat
+----
+
+* ユーザーアカウント制御の許可のポップアップが出るので `はい` をクリック
+* コマンドプロンプトが表示されて処理が進むのでしばらく待つ
+* 下記画面が表示されたら `ライセンスに同意します` にチェックを入れて `次へ` をクリック +
+  image:Sourcetree02.png[width="300",align="left"]
+* `Atlassianアカウント` を選択して `次へ` をクリック +
+  image:Sourcetree03.png[width="300",align="left"]
+* `Enter email` にメールアドレスを入力して `Continue` をクリック +
+  image:Sourcetree04.png[width="200",align="left"]
+* 続けて、 `Enter full name` にニックネーム、 `Create password` にパスワードを求められるので入力して、 `Sign up` をクリック（※既にアカウントを持っている場合は通常のサインインを行う） +
+  image:Sourcetree05.png[width="200",align="left"]
+* reCAPTCHAの画像認証の指示に従って選択を行い、 `確認` をクリック +
+  image:Sourcetree06.png[width="200",align="left"]
+* 認証に成功すれば登録完了画面に遷移するので、 `次へ` をクリック +
+  image:Sourcetree07.png[width="300",align="left"]
+* ツールのインストール画面に遷移するので `Git` にだけチェックを入れて、 `次へ` をクリック（※既にGitをインストール済みの場合はそのまま `次へ` をクリック） +
+  image:Sourcetree08.png[width="300",align="left"]
+* `SSHキーを読み込みますか？` が表示されたら `いいえ` をクリック +
+  image:Sourcetree09.png[width="300",align="left"]
+* Sourcetreeが自動的に立ち上がったのが確認できたらアプリを一旦閉じる +
+  image:Sourcetree10.png[width="300",align="left"]
+* コマンドプロンプトの画面内にて、Atlassianアカウントを作成完了したか聞かれるので、 +
+完了していたら `y` 、完了していなければ `n` を入力して kbd:[Enter] を押す +
+`y` の場合 ： コマンドプロンプトが表示されて処理が進むので自動的に閉じたら完了 +
+`n` の場合 ： 再度、kbd:[Enter] を押すとコマンドプロンプトが閉じる +
+
+
+
+ifdef::env-admin[]
+---
+
+#*＜覚え書き＞実行内容について*#
+
+.*コマンドプロンプト（管理者権限）で以下を実行*
+----
+cinst ruby -y //<1>
+cinst graphviz -y //<2>
+cinst jdk8 -y //<3>
+cinst vscode -y //<4>
+cinst sourcetree --version 2.5.5 -y //<5>
+----
+<1> Ruby （AsciiDoc関連ツールを利用するのに必要）
+<2> Graphviz （PlantUML等で記述した図の表示に必要）
+<3> Java （同上）
+<4> Visual Studio Code （AsciiDocをプレビュー可能なテキストエディタ）
+<5> SourceTree （GitのGUIツール）
+
+Atlassianアカウントを作成してSourceTreeのサインインに成功したら +
+コマンドプロンプト（管理者権限）で以下を実行しアップデートする +
+----
+choco upgrade all -y
+----
+[NOTE]
+====
+初めから最新verをインストールしないのはBitbucketに登録せずに利用するため +
+https://hepokon365.hatenablog.com/entry/2019/03/25/222814
+====
+
+---
+endif::[]
+
+
+
+
+
+
+
+
+
+<<<
+=== AsciiDoc関連ツールをインストール
+
+.*以下のバッチファイルをダブルクリックで実行する*
+----
+③AsciiDocToolInstall.bat
+----
+* コマンドプロンプトが表示されて処理が進むので自動的に閉じたら完了
+
+
+
+ifdef::env-admin[]
+---
+
+#*＜覚え書き＞実行内容について*#
+
+.*コマンドプロンプトで以下を実行*
+----
+gem install asciidoctor //<1>
+gem install --pre asciidoctor-pdf //<2>
+gem install asciidoctor-pdf-cjk //<3>
+gem install asciidoctor-diagram //<4>
+gem install coderay //<5>
+----
+<1> AsciiDoc→HTMLに変換用
+<2> AsciiDoc→PDFに変換用
+<3> PDF変換のレイアウト崩れ対応用
+<4> PlantUML等の図の記述用
+<5> コードのシンタックスハイライト用
+
+[NOTE]
+====
+社内のネットワークから実施する場合はgemにproxyを指定する
+----
+gem install xxxx -p proxy http://アドレス:ポート
+----
+
+proxyの確認手順 +
+https://pasokatu.hateblo.jp/entry/2017/07/04/111147
+
+asciidoctor公式サイト +
+https://asciidoctor.org/
+====
+
+---
+endif::[]
+
+
+
+
+
+
+
+<<<
+=== VScodeの拡張機能をインストール
+
+.*以下のバッチファイルをダブルクリックで実行する*
+----
+④VScodeExtensionInstall.bat
+----
+* コマンドプロンプトが表示されて処理が進むので自動的に閉じたら完了
+
+
+
+ifdef::env-admin[]
+---
+
+#*＜覚え書き＞実行内容について*#
+
+.*コマンドプロンプトで以下を実行*
+----
+code --install-extension joaompinto.asciidoctor-vscode ^ //<1>
+code --install-extension MS-CEINTL.vscode-language-pack-ja ^ //<2>
+----
+<1> ASciiDocのプレビュー用
+<2> 日本語表示用
+
+[NOTE]
+====
+[表示]→[拡張機能]から検索してインストール
+or
+コマンドラインからインストール +
+https://qiita.com/Kosen-amai/items/03632dee2e1694652f06 +
+====
+
+---
+endif::[]
+
+
+
+
+
+
+
+
+
+== 使い方
+
+=== VScodeで実際にAsciiDocを書いてみる
+ここでは、テストサンプルでプレビューやPDFへの変換を行い、正しく環境構築ができたことを確認します +
+また、テストサンプルの内容はAsciiDocの文法紹介も兼ねているので参考にしてください
+
+
+
+
+
+
+==== 作業ディレクトリを作成する
+配布パッケージ内のtemplateフォルダ一式をローカルPCの任意の場所にコピーして使います +
+このフォルダ一式が文章のテンプレートとなります +
+
+
+
+ifdef::env-admin[]
+---
+
+#*＜覚え書き＞templateフォルダの中身について*#
+
+.*文章作成のための作業ディレクトリを用意*
+----
+├ template/                     // 文章のテンプレート一式
+   ├ csv/                            // CSVファイルを格納
+   ├ fonts/                　　　    // フォントファイルを格納
+   ├ images/               　　      // イメージファイルを格納
+   └ style/                　　    　// スタイルファイルを格納
+----
+
+.*HTMLのスタイルファイルを用意*
+asciidoctorの配布ファイルがWindowsの場合は以下にあるのでコピペして利用
+----
+// ruby2.6でasciidoctorのverが2.0.10の場合
+C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-2.0.10\data\stylesheets\asciidoctor-default.css
+----
+
+.*PDFのスタイルファイルを用意*
+asciidoctor-pdfの配布ファイルがWindowsの場合は以下にあるのでコピペして利用
+----
+// ruby2.6でasciidoctor-pdfのverが1.5.0.beta.2の場合
+C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-pdf-1.5.0.beta.2\data\themes\default-theme.yml
+----
+[NOTE]
+====
+デフォルトのスタイルファイル +
+css ：そのままでも十分使えそう +
+yaml：いまいちなのでHTML化時のスタイルに寄せた設定に修正してみた（public_style.ymlとして利用） +
+
+公式サイト +
+https://github.com/asciidoctor/asciidoctor-pdf/blob/master/docs/theming-guide.adoc +
+
+色表現 +
+https://www.lab-nemoto.jp/www/leaflet_edu/ColorMaker.html +
+
+PDF化時に文字の色が変わるようにする +
+https://blog.siwa32.com/asciidoctor_pdf_color/ +
+→「2.2 asciidoctor-pdfのソースを修正する」
+====
+
+.*フォントファイルを用意*
+asciidoctor-pdfの配布ファイルがWindowsの場合は以下にあるのでコピペして利用
+----
+// ruby2.6でasciidoctor-pdfのverが1.5.0.beta.2の場合
+C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-pdf-1.5.0.beta.2\data\fonts\*.ttf
+----
+[NOTE]
+====
+参考サイト +
+https://ryuta46.com/267 +
+https://qiita.com/kuboaki/items/67774c5ebd41467b83e2 +
+====
+
+.*ドキュメントファイルを用意*
+適当にメモ帳で以下の設定で作成する
+----
+拡張子 : .adoc
+文字コード : UTF-8
+----
+
+.*格納後の作業フォルダ内はこんな感じになる*
+----
+├ template/
+   ├ csv/
+   ├ fonts/
+      ├ *.ttf
+      └ ...
+   ├ images/
+   └ style/
+      ├ asciidoctor-default.css
+      ├ default-theme.yml
+      └ public_style.yml
+   └ *.adoc
+----
+
+---
+endif::[]
+
+
+
+
+
+
+
+
+==== VScode を起動する
+AsciiDocで書くためのテキストエディタとして使用します +
+Windowsのスタートメニューから `Visual Studio Code` （以下、VScodeとする）を検索して起動します +
+
+
+
+
+
+
+
+==== テストサンプルを開く
+[ファイル]→[ファイルを開く]から `template` フォルダ内の `test.adoc` ファイルを開きます +
+
+
+
+
+
+
+
+
+==== テストサンプルをプレビューする
+
+.*asciidoctorの設定を変更する*
+VScode上でプレビュー表示を行うための設定を行います +
+[ファイル]→[基本設定]→[設定]から `asciidoctor` を検索し、以下の設定を行います
+----
+asciidoctor_command : asciidoctor -n -r asciidoctor-diagram -o-
+asciidoctorpdf_command : asciidoctor-pdf -n -r asciidoctor-diagram -r asciidoctor-pdf-cjk -o-
+use_asciidoctor_js  : false(チェックを外す)
+----
+
+image::VScodeSetting.png[]
+
+.*プレビューを行う*
+ショートカット kbd:[Ctrl+K] → kbd:[V] で画面右側にプレビューが表示されます +
+参考までにテストサンプルのプレビュー結果を以下に示します
+
+image::TestPreviewResult.png[]
+
+
+
+
+
+
+
+
+==== テストサンプルをPDFに変換する
+
+.*以下のバッチファイルをダブルクリックで実行する*
+----
+make_pdf_test.bat
+----
+* コマンドプロンプトが表示されて処理が進むので自動的に閉じたら完了
+* `test.pdf` が作成されます
+
+[NOTE]
+====
+必要に応じてバッチファイル内のファイル名を修正して使ってください +
+`**-o** 変換後ファイル名**.pdf** 変換前ファイル名**.adoc**`
+====
+
+
+
+ifdef::env-admin[]
+---
+
+#*＜覚え書き＞実行内容について*#
+
+.*コマンドプロンプトで以下を実行（*にファイル名を指定）*
+----
+asciidoctor -r asciidoctor-diagram -o *.html *.adoc //<1>
+asciidoctor-pdf -r asciidoctor-diagram -r asciidoctor-pdf-cjk -o *.pdf *.adoc //<2>
+----
+<1> AsciiDoc→HTML化用コマンド
+<2> AsciiDoc→PDF化用コマンド
+
+---
+endif::[]
+
+
+
+
+
+
+
+
+
+<<<
+=== AsciiDocで書いた文章をGitで管理する
+
+
+
+
+*以上で終わりです！*
+
+
