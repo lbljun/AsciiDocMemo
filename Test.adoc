@@ -236,8 +236,6 @@ endif::[]
 
 image::Sourcetree01.png[200, 100]
 
-文中に差し込む場合はコロンを一つ減らして、image:Sourcetree01.png[200, 100]とする
-
 
 === PlantUML
 

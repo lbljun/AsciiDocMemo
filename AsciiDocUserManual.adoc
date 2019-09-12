@@ -42,9 +42,9 @@
 //////////////////////////////////////////////////////////////////////
 
 //簡易版
-//:env-user:
+:env-user:
 //詳細版
-:env-admin:
+//:env-admin:
 
 //ドキュメントタイトル、表紙に入る
 ifdef::env-user[]
@@ -239,23 +239,41 @@ endif::[]
 * ユーザーアカウント制御の許可のポップアップが出るので `はい` をクリック
 * コマンドプロンプトが表示されて処理が進むのでしばらく待つ
 * 下記画面が表示されたら `ライセンスに同意します` にチェックを入れて `次へ` をクリック +
-  image:Sourcetree02.png[width="300",align="left"]
++
+image::Sourcetree02.png[width="300",align="left"]
+
 * `Atlassianアカウント` を選択して `次へ` をクリック +
-  image:Sourcetree03.png[width="300",align="left"]
++
+image::Sourcetree03.png[width="300",align="left"]
+
 * `Enter email` にメールアドレスを入力して `Continue` をクリック +
-  image:Sourcetree04.png[width="200",align="left"]
++
+image::Sourcetree04.png[width="200",align="left"]
+
 * 続けて、 `Enter full name` にニックネーム、 `Create password` にパスワードを求められるので入力して、 `Sign up` をクリック（※既にアカウントを持っている場合は通常のサインインを行う） +
-  image:Sourcetree05.png[width="200",align="left"]
++
+image::Sourcetree05.png[width="200",align="left"]
+
 * reCAPTCHAの画像認証の指示に従って選択を行い、 `確認` をクリック +
-  image:Sourcetree06.png[width="200",align="left"]
++
+image::Sourcetree06.png[width="200",align="left"]
+
 * 認証に成功すれば登録完了画面に遷移するので、 `次へ` をクリック +
-  image:Sourcetree07.png[width="300",align="left"]
++
+image::Sourcetree07.png[width="300",align="left"]
+
 * ツールのインストール画面に遷移するので `Git` にだけチェックを入れて、 `次へ` をクリック（※既にGitをインストール済みの場合はそのまま `次へ` をクリック） +
-  image:Sourcetree08.png[width="300",align="left"]
++
+image::Sourcetree08.png[width="300",align="left"]
+
 * `SSHキーを読み込みますか？` が表示されたら `いいえ` をクリック +
-  image:Sourcetree09.png[width="300",align="left"]
++
+image::Sourcetree09.png[width="300",align="left"]
+
 * Sourcetreeが自動的に立ち上がったのが確認できたらアプリを一旦閉じる +
-  image:Sourcetree10.png[width="300",align="left"]
++
+image::Sourcetree10.png[width="300",align="left"]
+
 * コマンドプロンプトの画面内にて、Atlassianアカウントを作成完了したか聞かれるので、 +
 完了していたら `y` 、完了していなければ `n` を入力して kbd:[Enter] を押す +
 `y` の場合 ： コマンドプロンプトが表示されて処理が進むので自動的に閉じたら完了 +
