@@ -1,0 +1,169 @@
+//画像ファイル格納先
+:imagesdir: ./images
+
+
+//////////////////////////////////////////////////////////////////////
+// * 編集はAsciiDocのプレビューでなく、PlantUMLのプレビューを使った方が反応が圧倒的に早い
+// * 編集後は@startumlと@endumlを削除して、AsciiDocのプレビュー実行でpng作成とする
+// * 作成したpngをAsciiDoc内でimageとして取り込むこととする
+// * Planetulのプレビュー機能のショートカットは、Alt + D
+// * 参考サイトは以下
+//      <PlantUML爆速プレビュー>
+//          https://qiita.com/Ping/items/64930e8c21fb95bec095
+//      <PlantUML書き方>
+//          https://qiita.com/ogomr/items/0b5c4de7f38fd1482a48
+//          http://yohshiy.blog.fc2.com/blog-category-22.html
+//////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+[plantuml, Git]
+--
+@startuml
+
+database リポジトリ #dcdcdc {
+}
+
+package ディレクトリ {
+    class ファイルX << (X,#00ff7f) >> {
+    }
+    class ファイルY << (Y,#ff00ff) >> {
+    }
+}
+
+リポジトリ <- ディレクトリ : 状態を保存
+
+@enduml
+--
+
+
+
+
+[plantuml, Commit]
+--
+@startuml
+
+database リポジトリ #dcdcdc {
+    namespace ディレクトリ #ffffff {
+        class ファイルX << (X,#00ff7f) >> {
+        }
+        note right : 更新される
+        class ファイルY << (Y,#ff00ff) >> {
+        }
+        note left : 変更されない
+    }
+}
+
+namespace インデックス {
+    class ファイルX << (X,#00ff7f) >> {
+    }
+    note right : コミットメッセージを付ける
+}
+
+namespace 作業ツリー {
+    class ファイルX << (X,#00ff7f) >> {
+    }
+    note right : このファイルを編集
+    class ファイルY << (Y,#ff00ff) >> {
+    }
+}
+
+
+インデックス.ファイルX <-up- 作業ツリー.ファイルX : インデックスに追加
+ディレクトリ.ファイルX <-up- インデックス.ファイルX : コミット
+
+@enduml
+--
+
+
+
+
+[plantuml, Repository]
+--
+@startuml
+
+cloud GitLab {
+    database リモートリポジトリ #ffdead {
+    }
+}
+
+frame 担当者A-PC {
+    database ローカルリポジトリA #98fb98 {
+    }
+}
+frame 担当者B-PC {
+    database ローカルリポジトリB #98fb98 {
+    }
+}
+
+control check
+
+リモートリポジトリ -down-> ローカルリポジトリA : プル
+リモートリポジトリ -down-> ローカルリポジトリB : プル
+リモートリポジトリ <-up- ローカルリポジトリA : プッシュ
+リモートリポジトリ <.up. check : マージ
+check <.up. ローカルリポジトリB : プルリクエスト
+
+@enduml
+--
+
+
+
+
+[plantuml, Flow]
+--
+@startuml
+
+box PC
+    participant ローカルリポジトリ as local #98fb98
+    participant ブランチ as branch
+end box
+
+box GitLab
+    participant リモートリポジトリ as remote #ffdead
+end box
+
+
+== 初回 ==
+
+
+activate remote
+local <- remote : クローン
+note right : K2.0
+note left : K2.0
+
+
+== 次回以降 ==
+
+
+activate local
+local <- remote : プル
+note right : K2.1
+note left : K2.1
+create branch
+local -> branch : ブランチ
+activate branch
+branch -> branch : コミット(2019/9/15 13:02)
+note left : K2.1.1
+branch --> branch : コミット(2019/9/15 19:36)
+note left : K2.1.2
+branch --> branch : コミット(2019/9/28 14:20)
+note left : K2.1.3
+local <- remote : プル
+note right : K2.2
+note left : K2.2
+local <- branch : マージ
+deactivate branch
+destroy branch
+local --> local : コンフリクト解消
+local -> remote : プッシュ
+note right : K2.3
+deactivate local
+deactivate remote
+
+@enduml
+--
+
