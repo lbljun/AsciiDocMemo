@@ -251,6 +251,17 @@ Alice -> Bob: Another Request
 Alice <-- Bob: another Response
 --
 
+[NOTE]
+====
+* プレビューするたびにpngが作成されてしまうので画像名を指定することをおススメする
+* 編集時はAsciiDocのプレビューでなく、PlantUMLのプレビューを使った方が反応が圧倒的に早い +
+https://qiita.com/Ping/items/64930e8c21fb95bec095 +
+→「PlantUML Server リポジトリのclone」～「Visual Studio Code の設定を変更する」 +
+　　都度コマンドでサーバーを立ち上げる必要があるが、爆速でプレビューが可能 +
+　　@startuml～@endumlを、編集時は書いてPlantUMLでプレビューできるようにし、 +
+　　画像作成時は消してAsciiDocでプレビューしてpngを生成するような使い分けをおススメする
+====
+
 
 === テーブル
 

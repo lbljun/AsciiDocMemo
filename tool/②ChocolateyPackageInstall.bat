@@ -10,6 +10,7 @@ rem chocolateyのリポジトリから各種パッケージをインストールする
 cinst ruby -y
 cinst graphviz -y
 cinst jdk8 -y
+cinst maven -y
 cinst vscode -y
 cinst sourcetree --version 2.5.5 -y
 

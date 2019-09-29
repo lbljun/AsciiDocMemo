@@ -3,7 +3,7 @@
 
 
 //////////////////////////////////////////////////////////////////////
-// * 編集はAsciiDocのプレビューでなく、PlantUMLのプレビューを使った方が反応が圧倒的に早い
+// * 編集時ははAsciiDocのプレビューでなく、PlantUMLのプレビューを使った方が反応が圧倒的に早い
 // * 編集後は@startumlと@endumlを削除して、AsciiDocのプレビュー実行でpng作成とする
 // * 作成したpngをAsciiDoc内でimageとして取り込むこととする
 // * Planetulのプレビュー機能のショートカットは、Alt + D
@@ -50,10 +50,9 @@ database リポジトリ #dcdcdc {
     namespace ディレクトリ #ffffff {
         class ファイルX << (X,#00ff7f) >> {
         }
-        note right : 更新される
+        note right : コミットされるのは変更の入ったファイルのみ
         class ファイルY << (Y,#ff00ff) >> {
         }
-        note left : 変更されない
     }
 }
 
