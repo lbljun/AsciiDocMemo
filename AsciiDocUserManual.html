@@ -508,7 +508,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>プレーンテキスト（対義語：リッチテキスト）で体裁が整った文章が書ける</p>
 </li>
 <li>
-<p>可読性が高くMarkdownよりも表現力が高い</p>
+<p>可読性が高くマークダウン記法の中でも表現力が高い</p>
 </li>
 </ul>
 </div>
@@ -518,46 +518,34 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_仕様書作成にasciidocを選択した背景">3. 仕様書作成にAsciiDocを選択した背景</h2>
 <div class="sectionbody">
 <div class="ulist">
-<div class="title"><strong>従来のOffice（ExcelやWord）での仕様書作成の問題点</strong></div>
+<div class="title"><strong>従来の仕様書作成の問題点</strong></div>
 <ul>
 <li>
 <p><strong>不適切なバージョン管理</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>日付ファイル名</code></p>
+<p><code>ガバガバな命名規則</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>命名規則が適当</p>
+<p>日付ファイル名（作成日？編集日？発行日？）</p>
 </li>
 <li>
-<p>同じ日付のコピー</p>
-</li>
-<li>
-<p>編集者の名前付き</p>
-</li>
-<li>
-<p>ファイル名に最新と付く</p>
-</li>
-<li>
-<p>フォルダ名に最新と付く</p>
+<p>編集者名や編集中や最新と付ける</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><code>バックアップ</code></p>
+<p><code>管理場所が複数</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>BackUpファイルが分散していてOrigianalファイルの改訂に追従しづらい</p>
+<p>バックアップ用にコピーファイルが散乱</p>
 </li>
 <li>
-<p>Originalファイルの格納先は担当者のみぞ知る</p>
-</li>
-<li>
-<p>サーバーが死んでOriginalファイルが取り出せなくなる</p>
+<p>Origianalファイルの修正に追従しづらい</p>
 </li>
 </ul>
 </div>
@@ -574,32 +562,26 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>複数の変更点をまとめて修正</p>
+<p>複数の変更箇所もまとめて更新しがち</p>
 </li>
 <li>
-<p>ざっくりした履歴コメント</p>
+<p>変更の経緯までは残しにくい</p>
 </li>
 <li>
-<p>変更の経緯を残しにくい</p>
-</li>
-<li>
-<p>そもそも書かない（誰が編集したのか、誰が追加したのか）</p>
+<p>そもそも書かない</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><code>変更箇所は色付き</code></p>
+<p><code>変更箇所を探しにくい</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>見づらくなる</p>
+<p>変更箇所は色付き（次の編集者が色消して追えなくなる）</p>
 </li>
 <li>
-<p>色を消すタイミングが適当</p>
-</li>
-<li>
-<p>次に仕様修正する人が色を消して変更箇所がわからなくなる</p>
+<p>簡単に差分抽出ができない</p>
 </li>
 </ul>
 </div>
@@ -612,14 +594,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><code>レビューなしで保存/発行</code></p>
+<p><code>レビューされない</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>修正箇所は担当者しか把握していない</p>
+<p>間違った仕様や完成度の低い仕様がそのままリリースされる</p>
 </li>
 <li>
-<p>何の変更が入ったのか共有されない</p>
+<p>変更内容が共有されない（担当者のみぞ知る）</p>
 </li>
 </ul>
 </div>
@@ -632,7 +614,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><code>罫線、文字色、フォント種別</code></p>
+<p><code>罫線、文字色、フォント種別、目次、章番号</code></p>
 <div class="ulist">
 <ul>
 <li>
@@ -640,29 +622,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li>
 <p>選択肢が多くて無駄に選ぶ時間がかかる</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><code>図形の整列</code></p>
-<div class="ulist">
-<ul>
-<li>
-<p>図形の差し込みでフォーマットが崩れる</p>
-</li>
-<li>
-<p>サイズを変えるのも一苦労</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><code>目次、章番号</code></p>
-<div class="ulist">
-<ul>
-<li>
-<p>デザインの選択からナンバリングまで諸々手動でやることが多い</p>
 </li>
 </ul>
 </div>
@@ -675,14 +634,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><code>とにかく重い</code></p>
+<p><code>とにかく重くなりがち</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Microsoft Wordは動作を停止しました&#8230;&#8203;</p>
+<p>ファイルサイズの肥大化により開けない、スクロールが遅い</p>
 </li>
 <li>
-<p>ファイルサイズの肥大化により開けない、スクロールが遅い</p>
+<p>Microsoft Wordは動作を停止しました&#8230;&#8203;</p>
 </li>
 </ul>
 </div>
@@ -694,7 +653,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div style="page-break-after: always;"></div>
 <div class="ulist">
-<div class="title"><strong>仕様書作成をAsciiDocで行うことのメリット</strong></div>
+<div class="title"><strong>AsciiDocによる仕様書作成のメリット</strong></div>
 <ul>
 <li>
 <p><strong>不適切なバージョン管理、履歴管理、品質管理</strong></p>
@@ -708,16 +667,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>仕様書を一元管理できる</p>
 </li>
 <li>
-<p>Originalファイルへは影響を与えず（常にリリース可能な状態に保たれる）ローカルでコミットして編集できる</p>
+<p>Originalファイルへは影響を与えず（常にリリース可能な状態に保たれる）ローカルで編集可能</p>
 </li>
 <li>
-<p>必然とローカル環境にも複製されるので分散開発しやすく障害に強い</p>
+<p>必然とローカル環境に複製されるので分散開発しやすく障害に強い</p>
 </li>
 <li>
-<p>どこを変更したかも全て記録されており、過去の履歴を簡単に参照できる</p>
+<p>変更は全て記録されていて、過去の変更を簡単に参照できる</p>
 </li>
 <li>
-<p>テキストベースなので変更箇所の差分管理も容易にできる</p>
+<p>テキストベースなので変更箇所の差分抽出が容易にできる</p>
 </li>
 <li>
 <p>プルリクエストによりメンバーに周知とレビューを兼ねられる</p>
@@ -733,20 +692,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><code>AsciiDocが解決してくれる</code></p>
+<p><code>AsciiDocが解決！</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>全てテキストベースで作業が行える</p>
+<p>煩わしいマウス操作は不要で全てテキストベースで作業が行える（文章構造の明示や装飾、テーブル記法まで）</p>
 </li>
 <li>
-<p>煩わしいマウス操作を行わうことなく文章の構造を簡単に明示できる</p>
-</li>
-<li>
-<p>文章の装飾が自動的に行われるので見た目の調整の時間を短縮できる</p>
-</li>
-<li>
-<p>記法が少ないことで良い意味で制限がかかり、編集能力の担当者差が出にくい</p>
+<p>記法が少ないことで良い意味で制限がかかり、担当者差が出にくくドキュメントに統一感が出る</p>
 </li>
 <li>
 <p>編集するツールに限定されない（書くだけならエディタは何でもよい）</p>
@@ -758,16 +711,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>対応アプリの拡張機能で簡単にプレビュー環境をつくれて快適に読み書きできる</p>
 </li>
 <li>
-<p>シーケンス図などをPlantUMLでテキストベースで書いて埋め込むことが可能</p>
+<p>シーケンス図などをPlantUMLでテキストベースで書いて埋め込み可能</p>
 </li>
 <li>
-<p>外部ファイルのインクルードもテキストベースで書いて読み込みが可能</p>
+<p>外部ファイルのインクルードも可能</p>
 </li>
 <li>
-<p>コメントアウトを書くことが可能（変更の経緯を残すのに使える）</p>
+<p>コードのコメントアウトが可能（可読性は保ちつつ、変更の経緯や設計根拠も残しやすい）</p>
 </li>
 <li>
-<p>展開用にHTML化やPDF化なども容易にできる</p>
+<p>展開用にHTML化やPDF化なども可能</p>
 </li>
 <li>
 <p>テキストベースなのでとにかく軽い！</p>
@@ -800,7 +753,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Windows 10 Home (64bit)</p>
 </li>
 <li>
-<p>.NET Framework 4.0以上（※Windows 7 の場合、標準搭載は 3.5.1 のためVerUpが必要です）</p>
+<p>.NET Framework 4.0以上（※Windows 7 環境の場合、標準搭載は 3.5.1 のためVerUpが必要です）</p>
 </li>
 <li>
 <p>Chocolatey 0.10.15</p>
@@ -881,7 +834,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 <hr>
 <div class="paragraph">
 <p><mark><strong>＜覚え書き＞実行内容について</strong></mark></p>
@@ -1029,7 +981,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 <hr>
 <div class="paragraph">
 <p><mark><strong>＜覚え書き＞実行内容について</strong></mark></p>
@@ -1115,7 +1066,6 @@ cinst sourcetree --version 2.5.5 -y <i class="conum" data-value="6"></i><b>(6)</
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 <hr>
 <div class="paragraph">
 <p><mark><strong>＜覚え書き＞実行内容について</strong></mark></p>
@@ -1199,7 +1149,6 @@ gem install coderay <i class="conum" data-value="5"></i><b>(5)</b></pre>
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 <hr>
 <div class="paragraph">
 <p><mark><strong>＜覚え書き＞実行内容について</strong></mark></p>
@@ -1262,7 +1211,6 @@ code --install-extension jebbs.plantuml ^ <i class="conum" data-value="3"></i><b
 <p>配布パッケージ内のtemplateフォルダ一式をローカルPCの任意の場所にコピーして使います<br>
 このフォルダ一式が文章のテンプレートとなります<br></p>
 </div>
-<div style="page-break-after: always;"></div>
 <hr>
 <div class="paragraph">
 <p><mark><strong>＜覚え書き＞templateフォルダの中身について</strong></mark></p>
@@ -1379,7 +1327,6 @@ C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-pdf-1.5.0.beta.2\data\fonts
 </div>
 </div>
 <hr>
-<div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
 <h4 id="_vscode_を起動する">5.1.2. VScode を起動する</h4>
@@ -1496,6 +1443,13 @@ asciidoctor-pdf -r asciidoctor-diagram -r asciidoctor-pdf-cjk -o *.pdf *.adoc <i
 <img src="data:image/png;base64,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" alt="Git">
 </div>
 </div>
+<div class="paragraph">
+<p>以降では簡単な説明にとどめますので、以下のサイトも参考にして下さい<br></p>
+</div>
+<div class="paragraph">
+<p><strong>＜サルでもわかるGit入門＞</strong><br>
+<a href="https://backlog.com/ja/git-tutorial/" class="bare">https://backlog.com/ja/git-tutorial/</a></p>
+</div>
 <div style="page-break-after: always;"></div>
 <div class="paragraph">
 <div class="title"><strong>状態の変化を記録するコミット</strong></div>
@@ -1507,10 +1461,11 @@ asciidoctor-pdf -r asciidoctor-diagram -r asciidoctor-pdf-cjk -o *.pdf *.adoc <i
 <p>管理下に置かれた作業ディレクトリ（<strong>作業ツリー</strong>）から、コミットのための準備場所（<strong>インデックス</strong>）に、変更したファイルを<strong>追加</strong>する</p>
 </li>
 <li>
-<p><strong>コミットメッセージ</strong>を付けて、コミットを実行する</p>
+<p><strong>コミットメッセージ</strong>を付けて、<strong>コミット</strong>を実行する</p>
 <div class="listingblock">
 <div class="content">
-<pre>1行目 : コミットでの変更内容の要約
+<pre>//コミットメッセージ
+1行目 : コミットでの変更内容の要約
 2行目 : 空行
 3行目以降 : 変更した理由</pre>
 </div>
@@ -1532,14 +1487,14 @@ asciidoctor-pdf -r asciidoctor-diagram -r asciidoctor-pdf-cjk -o *.pdf *.adoc <i
 <td class="content">
 <div class="paragraph">
 <p>このようにインデックスを挟むことで、変更されてないファイルを含めずにコミットでき、<br>
-また、ファイルの一部の変更だけを追加してコミットできたりする</p>
+また、ファイルの一部の変更だけを追加してコミットすることもできたりする</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>なお、状態の変化を履歴として記録しており、変更前ファイルをバックアップ用に残す必要はない<br>
+<p>なお、状態の変化を履歴として記録しており、<strong>変更前ファイルをバックアップ用に残す必要はない</strong><br>
 履歴を元に、<strong>過去の状態に戻す</strong>ことや、<strong>変更箇所の差分を表示</strong>したりもできる</p>
 </div>
 <div style="page-break-after: always;"></div>
@@ -1572,7 +1527,7 @@ asciidoctor-pdf -r asciidoctor-diagram -r asciidoctor-pdf-cjk -o *.pdf *.adoc <i
 </ul>
 </div>
 <div class="paragraph">
-<p>普段の作業はローカルリポジトリを使って手元のPC上で行い、作業が完了したらリモートリポジトリにアップロード（<strong>プッシュ</strong>）して公開する<br>
+<p>普段の作業はローカルリポジトリで行い、作業が完了したらリモートリポジトリにアップロード（<strong>プッシュ</strong>）して公開する<br>
 他の開発者がリモートリポジトリを通して公開された最新のディレクトリの状態を取得（<strong>プル</strong>）することもできる</p>
 </div>
 <div class="imageblock">
@@ -1612,7 +1567,7 @@ asciidoctor-pdf -r asciidoctor-diagram -r asciidoctor-pdf-cjk -o *.pdf *.adoc <i
 </ul>
 </div>
 <div class="paragraph">
-<p>上記のようなやりとりを経て、最終的にマージされるソースコードの品質を高めることができる</p>
+<p>上記のようなやりとりを経て、最終的にマージされるソースコードの品質を高めることが可能</p>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="paragraph">
@@ -1651,29 +1606,49 @@ asciidoctor-pdf -r asciidoctor-diagram -r asciidoctor-pdf-cjk -o *.pdf *.adoc <i
 </div>
 </div>
 <div class="paragraph">
-<p>この運用の一番の目的は、<strong>リモートリポジトリは常にリリースできる状態に保つこと</strong>、である<br>
-そのため、<strong>ローカルリポジトリのmasterブランチは最新に保つ</strong>ことを心掛け、<strong>編集はブランチを切って行う</strong><br>
-ローカルリポジトリにて、必ずリモートリポジトリのorigin/masterブランチの最新の状態をベースとし、<br>
-<strong>先行した状態にしてから</strong>リモートリポジトリにプッシュする</p>
+<p>この運用の一番の目的は、<strong>リモートリポジトリは常にリリースできる状態に保つこと</strong>、です<br>
+そのため、<strong>ローカルリポジトリのmasterブランチは最新に保つ</strong>ことを心掛け、<strong>編集はブランチを切って行います</strong><br>
+リモートリポジトリの最新の状態（origin/masterブランチ）より<strong>先行した状態にしてから</strong>リモートリポジトリにプッシュします</p>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<div class="title"><strong>ドキュメントのバージョン管理</strong></div>
+<p>gitではコミットに対してコミットメッセージとは別にタグを付けることができる（後付け可能）<br>
+変更履歴上の重要なポイントへの印として一覧表示で参照も可能で、主にリリースポイントとして使われます<br>
+自社では、タグにバージョンを明記して管理することとします<br></p>
+</div>
+<div class="paragraph">
+<p>タグ記載ルール 「<strong>a_Kx.y.z</strong>」</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a : プロダクト名 or 標準仕様</p>
+</li>
+<li>
+<p>x : 適用する標準仕様ver（標準化などによるベース仕様の大規模の改訂時に変わる）</p>
+</li>
+<li>
+<p>y : プロダクトとしての正式発行ver（0:Draft、1:初期提示、2～:各フェーズに応じてなど）</p>
+</li>
+<li>
+<p>z : プロダクトとしての仕様変更ver</p>
+</li>
+</ul>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="paragraph">
 <div class="title"><strong>SourceTreeを使って運用する</strong></div>
 <p>上記の作業は、GitのGUIツールであるSourceTreeを使用して行いますが、<br>
-以下の参考サイトに初心者でもわかるようにまとまっているので説明は割愛します<br>
-理解に必要な用語は一通り説明し終えているはずなので、読んで理解できる内容だと思います<br></p>
+以下の参考サイトに初心者でもわかるようにまとまっているので説明は割愛します<br></p>
 </div>
 <div class="paragraph">
 <p><strong>＜誰でも簡単！GitHubで管理するためのSourcetreeの最低限の使い方＞</strong><br>
-<a href="https://haniwaman.com/sourcetree/" class="bare">https://haniwaman.com/sourcetree/</a><br>
-※自社ではGitHubの代わりにGitLabを使いますのでGitLabに置き換えて読んでください</p>
+<a href="https://haniwaman.com/sourcetree/" class="bare">https://haniwaman.com/sourcetree/</a></p>
 </div>
 <div class="paragraph">
-<p>また、用語については運用に最低限必要な部分だけのピックアップなので、詳しくは以下サイトを読んでください<br></p>
-</div>
-<div class="paragraph">
-<p><strong>＜サルでもわかるGit入門＞</strong><br>
-<a href="https://backlog.com/ja/git-tutorial/" class="bare">https://backlog.com/ja/git-tutorial/</a></p>
+<p><strong>＜SourceTreeの使い方|初心者が習得するべき基本操作＞</strong>
+<a href="https://ics.media/entry/1365/" class="bare">https://ics.media/entry/1365/</a></p>
 </div>
 <div class="paragraph">
 <p>展開したり共有する必要がない資料は、ローカルリポジトリだけで運用してバージョン管理することもできます<br>
@@ -1692,7 +1667,7 @@ asciidoctor-pdf -r asciidoctor-diagram -r asciidoctor-pdf-cjk -o *.pdf *.adoc <i
 <div id="footer">
 <div id="footer-text">
  K0.1<br>
-Last updated 2019-09-30 01:58:10 +0900
+Last updated 2019-10-05 23:02:22 +0900
 </div>
 </div>
 </body>
