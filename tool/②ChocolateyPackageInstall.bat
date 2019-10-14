@@ -12,6 +12,7 @@ cinst graphviz -y
 cinst jdk8 -y
 cinst maven -y
 cinst vscode -y
+cinst winmerge -y
 cinst sourcetree --version 2.5.5 -y
 
 rem sourcetreeのサインイン成功確認

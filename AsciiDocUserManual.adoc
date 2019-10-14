@@ -40,25 +40,15 @@
 //////////////////////////////////////////////////////////////////////
 
 //ドキュメントタイトル、表紙に入る
-ifdef::env-user[]
 = AsciiDoc ユーザーマニュアル
-endif::[]
-ifdef::env-admin[]
-= AsciiDoc ユーザーマニュアル（詳細版）
-endif::[]
 //ドキュメントタイトル、ヘッダーに入る
-ifdef::env-user[]
 :docname: AsciiDoc ユーザーマニュアル
-endif::[]
-ifdef::env-admin[]
-:docname: AsciiDoc ユーザーマニュアル（詳細版）
-endif::[]
 //著者
 :author:
 //改定番号
-:revnumber: K0.1
+:revnumber: K1.0.0
 //改定日
-:revdate: 2019/08/24
+:revdate: 2019/10/15
 //改定番号のラベル
 :version-label:
 //ロゴ画像
@@ -172,6 +162,7 @@ AsciiDocPackage/
 
 
 
+
 == 環境構築手順
 
 === はじめに
@@ -198,7 +189,11 @@ AsciiDocPackage/
 *** AsciiDoc 2.7.6
 *** Japanese Language Pack for Visual Studio Code 1.37.5
 *** PlantUML 2.12.1
+** Winmerge 2.16.4.20191007
 ** SourceTree 3.1.3
+
+
+
 
 
 
@@ -222,7 +217,8 @@ AsciiDocPackage/
 
 
 
-==== 実施内容（覚え書き）
+
+==== 実施内容（覚え書きなので実施は不要）
 * コマンドプロンプト（管理者権限）で以下を実行している
 +
 ----
@@ -322,7 +318,8 @@ image::Sourcetree10.png[width="300",align="left"]
 
 
 
-==== 実施内容（覚え書き）
+
+==== 実施内容（覚え書きなので実施は不要）
 
 * コマンドプロンプト（管理者権限）で以下を実行している
 +
@@ -332,14 +329,16 @@ cinst graphviz -y //<2>
 cinst jdk8 -y //<3>
 cinst maven -y //<4>
 cinst vscode -y //<5>
-cinst sourcetree --version 2.5.5 -y //<6>
+cinst winmerge -y //<6>
+cinst sourcetree --version 2.5.5 -y //<7>
 ----
 <1> Ruby （AsciiDoc関連ツールを利用するのに必要）
 <2> Graphviz （PlantUMLのレンダリングライブラリとして必要）
 <3> Java （PlantUMLの動作環境として必要）
 <4> Maven （Javaのプロジェクト管理ツールでPlantUMLの爆速プレビューに必要）
 <5> Visual Studio Code （AsciiDocをプレビュー可能なテキストエディタ）
-<6> SourceTree （GitのGUIツール）
+<6> Winmerge （コードの差分比較ツール）
+<7> SourceTree （GitのGUIツール）
 
 * Atlassianアカウントを作成してSourceTreeのサインインに成功したら +
 コマンドプロンプト（管理者権限）で以下を実行しアップデートする
@@ -383,7 +382,8 @@ https://hepokon365.hatenablog.com/entry/2019/03/25/222814
 
 
 
-==== 実施内容（覚え書き）
+
+==== 実施内容（覚え書きなので実施は不要）
 
 * コマンドプロンプトで以下を実行している
 +
@@ -439,7 +439,8 @@ https://pasokatu.hateblo.jp/entry/2017/07/04/111147
 
 
 
-==== 実施内容（覚え書き）
+
+==== 実施内容（覚え書きなので実施は不要）
 * コマンドプロンプトで以下を実行している
 +
 ----
@@ -485,7 +486,7 @@ https://qiita.com/Kosen-amai/items/03632dee2e1694652f06 +
 
 
 
-==== 作業ディレクトリの作成方法（覚え書き）
+==== 作業ディレクトリの作成方法（覚え書きなので実施は不要）
 * 文章作成のための作業ディレクトリを用意
 +
 ----
@@ -624,7 +625,7 @@ Windowsのスタートメニューから `Visual Studio Code` （以下、VScode
 
 
 
-===== [black]#asciidoctorの設定を変更する#
+===== [black]#asciidoctorの設定を変更する（初回のみ実施）#
 VScode上でプレビュー表示を行うための設定を行います。 +
 [ファイル]→[基本設定]→[設定]から `asciidoctor` を検索し、以下の設定を行います。
 ----
@@ -634,6 +635,10 @@ use_asciidoctor_js  : false(チェックを外す)
 ----
 
 image::VScodeSetting.png[]
+
+
+
+
 
 
 
@@ -648,13 +653,15 @@ image::TestPreviewResult.png[]
 
 
 
+
+
 ===== [black]#プレビューを行う（PlantUML図作成時）#
 VScodeの拡張機能を使用してプレビューを行う際、通常はAsciiDocでのプレビューで問題ないですが、PlantUML図の編集中はAsciiDocではなくPlantUMLを使ってプレビューした方が圧倒的に反応が早いので、やり方を説明しておきます。
 
 . 以下から、PlantUML Server リポジトリをローカルPCの適当な場所にクローンします（初回のみ実施）。 +
 https://github.com/plantuml/plantuml-server
 
-. コマンドでサーバーを立ち上げます（次回以降も実施）。 +
+. コマンドでサーバーを立ち上げます。 +
 手順1にてクローンした場所をエクスプローラーで開きます。
 +
 image::plantumlserver1.png[width="600",align="left"]
@@ -680,7 +687,7 @@ Server : http://localhost:8080/plantuml
 +
 image::plantumlserver3.png[]
 
-. PlantUMLのブロック内の最初と最後に@startumlと@endumlを指定します。 +
+. PlantUMLのブロック内の最初と最後に `@startuml` と `@enduml` を指定します。 +
 編集中のみ指定を行い、最終的には不要なので消してください。
 +
 ----
@@ -694,7 +701,7 @@ image::plantumlserver3.png[]
 --
 ----
 
-. @startuml～@endumlの間にカーソルを持ってきて、ショートカット kbd:[Alt + D] で画面右側にプレビューが表示されます。
+. @startuml～@endumlの間にカーソルを持ってきて、ショートカット kbd:[Alt+D] で画面右側にプレビューが表示されます。
 +
 [NOTE]
 ====
@@ -738,7 +745,11 @@ make_pdf_test.bat
 
 
 
-==== 変換方法（覚え書き）
+
+
+
+
+==== テストサンプルのPDFへの変換方法（覚え書きなので実施は不要）
 
 * コマンドプロンプトで以下を実行している（*にファイル名を指定）
 +
@@ -758,9 +769,11 @@ asciidoctor-pdf -r asciidoctor-diagram -r asciidoctor-pdf-cjk -o *.pdf *.adoc //
 
 
 
+
 <<<
 :sectnums:
 === AsciiDocで書いた文章をGitで管理する
+
 
 ==== Gitとは？
 分散型バージョン管理システムの一つです。 +
@@ -773,6 +786,9 @@ image::Git.png[]
 
 ＜サルでもわかるGit入門＞ +
 https://backlog.com/ja/git-tutorial/
+
+
+
 
 
 
@@ -814,6 +830,9 @@ image::Commit.png[]
 
 
 
+
+
+
 <<<
 ==== 履歴を管理するリポジトリ
 リポジトリには2種類あります。
@@ -847,6 +866,12 @@ image::Repository.png[]
 
 
 
+
+
+
+
+
+
 <<<
 ==== 運用フロー
 初めにリモートリポジトリをローカルに複製（**クローン**）します。 +
@@ -870,24 +895,48 @@ image::Flow.png[]
 
 
 
+
+
+
+
+
+
 <<<
 ==== ドキュメントのバージョン管理
 gitではコミットに対してコミットメッセージとは別にタグを付けることができます（後付け可能）。 +
 変更履歴上の重要なポイントへの印として一覧表示で参照も可能で、主にリリースポイントとして使われます。 +
 自社では、タグにバージョンを明記して管理することとします。 +
 
-タグ記載ルール 「**a_x.y.z**」
+タグ記載ルール 「a_**K**x.y.z」
 
 * a : プロダクト名
-* x : プロダクトとしての正式発行ver（0:Draft、1:初期提示、2～:各フェーズに応じてなど）
-* y : プロダクトとしての仕様変更ver（0:正式発行時で固定、1～:ソフト屋さんにも展開する仕様変更でカウントUP）
-* z : プロダクトとしての開発管理ver（0:正式発行時で固定、1～:ソフト屋さんには未展開の開発管理でカウントUP）
+* x : 正式発行ver（0:Draft、1:初期提示、2～:各フェーズに応じてなど）
+* y : 仕様変更ver（0:正式発行verが改定時、1～:ソフト屋さんにも展開されるverです）
+* z : 開発管理ver（0:仕様変更verが改定時、1～:ソフト屋さんには未展開の開発側管理上のverです）
 
-前提として、標準仕様とバイプロ仕様のように仕様書を別管理としていた従来のやり方は、今後はやめます。 +
+前提として、標準仕様とバイプロ仕様のように仕様書を別管理としていた従来のやり方は今後はやめます。
+
 AsciiDocでは、仕様書は一つで、`ifdef ～ endif` で条件によって表示/非表示を切り替えることで、 +
-プロダクト別の仕様書に早変わりできるような作りを目指します（ifdefの使い方はテストサンプル参照）。 +
+プロダクト別の仕様書に早変わりできるような作りを目指します（ifdefの使い方はテストサンプル参照）。
+
 従って、仕様の記載を追加することはあっても削除することはできない（許されない）ので、 +
 常に他のプロダクトの仕様を参照しながら作成ができ、仕様の水平展開や標準化を意識した作りにできます。
+
+実施にソフト屋さんに展開する際は、一応体裁を整える意味で、表紙やヘッダーに付く改訂情報も合わせて修正して、 +
+PDF化して展開するようにします。
+----
+例）
+//ドキュメントタイトル、表紙に入る
+= AsciiDoc ユーザーマニュアル
+//ドキュメントタイトル、ヘッダーに入る
+:docname: AsciiDoc ユーザーマニュアル
+//改定番号
+:revnumber: K1.0.0
+//改定日
+:revdate: 2019/10/15
+----
+
+
 
 
 
@@ -903,13 +952,19 @@ AsciiDocでは、仕様書は一つで、`ifdef ～ endif` で条件によって
 image::UserInfo.png[width="700",align="left"]
 
 . これまで説明してきた作業は、GitのGUIツールであるSourceTreeを使用して行いますが、 +
-以下の参考サイトに初心者でもわかるようにまとまっているので説明は割愛します +
+以下の参考サイトに初心者でもわかるようにまとまっているので説明は割愛します。 +
 +
 ＜誰でも簡単！GitHubで管理するためのSourcetreeの最低限の使い方＞ +
 https://haniwaman.com/sourcetree/ +
 +
 ＜SourceTreeの使い方|初心者が習得するべき基本操作＞ +
 https://ics.media/entry/1365/ 
+
+
+. その他のお役立ち情報として、外部diff（バージョン間のコードの差分）を使って、コミット間の差分の全体を見やすく表示することもできます。 +
+外部diffの登録の仕方は下記を参考にしてください。 +
+https://blog.stedplay.com/how-to-use-sourcetree-with-p4merge/ +
+※このサイト内では外部diffツールとしてP4Mergeを使用していますが、本書内ではWinmerge（バッチファイルで既にインストール済）を使います。
 
 
 
