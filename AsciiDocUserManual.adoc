@@ -79,11 +79,12 @@ AsciiDocPackage/
    ├ make_pdf_test.bat               // AsciiDoc→PDF変換用スクリプト
    └ test.adoc                       // テストサンプル
    └ test2.adoc                      // テストサンプルその2
-├ tool/                    　　 // インストール用バッチファイル
+├ tool/                    　　 // インストール用バッチファイル等
    ├ ①ChocolateyInstall.bat
    ├ ②ChocolateyPackageInstall.bat
    ├ ③AsciiDocToolInstall.bat
-   └ ④VScodeExtensionInstall.bat
+   ├ ④VScodeExtensionInstall.bat
+   └ ndp48-web.exe
 └ AsciiDocUserManual.pdf        // 手順書
 ----
 
@@ -193,7 +194,7 @@ AsciiDocPackage/
 ** Winmerge 2.16.4.20191007
 ** SourceTree 3.1.3
 
-これらのツールを自動（一部除く）でインストールするためのバッチファイルを用意しました。 +
+これらのツールを自動でインストール（一部除く）するためのバッチファイルを用意しています。 +
 コマンドプロンプト上で長時間のバッチ処理を行うにあたり、誤って処理を止めてしまわないように、事前に以下の設定を行ってください。 +
 
 . Windowsのスタートメニューから `コマンドプロンプト` を検索して起動
@@ -228,7 +229,7 @@ AsciiDocPackage/
 
 
 
-==== 実施内容（覚え書きなので実施は不要）
+==== 実行内容の覚え書き（実施は不要）
 * コマンドプロンプト（管理者権限）で以下を実行している
 +
 ----
@@ -292,11 +293,13 @@ image::Sourcetree02.png[width="300",align="left"]
 +
 image::Sourcetree03.png[width="300",align="left"]
 
-. `Enter email` にユーザーのメールアドレスを入力して `Continue` をクリック +
+. メールアドレスを入力して `Continue` をクリック +
+※社内のメールアドレスでOK
 +
 image::Sourcetree04.png[width="200",align="left"]
 
-. 続けて、 `Enter full name` にユーザー名、 `Create password` にパスワードを求められるので入力して、 `Sign up` をクリック（※入力したメールアドレスで既にアカウントを持っている場合は、パスワードの入力のみ求められます） +
+. 任意のユーザー名とパスワードを入力して、 `Sign up` をクリック +
+※入力したメールアドレスで既にアカウントを持っている場合は、パスワードの入力のみ求められます +
 +
 image::Sourcetree05.png[width="200",align="left"]
 
@@ -308,19 +311,20 @@ image::Sourcetree06.png[width="200",align="left"]
 +
 image::Sourcetree07.png[width="300",align="left"]
 
-. ツールのインストール画面に遷移するので `Git` にだけチェックを入れて、 `次へ` をクリック（※既にGitをインストール済みの場合はそのまま `次へ` をクリック） +
+. ツールのインストール画面に遷移するので `Git` にだけチェックを入れて、 `次へ` をクリック +
+※既にGitをインストール済みの場合はチェックボックスは表示されません +
 +
 image::Sourcetree08.png[width="300",align="left"]
 
-.. 社内のProxy環境化では `次へ` をクリックすると下記のエラーが表示されるので、`キャンセル` をクリックし、ツールのインストール画面も一旦閉じる +
+.. 社内のProxy環境化では、下記のエラーが表示されるので `キャンセル` をクリックし、手順11の画面も一旦閉じる +
 +
 image::Sourcetree08-1.png[width="300",align="left"]
 
-.. Windowsのスタートメニューから `Sourcetree` を検索して起動し、下記が表示されたら、一番下の選択肢の `Gitを使いたくない` をクリック +
+.. Windowsのスタートメニューから `Sourcetree` を検索して起動すると、下記画面が表示されるので、一番下の選択肢の `Gitを使いたくない` をクリック +
 +
 image::Sourcetree08-2.png[width="300",align="left"]
 
-.. [ツール]→[オプション]から `ネットワーク` タブを選択し、`カスタムプロキシ設定を使用` にチェックを入れてアドレスとポート番号を入力し、`Git/Mercurialにプロキシ・・・` にチェックを入れる +
+.. Sourcetreeが起動したら、[ツール]→[オプション]から `ネットワーク` タブを選択し、`カスタムプロキシ設定を使用` にチェックを入れてProxyのアドレスとポート番号を入力し、`Git/Mercurialにプロキシ・・・` にチェックを入れる +
 +
 image::Sourcetree08-3.png[width="500",align="left"]
 +
@@ -339,7 +343,7 @@ image::Sourcetree08-4.png[width="500",align="left"]
 
 .. 再び、手順bの画面が表示されるので、一番上の選択肢の `システム全体でなく、・・・` をクリック
 
-.. ダウンロードが始まるので、完了したら `OK` をクリックし、起動中の `Sourcetree` を一旦閉じる
+.. Gitのダウンロードが始まるので、完了したら `OK` をクリックし、起動中のSourcetreeを一旦閉じる
 
 .. 再度、Windowsのスタートメニューから `Sourcetree` を検索して起動すると、手順10の画面に戻る +
 
@@ -349,13 +353,13 @@ image::Sourcetree08-4.png[width="500",align="left"]
 +
 image::Sourcetree09.png[width="300",align="left"]
 
-. `Sourcetree` が自動的に立ち上がったのが確認できたら、起動中の `Sourcetree` を一旦閉じる +
+. Sourcetreeが起動したのが確認できたら、起動中のSourcetreeを一旦閉じる +
 +
 image::Sourcetree10.png[width="300",align="left"]
 
-. コマンドプロンプトの画面内にて、Atlassianアカウントを作成完了したか聞かれるので、完了していたら `y` 、完了していなければ `n` を入力して kbd:[Enter] を押す +
+. コマンドプロンプトの画面内にて、Atlassianアカウントを作成完了したか聞かれるので、`y` を入力して kbd:[Enter] を押す +
 `y` の場合 ： コマンドプロンプトが表示されて処理が進むので自動的に閉じたら完了（5分程度かかります） +
-`n` の場合 ： コマンドプロンプトの画面内に書いてあるメッセージを読んでから、kbd:[Enter] を押してコマンドプロンプトを閉じる +
+`n` の場合 ： 再度、kbd:[Enter] を押してコマンドプロンプトを閉じる（別途、管理者へ相談してください） +
 
 
 
@@ -366,7 +370,7 @@ image::Sourcetree10.png[width="300",align="left"]
 
 
 
-==== 実施内容（覚え書きなので実施は不要）
+==== 実行内容の覚え書き（実施は不要）
 
 * コマンドプロンプト（管理者権限）で以下を実行している
 +
@@ -387,8 +391,7 @@ cinst sourcetree --version 2.5.5 -y //<7>
 <6> Winmerge （コードの差分比較ツール）
 <7> SourceTree （GitのGUIツール）
 
-* Atlassianアカウントを作成してSourceTreeのサインインに成功したら +
-コマンドプロンプト（管理者権限）で以下を実行しアップデートする
+* Atlassianアカウントを作成してSourceTreeのサインインに成功したら、コマンドプロンプト（管理者権限）で以下を実行しSourceTreeのアップデートを行う
 +
 ----
 choco upgrade all -y
@@ -435,7 +438,7 @@ https://hepokon365.hatenablog.com/entry/2019/03/25/222814
 
 
 
-==== 実施内容（覚え書きなので実施は不要）
+==== 実行内容の覚え書き（実施は不要）
 
 * コマンドプロンプトで以下を実行している
 +
@@ -478,15 +481,15 @@ gem install xxxx -p http://アドレス:ポート
 . ショートカット kbd:[Ctrl+,] で設定を開き、`http: proxy` を検索して、以下を設定
 +
 ----
-"http.proxy": "http://アドレス:ポート",
-"http.proxyStrictSSL": false（チェックを外す）,
+"http.proxy": "http://アドレス:ポート",      //Proxyの確認手順は先述の通り
+"http.proxyStrictSSL": false,              //チェックを外す
 ----
 +
 image::VScodeSettingProxy.png[]
 
-. VScodeを閉じる
+. 起動中のVScodeを閉じる
 
-. 以下のバッチファイルをダブルクリックで実行する
+. 以下のバッチファイルをダブルクリックで実行
 +
 ----
 ④VScodeExtensionInstall.bat
@@ -503,7 +506,7 @@ image::VScodeSettingProxy.png[]
 
 
 
-==== 実施内容（覚え書きなので実施は不要）
+==== 実行内容の覚え書き（実施は不要）
 * コマンドプロンプトで以下を実行している
 +
 ----
@@ -536,7 +539,7 @@ https://qiita.com/cointoss1973/items/b3c84daeed90fd183501
 == 使い方
 
 === VScodeで実際にAsciiDocを書いてみる
-ここでは、テストサンプルでプレビューやPDFへの変換を行い、正しく環境構築ができたことを確認します。 +
+ここでは、テストサンプルのプレビューやPDFへの変換を行い、正しく環境構築ができたことを確認します。 +
 テストサンプルの内容は、AsciiDocの文法紹介も兼ねているので参考にしてください。
 
 
@@ -554,7 +557,7 @@ https://qiita.com/cointoss1973/items/b3c84daeed90fd183501
 
 
 
-==== 作業ディレクトリの作成方法（覚え書きなので実施は不要）
+==== 作業ディレクトリ作成の覚え書き（実施は不要）
 * 文章作成のための作業ディレクトリを用意
 +
 ----
@@ -712,7 +715,7 @@ image::VScodeSetting.png[]
 
 
 ===== [black]#プレビューを行う#
-* ショートカット kbd:[Ctrl+K] → kbd:[V] で画面右側にプレビューが表示（以下はテストサンプルのプレビュー結果）
+* ショートカット kbd:[Ctrl+K] → kbd:[V] で画面右側にプレビューが表示（以下はテストサンプルの参考プレビュー）
 +
 image::TestPreviewResult.png[]
 
@@ -723,7 +726,7 @@ image::TestPreviewResult.png[]
 
 
 ===== [black]#プレビューを行う（UML図の作成時）#
-* UML図の作成時は、VScode拡張機能のPlantUMLを使用してプレビューした方が圧倒的に反応が早いので、参考までに実施方法を説明しておきます
+* UML図の作成時は、VScode拡張機能のPlantUMLを使用してプレビューした方が圧倒的に反応が早いので、参考までに実施方法を説明しておきます（参考情報なのでひとまずココは飛ばしても良いです）
 
 . 以下から、PlantUML Server リポジトリをローカルPCの適当な場所にクローン（初回のみ実施） +
 https://github.com/plantuml/plantuml-server
@@ -800,11 +803,11 @@ make_pdf_test.bat
 
 . コマンドプロンプトが表示されて処理が進むので自動的に閉じたら完了（数秒程度かかります）
 
-. 同じ階層に `test.pdf` が作成される
+. 同じ階層に `test.pdf` が生成される
 +
 [NOTE]
 ====
-必要に応じてバッチファイル内のファイル名を修正して使ってください +
+必要に応じて適当にメモ帳で開いてバッチファイル内のファイル名を修正して使ってください +
 `**-o** 変換後ファイル名**.pdf** 変換前ファイル名**.adoc**`
 ====
 
@@ -816,7 +819,7 @@ make_pdf_test.bat
 
 
 
-==== テストサンプルのPDFへの変換方法（覚え書きなので実施は不要）
+==== HTMLやPDFへの変換方法の覚え書き（実施は不要）
 
 * コマンドプロンプトで以下を実行している（*にファイル名を指定）
 +
@@ -1013,7 +1016,7 @@ AsciiDocでは、仕様書は一つで、`ifdef ～ endif` で条件によって
 
 <<<
 ==== SourceTreeを使って運用する
-. まず、SourceTreeにGitLabアカウントを登録します。 +
+. SourceTreeにGitLabアカウントを登録します。 +
 [ツール]→[オプション]のデフォルトユーザー情報に、GitLabで登録したユーザー名とメールアドレスを入力します。
 +
 image::UserInfo.png[width="700",align="left"]
