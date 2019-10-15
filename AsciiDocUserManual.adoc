@@ -77,8 +77,8 @@ AsciiDocPackage/
    ├ style/                　　    　// スタイルファイルを格納
    ├ .gitignore                      // コミット対象外の指定用
    ├ make_pdf_test.bat               // AsciiDoc→PDF変換用スクリプト
-   └ test.adoc                       // AsciiDocテストサンプル
-   └ test2.adoc                      // AsciiDocテストサンプル2
+   └ test.adoc                       // テストサンプル
+   └ test2.adoc                      // テストサンプルその2
 ├ tool/                    　　 // インストール用バッチファイル
    ├ ①ChocolateyInstall.bat
    ├ ②ChocolateyPackageInstall.bat
@@ -193,6 +193,15 @@ AsciiDocPackage/
 ** Winmerge 2.16.4.20191007
 ** SourceTree 3.1.3
 
+これらのツールを自動（一部除く）でインストールするためのバッチファイルを用意しました。 +
+コマンドプロンプト上で長時間のバッチ処理を行うにあたり、誤って処理を止めてしまわないように、事前に以下の設定を行ってください。 +
+
+. Windowsのスタートメニューから `コマンドプロンプト` を検索して起動
+. システムメニュー（コマンドプロンプトウィンドウの左上に表示されているアイコンをクリックすると表示されるメニュー）から `プロパティ` を選択
+. 編集オプション内の `簡易編集モード` のチェックを外して、`OK` をクリック
+. コマンドプロンプトを閉じる
+
+
 
 
 
@@ -206,7 +215,7 @@ AsciiDocPackage/
 
 :sectnums!:
 ==== 実施手順
-. 以下のバッチファイルをダブルクリックで実行する
+. 以下のバッチファイルをダブルクリックで実行
 +
 ----
 ①ChocolateyInstall.bat
@@ -262,17 +271,16 @@ https://qiita.com/konta220/items/95b40b4647a737cb51aa
 :sectnums!:
 ==== 実施手順
 
-. 以下のバッチファイルをダブルクリックで実行する
+. 以下のバッチファイルをダブルクリックで実行
 +
 ----
 ②ChocolateyPackageInstall.bat
 ----
-
 . ユーザーアカウント制御の許可のポップアップが出るので `はい` をクリック
 
-. コマンドプロンプトの画面内にて、環境がWindows10かどうか聞かれるので、Windouws10であれば `y` 、Windows7であれば `n` を入力して kbd:[Enter] を押す +
+. コマンドプロンプトの画面内にて、OSのバージョンがWindows10かどうか聞かれるので、Windouws10であれば `y` 、Windows7であれば `n` を入力して kbd:[Enter] を押す +
 `y` の場合 ： 次の手順へ +
-`n` の場合 ： コマンドプロンプトの画面内に書いてある手順に従ってください +
+`n` の場合 ： コマンドプロンプトの画面内に書いてある手順に従う +
 
 . コマンドプロンプトが表示されて処理が進むのでしばらく待つ（30分以上かかります）
 
@@ -284,11 +292,11 @@ image::Sourcetree02.png[width="300",align="left"]
 +
 image::Sourcetree03.png[width="300",align="left"]
 
-. `Enter email` にメールアドレスを入力して `Continue` をクリック +
+. `Enter email` にユーザーのメールアドレスを入力して `Continue` をクリック +
 +
 image::Sourcetree04.png[width="200",align="left"]
 
-. 続けて、 `Enter full name` にニックネーム、 `Create password` にパスワードを求められるので入力して、 `Sign up` をクリック（※既にアカウントを持っている場合は通常のサインインを行う） +
+. 続けて、 `Enter full name` にユーザー名、 `Create password` にパスワードを求められるので入力して、 `Sign up` をクリック（※入力したメールアドレスで既にアカウントを持っている場合は、パスワードの入力のみ求められます） +
 +
 image::Sourcetree05.png[width="200",align="left"]
 
@@ -312,8 +320,7 @@ image::Sourcetree08-1.png[width="300",align="left"]
 +
 image::Sourcetree08-2.png[width="300",align="left"]
 
-.. [ツール]→[オプション]から `ネットワーク` タブを選択し、Proxyの設定を行う +
-`カスタムプロキシ設定を使用` を選択し、サーバー欄にはhttp://以降のアドレスを入力し、ポート番号も入力して、`Git/Mercurialにプロキシ・・・` にチェックを入れる +
+.. [ツール]→[オプション]から `ネットワーク` タブを選択し、`カスタムプロキシ設定を使用` にチェックを入れてアドレスとポート番号を入力し、`Git/Mercurialにプロキシ・・・` にチェックを入れる +
 +
 image::Sourcetree08-3.png[width="500",align="left"]
 +
@@ -332,22 +339,23 @@ image::Sourcetree08-4.png[width="500",align="left"]
 
 .. 再び、手順bの画面が表示されるので、一番上の選択肢の `システム全体でなく、・・・` をクリック
 
-.. ダウンロードが始まるので、完了したら `OK` をクリックし、その後、Sourcetree自体も一旦閉じる
+.. ダウンロードが始まるので、完了したら `OK` をクリックし、起動中の `Sourcetree` を一旦閉じる
 
-.. 再度、Windowsのスタートメニューから `Sourcetree` を検索して起動すると、手順10の画面に戻ります +
-※以降は気にせず基本的に全て `次へ` をクリックで大丈夫です
+.. 再度、Windowsのスタートメニューから `Sourcetree` を検索して起動すると、手順10の画面に戻る +
 
-. `SSHキーを読み込みますか？` が表示されたら `いいえ` をクリック +
+. （仮に）`Preferences` 画面が表示されたら、チェックを外した状態のままで `次へ` をクリック +
+
+. （仮に）`SSHキーを読み込みますか？` が表示されたら `いいえ` をクリック +
 +
 image::Sourcetree09.png[width="300",align="left"]
 
-. Sourcetreeが自動的に立ち上がったのが確認できたらアプリを一旦閉じる +
+. `Sourcetree` が自動的に立ち上がったのが確認できたら、起動中の `Sourcetree` を一旦閉じる +
 +
 image::Sourcetree10.png[width="300",align="left"]
 
 . コマンドプロンプトの画面内にて、Atlassianアカウントを作成完了したか聞かれるので、完了していたら `y` 、完了していなければ `n` を入力して kbd:[Enter] を押す +
-`y` の場合 ： コマンドプロンプトが表示されて処理が進むので自動的に閉じたら完了 +
-`n` の場合 ： 再度、kbd:[Enter] を押すとコマンドプロンプトが閉じる +
+`y` の場合 ： コマンドプロンプトが表示されて処理が進むので自動的に閉じたら完了（5分程度かかります） +
+`n` の場合 ： コマンドプロンプトの画面内に書いてあるメッセージを読んでから、kbd:[Enter] を押してコマンドプロンプトを閉じる +
 
 
 
@@ -402,6 +410,7 @@ https://hepokon365.hatenablog.com/entry/2019/03/25/222814
 
 
 
+
 <<<
 :sectnums:
 === AsciiDoc関連ツールをインストール
@@ -409,13 +418,17 @@ https://hepokon365.hatenablog.com/entry/2019/03/25/222814
 
 :sectnums!:
 ==== 実施手順
-. 以下のバッチファイルをダブルクリックで実行する
+. 以下のバッチファイルをダブルクリックで実行
 +
 ----
 ③AsciiDocToolInstall.bat
 ----
 
 . コマンドプロンプトが表示されて処理が進むので自動的に閉じたら完了（5分程度かかります）
+
+
+
+
 
 
 
@@ -439,7 +452,7 @@ gem install coderay //<5>
 <4> PlantUML等の図の記述および出力用
 <5> コードのシンタックスハイライト用
 
-* 社内のネットワークから実施する場合はgemにproxyを指定する
+* 社内のProxy環境化で実行する場合はgemにproxyを指定可能
 +
 ----
 gem install xxxx -p http://アドレス:ポート
@@ -460,13 +473,13 @@ gem install xxxx -p http://アドレス:ポート
 
 :sectnums!:
 ==== 実施手順
-. Windowsのスタートメニューから `Visual Studio Code` （以下、VScodeとする）を検索して起動する
+. Windowsのスタートメニューから `Visual Studio Code` （以下、VScodeとする）を検索して起動
 
-. ショートカット kbd:[Ctrl+,] で設定を開き、`proxy` を検索して、以下の設定を行う
+. ショートカット kbd:[Ctrl+,] で設定を開き、`http: proxy` を検索して、以下を設定
 +
 ----
-Proxy : http://アドレス:ポート（Proxyの確認方法は先述通り）
-Proxy Strict SSL : false（チェックを外す）
+"http.proxy": "http://アドレス:ポート",
+"http.proxyStrictSSL": false（チェックを外す）,
 ----
 +
 image::VScodeSettingProxy.png[]
@@ -480,6 +493,8 @@ image::VScodeSettingProxy.png[]
 ----
 
 . コマンドプロンプトが表示されて処理が進むので自動的に閉じたら完了（1分程度かかります）
+
+
 
 
 
@@ -528,10 +543,13 @@ https://qiita.com/cointoss1973/items/b3c84daeed90fd183501
 
 
 
+
 :sectnums!:
 ==== 作業ディレクトリを作成する
 配布パッケージ内のtemplateフォルダ一式をローカルPCの任意の場所にコピーして使います。 +
 このフォルダ一式が文章のテンプレートとなります。 +
+
+
 
 
 
@@ -676,14 +694,14 @@ Windowsのスタートメニューから `Visual Studio Code` （以下、VScode
 
 
 ===== [black]#asciidoctorの設定を変更する（初回のみ実施）#
-VScode上でプレビュー表示を行うための設定を行います。 +
-ショートカット kbd:[Ctrl+,] で設定を開き、`asciidoctor` を検索し、以下の設定を行います。
+* ショートカット kbd:[Ctrl+,] で設定を開き、`asciidoctor` を検索し、以下を設定
++
 ----
-asciidoctor_command : asciidoctor -n -r asciidoctor-diagram -o-
-asciidoctorpdf_command : asciidoctor-pdf -n -r asciidoctor-diagram -r asciidoctor-pdf-cjk -o-
-use_asciidoctor_js  : false(チェックを外す)
+"AsciiDoc.asciidoctor_command": "asciidoctor -n -r asciidoctor-diagram -o-",
+"AsciiDoc.asciidoctor_command": "asciidoctor-pdf -n -r asciidoctor-diagram -r asciidoctor-pdf-cjk -o-",
+"AsciiDoc.use_asciidoctor_js": false（チェックを外す）,
 ----
-
++
 image::VScodeSetting.png[]
 
 
@@ -694,9 +712,8 @@ image::VScodeSetting.png[]
 
 
 ===== [black]#プレビューを行う#
-ショートカット kbd:[Ctrl+K] → kbd:[V] で画面右側にプレビューが表示されます。 +
-参考までにテストサンプルのプレビュー結果を以下に示します。
-
+* ショートカット kbd:[Ctrl+K] → kbd:[V] で画面右側にプレビューが表示（以下はテストサンプルのプレビュー結果）
++
 image::TestPreviewResult.png[]
 
 
@@ -705,53 +722,53 @@ image::TestPreviewResult.png[]
 
 
 
-===== [black]#プレビューを行う（PlantUML図作成時）#
-VScodeの拡張機能を使用してプレビューを行う際、通常はAsciiDocでのプレビューで問題ないですが、PlantUML図の編集中はAsciiDocではなくPlantUMLを使ってプレビューした方が圧倒的に反応が早いので、やり方を説明しておきます。
+===== [black]#プレビューを行う（UML図の作成時）#
+* UML図の作成時は、VScode拡張機能のPlantUMLを使用してプレビューした方が圧倒的に反応が早いので、参考までに実施方法を説明しておきます
 
-. 以下から、PlantUML Server リポジトリをローカルPCの適当な場所にクローンします（初回のみ実施）。 +
+. 以下から、PlantUML Server リポジトリをローカルPCの適当な場所にクローン（初回のみ実施） +
 https://github.com/plantuml/plantuml-server
 
-. コマンドでサーバーを立ち上げます。 +
-手順1にてクローンした場所をエクスプローラーで開きます。
+. コマンドでサーバーを立ち上げる
+
+.. 手順1にてクローンした場所をエクスプローラーで開く
 +
 image::plantumlserver1.png[width="600",align="left"]
-+
-エクスプローラーの上のバーに `cmd` と入力して kbd:[Enter] 
-を押すと、コマンドプロンプトでこの場所を開くことができます。
+
+.. 上記エクスプローラーのアドレスバーに `cmd` と入力して kbd:[Enter] 
+を押し、コマンドプロンプトでこの場所を開く
 +
 image::plantumlserver2.png[width="600",align="left"]
 +
-コマンドプロンプトが起動したら、下記コマンドを打つと、サーバーが立ち上がります。
+起動したコマンドプロンプトにて、下記コマンドを打ち、しばらくするとサーバーが立ち上がる（1分程かかります）
 +
 ----
 mvn jetty:run
 ----
 
-. VScodeの設定を変更します（初回のみ実施）。 +
-ショートカット kbd:[Ctrl+,] で設定を開き、`plantuml` を検索し、以下の設定を行います。
+. VScodeにて、ショートカット kbd:[Ctrl+,] で設定を開き、`plantuml` を検索し、以下を設定（初回のみ実施）
 +
 ----
-Render : PlantUMLServer
-Server : http://localhost:8080/plantuml
+"plantuml.render": "PlantUMLServer",
+"plantuml.server": "http://localhost:8080/plantuml",
 ----
 +
 image::plantumlserver3.png[]
 
-. PlantUMLのブロック内の最初と最後に `@startuml` と `@enduml` を指定します。 +
-編集中のみ指定を行い、最終的には不要なので消してください。
+. UMLのブロック内の最初と最後に `@startuml` と `@enduml` を指定
 +
 ----
 [plantuml, test]
 --
 @startuml
 
-この間に書きます
+
 
 @enduml
 --
 ----
+※UMLの編集時のみ指定し、編集終わったら指定を消すこと
 
-. @startuml～@endumlの間にカーソルを持ってきて、ショートカット kbd:[Alt+D] で画面右側にプレビューが表示されます。
+. `@startuml` ～ `@enduml` の間にカーソルをもってきて、ショートカット kbd:[Alt+D] で画面右側にプレビューが表示
 +
 [NOTE]
 ====
@@ -775,15 +792,15 @@ http://yohshiy.blog.fc2.com/blog-category-22.html +
 
 ==== テストサンプルをPDFに変換する
 
-. 以下のバッチファイルをダブルクリックで実行する
+. 以下のバッチファイルをダブルクリックで実行
 +
 ----
 make_pdf_test.bat
 ----
 
-. コマンドプロンプトが表示されて処理が進むので自動的に閉じたら完了
+. コマンドプロンプトが表示されて処理が進むので自動的に閉じたら完了（数秒程度かかります）
 
-. `test.pdf` が作成されます
+. 同じ階層に `test.pdf` が作成される
 +
 [NOTE]
 ====

@@ -8,14 +8,14 @@ if NOT "%LEVEL%"=="High" (
 exit
 )
 
-rem Windows環境について確認
-set /p selected="環境はWindows10ですか(y/n)?"
+rem OSのバージョン確認
+set /p selected="OSのバージョンはWindows10ですか(y/n)?"
 if /i "%selected%"=="y" (goto yes)
 
 :no
-echo Toolフォルダ内の「ndp48-web.exe」を実行して.net Frame Work 4.7.1をインストールしてください。
-echo Windowsの更新が走るので再起動後に、もう一度、本バッチファイルを再実行してください。
-echo 再実行時にもう一度Windowsの環境を尋ねられますが、Windows10ではなくてもYESで答えてください。
+echo Toolフォルダ内の「ndp48-web.exe」を実行して.net Frame Work 4.8をインストールします。
+echo Windowsの更新がかかるのでPC再起動後に、もう一度、本バッチファイルを再実行してください。
+echo 再実行時に、もう一度、OSのバージョンを確認されますが、Windows10ではなくてもYESで答えてください。
 goto exitlabel
 
 :yes
