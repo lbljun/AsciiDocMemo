@@ -75,9 +75,10 @@ AsciiDocPackage/
    ├ fonts/                　　　    // フォントファイルを格納
    ├ images/               　　      // イメージファイルを格納
    ├ style/                　　    　// スタイルファイルを格納
+   ├ .gitignore                      // コミット対象外の指定用
    ├ make_pdf_test.bat               // AsciiDoc→PDF変換用スクリプト
-   └ test.adoc                       // AsciiDocドキュメントのテストサンプル
-   └ test2.adoc                      // AsciiDocドキュメントのテストサンプル2
+   └ test.adoc                       // AsciiDocテストサンプル
+   └ test2.adoc                      // AsciiDocテストサンプル2
 ├ tool/                    　　 // インストール用バッチファイル
    ├ ①ChocolateyInstall.bat
    ├ ②ChocolateyPackageInstall.bat
@@ -174,7 +175,7 @@ AsciiDocPackage/
 以下の環境で動作を確認しています。
 
 * Windows 10 Home (64bit)
-* .NET Framework 4.0以上（※Windows 7 環境の場合、標準搭載は 3.5.1 のためVerUpが必要です）
+* .NET Framework 4.0以上（※Windows 7 環境の場合、標準搭載は 3.5.1 のためVerUpが必要）
 * Chocolatey 0.10.15
 ** ruby 2.6.3.1
 *** asciidoctor 2.0.10
@@ -211,7 +212,7 @@ AsciiDocPackage/
 ①ChocolateyInstall.bat
 ----
 . ユーザーアカウント制御の許可のポップアップが出るので `はい` をクリック
-. コマンドプロンプトが表示されて処理が進むので自動的に閉じたら完了
+. コマンドプロンプトが表示されて処理が進むので自動的に閉じたら完了（1分程度かかります）
 
 
 
@@ -269,7 +270,11 @@ https://qiita.com/konta220/items/95b40b4647a737cb51aa
 
 . ユーザーアカウント制御の許可のポップアップが出るので `はい` をクリック
 
-. コマンドプロンプトが表示されて処理が進むのでしばらく待つ
+. コマンドプロンプトの画面内にて、環境がWindows10かどうか聞かれるので、Windouws10であれば `y` 、Windows7であれば `n` を入力して kbd:[Enter] を押す +
+`y` の場合 ： 次の手順へ +
+`n` の場合 ： コマンドプロンプトの画面内に書いてある手順に従ってください +
+
+. コマンドプロンプトが表示されて処理が進むのでしばらく待つ（30分以上かかります）
 
 . 下記画面が表示されたら `ライセンスに同意します` にチェックを入れて `次へ` をクリック +
 +
@@ -299,6 +304,39 @@ image::Sourcetree07.png[width="300",align="left"]
 +
 image::Sourcetree08.png[width="300",align="left"]
 
+.. 社内のProxy環境化では `次へ` をクリックすると下記のエラーが表示されるので、`キャンセル` をクリックし、ツールのインストール画面も一旦閉じる +
++
+image::Sourcetree08-1.png[width="300",align="left"]
+
+.. Windowsのスタートメニューから `Sourcetree` を検索して起動し、下記が表示されたら、一番下の選択肢の `Gitを使いたくない` をクリック +
++
+image::Sourcetree08-2.png[width="300",align="left"]
+
+.. [ツール]→[オプション]から `ネットワーク` タブを選択し、Proxyの設定を行う +
+`カスタムプロキシ設定を使用` を選択し、サーバー欄にはhttp://以降のアドレスを入力し、ポート番号も入力して、`Git/Mercurialにプロキシ・・・` にチェックを入れる +
++
+image::Sourcetree08-3.png[width="500",align="left"]
++
+[NOTE]
+====
+proxyの確認手順（Windows10の場合） +
+https://pasokatu.hateblo.jp/entry/2017/07/04/111147
+
+proxyの確認手順（Windows7の場合） +
+https://pc-karuma.net/internet-explorer-proxy-settings/
+====
+
+.. 続けて、`Git` タブを選択し、`Gitサポートを有効化` をクリック
++
+image::Sourcetree08-4.png[width="500",align="left"]
+
+.. 再び、手順bの画面が表示されるので、一番上の選択肢の `システム全体でなく、・・・` をクリック
+
+.. ダウンロードが始まるので、完了したら `OK` をクリックし、その後、Sourcetree自体も一旦閉じる
+
+.. 再度、Windowsのスタートメニューから `Sourcetree` を検索して起動すると、手順10の画面に戻ります +
+※以降は気にせず基本的に全て `次へ` をクリックで大丈夫です
+
 . `SSHキーを読み込みますか？` が表示されたら `いいえ` をクリック +
 +
 image::Sourcetree09.png[width="300",align="left"]
@@ -307,10 +345,11 @@ image::Sourcetree09.png[width="300",align="left"]
 +
 image::Sourcetree10.png[width="300",align="left"]
 
-. コマンドプロンプトの画面内にて、Atlassianアカウントを作成完了したか聞かれるので、 +
-完了していたら `y` 、完了していなければ `n` を入力して kbd:[Enter] を押す +
+. コマンドプロンプトの画面内にて、Atlassianアカウントを作成完了したか聞かれるので、完了していたら `y` 、完了していなければ `n` を入力して kbd:[Enter] を押す +
 `y` の場合 ： コマンドプロンプトが表示されて処理が進むので自動的に閉じたら完了 +
 `n` の場合 ： 再度、kbd:[Enter] を押すとコマンドプロンプトが閉じる +
+
+
 
 
 
@@ -376,7 +415,7 @@ https://hepokon365.hatenablog.com/entry/2019/03/25/222814
 ③AsciiDocToolInstall.bat
 ----
 
-. コマンドプロンプトが表示されて処理が進むので自動的に閉じたら完了
+. コマンドプロンプトが表示されて処理が進むので自動的に閉じたら完了（5分程度かかります）
 
 
 
@@ -403,14 +442,8 @@ gem install coderay //<5>
 * 社内のネットワークから実施する場合はgemにproxyを指定する
 +
 ----
-gem install xxxx -p proxy http://アドレス:ポート
+gem install xxxx -p http://アドレス:ポート
 ----
-+
-[NOTE]
-====
-proxyの確認手順 +
-https://pasokatu.hateblo.jp/entry/2017/07/04/111147
-====
 
 
 
@@ -427,13 +460,28 @@ https://pasokatu.hateblo.jp/entry/2017/07/04/111147
 
 :sectnums!:
 ==== 実施手順
+. Windowsのスタートメニューから `Visual Studio Code` （以下、VScodeとする）を検索して起動する
+
+. ショートカット kbd:[Ctrl+,] で設定を開き、`proxy` を検索して、以下の設定を行う
++
+----
+Proxy : http://アドレス:ポート（Proxyの確認方法は先述通り）
+Proxy Strict SSL : false（チェックを外す）
+----
++
+image::VScodeSettingProxy.png[]
+
+. VScodeを閉じる
+
 . 以下のバッチファイルをダブルクリックで実行する
 +
 ----
 ④VScodeExtensionInstall.bat
 ----
 
-. コマンドプロンプトが表示されて処理が進むので自動的に閉じたら完了
+. コマンドプロンプトが表示されて処理が進むので自動的に閉じたら完了（1分程度かかります）
+
+
 
 
 
@@ -456,8 +504,10 @@ code --install-extension jebbs.plantuml ^ //<3>
 ====
 [表示]→[拡張機能]から検索してインストール or コマンドラインからインストール +
 https://qiita.com/Kosen-amai/items/03632dee2e1694652f06 +
-====
 
+VScodeにProxyを設定する方法 +
+https://qiita.com/cointoss1973/items/b3c84daeed90fd183501
+====
 
 
 
@@ -627,7 +677,7 @@ Windowsのスタートメニューから `Visual Studio Code` （以下、VScode
 
 ===== [black]#asciidoctorの設定を変更する（初回のみ実施）#
 VScode上でプレビュー表示を行うための設定を行います。 +
-[ファイル]→[基本設定]→[設定]から `asciidoctor` を検索し、以下の設定を行います。
+ショートカット kbd:[Ctrl+,] で設定を開き、`asciidoctor` を検索し、以下の設定を行います。
 ----
 asciidoctor_command : asciidoctor -n -r asciidoctor-diagram -o-
 asciidoctorpdf_command : asciidoctor-pdf -n -r asciidoctor-diagram -r asciidoctor-pdf-cjk -o-
@@ -678,7 +728,7 @@ mvn jetty:run
 ----
 
 . VScodeの設定を変更します（初回のみ実施）。 +
-[ファイル]→[基本設定]→[設定]から `plantuml` を検索し、以下の設定を行います。
+ショートカット kbd:[Ctrl+,] で設定を開き、`plantuml` を検索し、以下の設定を行います。
 +
 ----
 Render : PlantUMLServer
@@ -816,8 +866,11 @@ image::Commit.png[]
 
 [NOTE]
 ====
-このようにインデックスを挟むことで、変更されてないファイルを含めずにコミットでき、 +
-また、ファイルの一部の変更だけを追加してコミットすることもできたりします。
+* このようにインデックスを挟むことで、変更されてないファイルを含めずにコミットでき、また、ファイルの一部の変更だけを追加してコミットすることもできたりします。
+* コミットするとリポジトリで管理されている対象の全てのファイルが記録されていきます。 +
+しかしながら、ビルドのたびに更新される大量のファイル（例えばPlantUMLはプレビューするだけで画像が「.asciidoctor」フォルダに生成され増殖していく）は、バージョン管理をしなくても問題ないものがほとんどです。 +
+それらをコミット対象外とするのに「.gitignore」ファイルでの指定を行うことをお勧めします（一度プッシュ済みのファイルは後からは除外できなくなるので注意してください）。 +
+<https://qiita.com/hainare/items/81435ac6912f2976cc9f>
 ====
 
 過去のコミットを辿れば、過去の状態に一時的に戻したり参照したりすることができます。 +
@@ -916,14 +969,11 @@ gitではコミットに対してコミットメッセージとは別にタグ�
 
 前提として、標準仕様とバイプロ仕様のように仕様書を別管理としていた従来のやり方は今後はやめます。
 
-AsciiDocでは、仕様書は一つで、`ifdef ～ endif` で条件によって表示/非表示を切り替えることで、 +
-プロダクト別の仕様書に早変わりできるような作りを目指します（ifdefの使い方はテストサンプル参照）。
+AsciiDocでは、仕様書は一つで、`ifdef ～ endif` で条件によって表示/非表示を切り替えることで、プロダクト別の仕様書に早変わりできるような作りを目指します（ifdefの使い方はテストサンプル参照）。
 
-従って、仕様の記載を追加することはあっても削除することはできない（許されない）ので、 +
-常に他のプロダクトの仕様を参照しながら作成ができ、仕様の水平展開や標準化を意識した作りにできます。
+従って、仕様の記載を追加することはあっても削除することはできない（許されない）ので、常に他のプロダクトの仕様を参照しながら作成ができ、仕様の水平展開や標準化を意識した作りにできます。
 
-実施にソフト屋さんに展開する際は、一応体裁を整える意味で、表紙やヘッダーに付く改訂情報も合わせて修正して、 +
-PDF化して展開するようにします。
+実施にソフト屋さんに展開する際は、一応体裁を整える意味で、表紙やヘッダーに付く改訂情報も合わせて修正して、PDF化して展開するようにします。
 ----
 例）
 //ドキュメントタイトル、表紙に入る

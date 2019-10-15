@@ -14,8 +14,6 @@
 :toc-title: 目次
 //章番号生成
 :sectnums:
-//章番号生成階層数
-:sectlevels: 
 //PDF化時の章タイトル
 :chapter-label:
 //シンタックスハイライト
@@ -76,6 +74,14 @@
 ** level 2
 *** level 3
 * level 1
+
+先頭に `.` を付けると番号付きリストになる
+
+. level 1
+. level 1
+.. level 2
+... level 3
+. level 1
 
 ラベル名に続けて `::` を付けるとラベル付きリストになる
 

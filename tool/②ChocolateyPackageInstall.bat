@@ -1,3 +1,5 @@
+@echo off
+
 rem バッチファイルの内容を管理者権限で実行させる
 cd /d %~dp0
 for /f "tokens=3 delims=\ " %%i in ('whoami /groups^|find "Mandatory"') do set LEVEL=%%i
@@ -6,6 +8,24 @@ if NOT "%LEVEL%"=="High" (
 exit
 )
 
+rem Windows環境について確認
+set /p selected="環境はWindows10ですか(y/n)?"
+if /i "%selected%"=="y" (goto yes)
+
+:no
+echo Toolフォルダ内の「ndp48-web.exe」を実行して.net Frame Work 4.7.1をインストールしてください。
+echo Windowsの更新が走るので再起動後に、もう一度、本バッチファイルを再実行してください。
+echo 再実行時にもう一度Windowsの環境を尋ねられますが、Windows10ではなくてもYESで答えてください。
+goto exitlabel
+
+:yes
+goto nextlabel
+
+:exitlabel
+pause
+exit
+
+:nextlabel
 rem chocolateyのリポジトリから各種パッケージをインストールする
 cinst ruby -y
 cinst graphviz -y
@@ -27,4 +47,4 @@ goto exitlabel
 choco upgrade all -y
 
 :exitlabel
-pause
+exit
