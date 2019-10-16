@@ -283,7 +283,7 @@ https://qiita.com/konta220/items/95b40b4647a737cb51aa
 `y` の場合 ： 次の手順へ +
 `n` の場合 ： コマンドプロンプトの画面内に書いてある手順に従う +
 
-. コマンドプロンプトが表示されて処理が進むのでしばらく待つ（30分以上かかります）
+. コマンドプロンプトが表示されて処理が進むのでしばらく待つ（20分程度かかります）
 
 . 下記画面が表示されたら `ライセンスに同意します` にチェックを入れて `次へ` をクリック +
 +
@@ -298,7 +298,7 @@ image::Sourcetree03.png[width="300",align="left"]
 +
 image::Sourcetree04.png[width="200",align="left"]
 
-. 任意のユーザー名とパスワードを入力して、 `Sign up` をクリック +
+. 任意のユーザー名とパスワードを入力して、 `Sign up` をクリックで、アカウントを作成 +
 ※入力したメールアドレスで既にアカウントを持っている場合は、パスワードの入力のみ求められます +
 +
 image::Sourcetree05.png[width="200",align="left"]
@@ -307,26 +307,30 @@ image::Sourcetree05.png[width="200",align="left"]
 +
 image::Sourcetree06.png[width="200",align="left"]
 
-. 認証に成功すれば登録完了画面に遷移するので、 `次へ` をクリック +
+. 確認メールが届くので、メール内のURLをChromeで開いて、先ほど作成したアカウント情報を入力 +
 +
-image::Sourcetree07.png[width="300",align="left"]
+image::Sourcetree07.png[width="200",align="left"]
+
+. アカウントの認証に成功すると登録完了画面に遷移するので、 `次へ` をクリック +
++
+image::Sourcetree08.png[width="300",align="left"]
 
 . ツールのインストール画面に遷移するので `Git` にだけチェックを入れて、 `次へ` をクリック +
 ※既にGitをインストール済みの場合はチェックボックスは表示されません +
 +
-image::Sourcetree08.png[width="300",align="left"]
+image::Sourcetree09.png[width="300",align="left"]
 
 .. 社内のProxy環境化では、下記のエラーが表示されるので `キャンセル` をクリックし、手順11の画面も一旦閉じる +
 +
-image::Sourcetree08-1.png[width="300",align="left"]
+image::Sourcetree09-1.png[width="300",align="left"]
 
 .. Windowsのスタートメニューから `Sourcetree` を検索して起動すると、下記画面が表示されるので、一番下の選択肢の `Gitを使いたくない` をクリック +
 +
-image::Sourcetree08-2.png[width="300",align="left"]
+image::Sourcetree09-2.png[width="300",align="left"]
 
 .. Sourcetreeが起動したら、[ツール]→[オプション]から `ネットワーク` タブを選択し、`カスタムプロキシ設定を使用` にチェックを入れてProxyのアドレスとポート番号を入力し、`Git/Mercurialにプロキシ・・・` にチェックを入れる +
 +
-image::Sourcetree08-3.png[width="500",align="left"]
+image::Sourcetree09-3.png[width="500",align="left"]
 +
 [NOTE]
 ====
@@ -339,7 +343,7 @@ https://pc-karuma.net/internet-explorer-proxy-settings/
 
 .. 続けて、`Git` タブを選択し、`Gitサポートを有効化` をクリック
 +
-image::Sourcetree08-4.png[width="500",align="left"]
+image::Sourcetree09-4.png[width="500",align="left"]
 
 .. 再び、手順bの画面が表示されるので、一番上の選択肢の `システム全体でなく、・・・` をクリック
 
@@ -351,11 +355,11 @@ image::Sourcetree08-4.png[width="500",align="left"]
 
 . （仮に）`SSHキーを読み込みますか？` が表示されたら `いいえ` をクリック +
 +
-image::Sourcetree09.png[width="300",align="left"]
+image::Sourcetree10.png[width="300",align="left"]
 
 . Sourcetreeが起動したのが確認できたら、起動中のSourcetreeを一旦閉じる +
 +
-image::Sourcetree10.png[width="300",align="left"]
+image::Sourcetree11.png[width="300",align="left"]
 
 . コマンドプロンプトの画面内にて、Atlassianアカウントを作成完了したか聞かれるので、`y` を入力して kbd:[Enter] を押す +
 `y` の場合 ： コマンドプロンプトが表示されて処理が進むので自動的に閉じたら完了（5分程度かかります） +
@@ -427,7 +431,7 @@ https://hepokon365.hatenablog.com/entry/2019/03/25/222814
 ③AsciiDocToolInstall.bat
 ----
 
-. コマンドプロンプトが表示されて処理が進むので自動的に閉じたら完了（5分程度かかります）
+. コマンドプロンプトが表示されて処理が進むので自動的に閉じたら完了（2分程度かかります）
 
 
 
