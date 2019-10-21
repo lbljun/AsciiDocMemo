@@ -178,13 +178,6 @@ int main(void)
 .例）
 #冬# よりかは [.underline]#夏# の方が [.line-through]#嫌い# [red]#好き# [.big]#だ#
 
-[NOTE]
-====
-PDF化時に文字の色が変わるようにする +
-https://blog.siwa32.com/asciidoctor_pdf_color/ +
-→「2.2 asciidoctor-pdfのソースを修正する」
-====
-
 
 === URL
 
@@ -256,17 +249,6 @@ Bob --> Alice: Response
 Alice -> Bob: Another Request
 Alice <-- Bob: another Response
 --
-
-[NOTE]
-====
-* プレビューするたびにpngが作成されてしまうので画像名を指定することをおススメする
-* 編集時はAsciiDocのプレビューでなく、PlantUMLのプレビューを使った方が反応が圧倒的に早い +
-https://qiita.com/Ping/items/64930e8c21fb95bec095 +
-→「PlantUML Server リポジトリのclone」～「Visual Studio Code の設定を変更する」 +
-　　都度コマンドでサーバーを立ち上げる必要があるが、爆速でプレビューが可能 +
-　　@startuml～@endumlを、編集時は書いてPlantUMLでプレビューできるようにし、 +
-　　画像作成時は消してAsciiDocでプレビューしてpngを生成するような使い分けをおススメする
-====
 
 
 === テーブル
