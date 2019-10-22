@@ -166,3 +166,29 @@ deactivate remote
 @enduml
 --
 
+
+
+
+
+
+[plantuml, Tag]
+--
+@startuml
+
+(a) -> (b)
+note top : ProductA_K0.0.0
+(b) -> (c) 
+note bottom #98fb98 : ProductB_K0.0.0
+(c) -> (d) 
+note top #98fb98 : ProductB_K0.0.1
+(d) -> (e) 
+note bottom #98fb98 : ProductB_K0.0.2
+(e) -> (f)
+(f) -> (g)
+note top : ProductA_K1.0.0
+(g) -> (h)
+note bottom #98fb98 : ProductB_K0.0.3
+(h) -> (i)
+
+@enduml
+--

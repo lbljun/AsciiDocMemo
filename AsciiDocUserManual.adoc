@@ -98,8 +98,17 @@ AsciiDocPackage/
 
 * *AsciiDocとは？*
 ** 文章を記述するするための記法（軽量マークアップ言語）の一つ
-** プレーンテキスト（対義語：リッチテキスト）で体裁が整った文章が書ける
-** 可読性が高くマークダウン記法の中でも表現力が高い
+** プレーンテキストで体裁が整った文章が書ける
+** そのままでも可読性が高い（AsciiDoc ≒ Markdown > HTML）
+** Markdownよりも表現力が高い（HTML > AsciiDoc > Markdown）
++
+[NOTE]
+====
+公式サイト +
+http://asciidoc.org/
+====
+
+
 
 
 
@@ -229,6 +238,8 @@ AsciiDocPackage/
 
 
 
+
+
 ==== 実行内容の覚え書き（実施は不要）
 * コマンドプロンプト（管理者権限）で以下を実行している
 +
@@ -287,78 +298,84 @@ https://qiita.com/konta220/items/95b40b4647a737cb51aa
 
 . 下記画面が表示されたら `ライセンスに同意します` にチェックを入れて `次へ` をクリック +
 +
-image::Sourcetree02.png[width="300",align="left"]
+image::Sourcetree02.png[width="250",align="left"]
 
 . `Atlassianアカウント` を選択して `次へ` をクリック +
 +
-image::Sourcetree03.png[width="300",align="left"]
+image::Sourcetree03.png[width="250",align="left"]
 
 . メールアドレスを入力して `Continue` をクリック +
-※社内のメールアドレスでOK
 +
-image::Sourcetree04.png[width="180",align="left"]
+image::Sourcetree04.png[width="150",align="left"]
 
 . 任意のユーザー名とパスワードを入力して、 `Sign up` をクリックで、アカウントを作成 +
-※入力したメールアドレスで既にアカウントを持っている場合は、パスワードの入力のみ求められます +
 +
-image::Sourcetree05.png[width="180",align="left"]
+image::Sourcetree05.png[width="150",align="left"]
 
 . reCAPTCHAの画像認証の指示に従って選択を行い、 `確認` をクリック +
 +
-image::Sourcetree06.png[width="180",align="left"]
+image::Sourcetree06.png[width="150",align="left"]
 
-. 確認メールが届くので、URLを開いてアカウント情報を認証する +
+. メールアドレスの認証メールが届くので、認証ボタンをクリック後、下の画面を閉じる +
 +
-image::Sourcetree07.png[width="180",align="left"]
+image::Sourcetree07.png[width="150",align="left"]
 
-. アカウントの認証に成功すると登録完了画面に遷移するので、 `次へ` をクリック +
+. 再度、手順7の画面になり、先ほど作成したアカウントでログインすると、登録完了画面に遷移するので、 `次へ` をクリック +
 +
-image::Sourcetree08.png[width="300",align="left"]
+image::Sourcetree08.png[width="250",align="left"]
 
-. ツールのインストール画面に遷移するので、 `スキップ` をクリック +
+. ツールのインストール画面に遷移するので、 `Git` にのみチェックを入れて、 `次へ` をクリック +
 +
-image::Sourcetree09.png[width="300",align="left"]
-//. `Preferences` 画面が表示されたら、チェックを外した状態のままで `次へ` をクリック +
+image::Sourcetree09.png[width="250",align="left"]
 
-. `SSHキーを読み込みますか？` が表示されたら `いいえ` をクリック +
+. Gitのダウンロードが完了したら、 `次へ` をクリック +
 +
-image::Sourcetree10.png[width="300",align="left"]
+image::Sourcetree10.png[width="250",align="left"]
 
-. Sourcetreeが起動 +
+.. 社内のProxy環境化の場合、ダウンロードに失敗してエラー画面になるので、一度インストール画面を閉じる +
+
+.. Windowsのスタートメニューから `Sourcetree` を検索して起動
+
+.. 下記画面が表示されたら、一番下の選択肢の `Gitを使いたくない` をクリック
 +
-image::Sourcetree11.png[width="600",align="left"]
+image::Sourcetree11.png[width="250",align="left"]
 
-. [ツール]→[オプション]を開く
-
-.. （社内のProxy環境化の場合）`ネットワーク` タブを選択し、`カスタムプロキシ設定を使用` にチェックを入れてProxyのアドレスとポート番号の入力と、`Git/Mercurialにプロキシ・・・` にチェックを入れる +
+.. Sourcetreeが起動するので、[ツール]→[オプション]を開く
 +
 image::Sourcetree12.png[width="400",align="left"]
+
+.. `ネットワーク` タブを選択し、`カスタムプロキシ設定を使用` にチェックを入れてProxyを設定し（サーバーの頭にhttp://は不要）、`Git/Mercurialにプロキシ・・・` にチェックを入れる +
++
+image::Sourcetree13.png[width="350",align="left"]
 +
 [NOTE]
 ====
-proxyの確認手順（Windows10の場合） +
+proxyの確認方法（Windows10の場合） +
 https://pasokatu.hateblo.jp/entry/2017/07/04/111147
 
-proxyの確認手順（Windows7の場合） +
+proxyの確認方法（Windows7の場合） +
 https://pc-karuma.net/internet-explorer-proxy-settings/
 ====
 
 .. 続けて、`Git` タブを選択し、`Gitサポートを有効化` をクリック
 +
-image::Sourcetree13.png[width="550",align="left"]
+image::Sourcetree14.png[width="470",align="left"]
 
-.. 下記画面が表示されたら、一番上の選択肢の `システム全体でなく、・・・` をクリック
+.. 再度、手順Cの画面が表示されるので、一番上の選択肢の `システム全体でなく、・・・` をクリック
+
+.. Gitのダウンロードが始まるので、完了したら `OK` をクリックして、Sourcetreeを閉じる（手順17へ）
+
+. `SSHキーを読み込みますか？` が表示されたら `いいえ` をクリック +
 +
-image::Sourcetree14.png[width="300",align="left"]
+image::Sourcetree15.png[width="250",align="left"]
 
-.. Gitのダウンロードが始まるので、完了したら `OK` をクリック
-
-. Sourcetreeを閉じる
+. Sourcetreeが起動したら、一旦閉じる +
 
 . コマンドプロンプトの画面内にて、Atlassianアカウントを作成完了したか聞かれるので、少なくとも手順11まで完了していれば `y` 、完了していなければ `n` を入力して kbd:[Enter] を押す +
 `y` の場合 ： コマンドプロンプトが表示されて処理が進むので自動的に閉じたら完了（5分程度かかります） +
 `n` の場合 ： コマンドプロンプトの画面内に書いてある手順に従う（再度、kbd:[Enter] を押すと画面が閉じる） +
 
+※上記処理が完了後、Sourcetreeを起動すると初回のみ起動前にいくつか画面が表示されるが、気にせず全て `次へ` をクリックする
 
 
 
@@ -730,7 +747,7 @@ image::TestPreviewResult.png[width="600",align="left"]
 
 問題点： +
 
-* AsciiDocプラグインにてUML図をプレビューすると、編集してプレビューする度に画像ファイルが別名で生成される
+* AsciiDocプラグインにてUML図をプレビューすると、編集してプレビューする度に画像ファイルが生成される
 * UML図にファイル名を指定することで上書き編集となり画像の増殖を防げるが、今度はキャッシュが効いてリアルタイムな編集が難しい
 
 解決策： +
@@ -770,7 +787,7 @@ mvn jetty:run
 +
 image::plantumlserver2.png[width="600",align="left"]
 
-. UML図の編集時
+. UML図の編集
 .. UMLのブロック内の最初と最後に `@startuml` と `@enduml` を指定
 +
 ----
@@ -1001,22 +1018,26 @@ image::Flow.png[]
 ==== ドキュメントのバージョン管理
 gitではコミットに対してコミットメッセージとは別にタグを付けることができます（後付け可能）。 +
 変更履歴上の重要なポイントへの印として一覧表示で参照も可能で、主にリリースポイントとして使われます。 +
+
 自社では、タグにバージョンを明記して管理することとします。 +
 
 タグ記載ルール 「a_**K**x.y.z」
 
 * a : プロダクト名
-* x : 正式発行ver（0:Draft、1:初期提示、2～:各フェーズに応じてなど）
-* y : 仕様変更ver（0:正式発行verが改定時、1～:ソフト屋さんにも展開されるverです）
-* z : 開発管理ver（0:仕様変更verが改定時、1～:ソフト屋さんには未展開の開発側管理上のverです）
+* x : 正式発行ver（0:Draft、1:初期提示、2～:フェーズ移行で発行依頼があれば改版）
+* y : 仕様変更ver（0:xが改版時、1～:仕変時に改版）
+* z : 開発管理ver（0:yが改版時、1～:仕変前の編集時等に改版）
 
-前提として、標準仕様とバイプロ仕様のように仕様書を別管理としていた従来のやり方は今後はやめます。
+image::Tag.png[]
 
-AsciiDocでは、仕様書は一つで、`ifdef ～ endif` で条件によって表示/非表示を切り替えることで、プロダクト別の仕様書に早変わりできるような作りを目指します（ifdefの使い方はテストサンプル参照）。
+上記のように、コミットに対してタグを付けて、どのコミットまでの修正がそのプロダクトに適用される仕様かを識別します。
+
+前提として、標準仕様とバイプロ仕様のように仕様書を別管理としていた従来のやり方はやめます。 +
+仕様書は一つのドキュメントで管理し、`ifdef ～ endif` で条件によって表示/非表示を切り替えることで、プロダクト別の仕様書に早変わりできるような作りにします（ifdefの使い方はテストサンプル参照）。
 
 従って、仕様の記載を追加することはあっても削除することはできない（許されない）ので、常に他のプロダクトの仕様を参照しながら作成ができ、仕様の水平展開や標準化を意識した作りにできます。
 
-実施にソフト屋さんに展開する際は、一応体裁を整える意味で、表紙やヘッダーに付く改訂情報も合わせて修正して、PDF化して展開するようにします。
+実際にソフト屋さんに展開する際は、一応体裁を整える意味で、表紙やヘッダーに付く改訂情報も合わせて修正して、PDF化して展開することとします。
 ----
 例）
 //ドキュメントタイトル、表紙に入る

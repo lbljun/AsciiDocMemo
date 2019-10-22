@@ -239,7 +239,7 @@ image::Sourcetree01.png[200, 100]
 === PlantUML
 
 * テキストからUML図を生成できる
-* ブロックのヘッダーに `[plantuml, 任意の画像名]` の形で指定します
+* ブロックのヘッダーに `[plantuml, 任意の画像名]` の形で指定する
 
 [plantuml, test]
 --
