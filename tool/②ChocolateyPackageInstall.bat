@@ -8,24 +8,6 @@ if NOT "%LEVEL%"=="High" (
 exit
 )
 
-rem OSのバージョン確認
-set /p selected="OSのバージョンはWindows10ですか(y/n)?"
-if /i "%selected%"=="y" (goto yes)
-
-:no
-echo Toolフォルダ内の「ndp48-web.exe」を実行して.net Frame Work 4.8をインストールします。
-echo Windowsの更新がかかるのでPC再起動後に、もう一度、本バッチファイルを再実行してください。
-echo 再実行時に、もう一度、OSのバージョンを確認されますが、Windows10ではなくてもYESで答えてください。
-goto exitlabel
-
-:yes
-goto nextlabel
-
-:exitlabel
-pause
-exit
-
-:nextlabel
 rem chocolateyのリポジトリから各種パッケージをインストールする
 cinst ruby -y
 cinst graphviz -y
@@ -47,4 +29,5 @@ goto exitlabel
 choco upgrade all -y
 
 :exitlabel
+pause
 exit

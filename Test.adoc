@@ -46,9 +46,9 @@
 //著者
 :author:
 //改定番号
-:revnumber: K0.1
+:revnumber: K1.0
 //改定日
-:revdate: 2019/08/24
+:revdate: 2019/10/25
 //改定番号のラベル
 :version-label:
 //ロゴ画像
@@ -306,6 +306,143 @@ cell11,cell12,cell13
 cell21,cell22,cell23
 cell31,cell32,cell33
 |===
+
+<<<
+.参考：Excel選択範囲をAsciiDoc形式にしてクリップボードにコピーするマクロ
+
+----
+Public Sub toAsciidoc()
+    Dim selra As Range
+    Dim outStr As String
+    Dim tmpStr As String
+    Dim cellColorSW As Boolean
+    
+    cellColorSW = False
+    If vbYes = MsgBox("セル背景色有効にする？", vbYesNo) Then
+        cellColorSW = True
+    End If
+    Dim cellColor As Variant
+    
+    
+    
+    
+    Set selra = Selection
+    
+    Dim r As Long, c As Long, ca As Long, ra  As Long
+  
+    Dim colNum As Long
+    colNum = selra.Columns.Count
+        
+    Dim alL As Long, alC As Long, alR As Long
+    
+    outStr = "[cols="""
+    
+'    アライメント指定はCol指定では結合セル時にうまくいかない事が判明
+'    For c = 1 To colNum
+'        alL = 0
+'        alC = 0
+'        alR = 0
+'        For r = 1 To selra.Rows.count
+'            Select Case selra(r, c).HorizontalAlignment
+'            Case xlLeft
+'                alL = alL + 1
+'            Case xlCenter
+'                alC = alC + 1
+'            Case xlRight
+'                alR = alR + 1
+'            End Select
+'        Next r
+'
+'        If alL >= alC And alL >= alR Then
+'            outStr = outStr & "<,"
+'        ElseIf alC >= alR Then
+'            outStr = outStr & "^,"
+'        Else
+'            outStr = outStr & ">,"
+'        End If
+'    Next c
+'    outStr = Mid(outStr, 1, Len(outStr) - 1)
+    outStr = outStr & colNum
+    
+    outStr = outStr & "*^""]" & vbCrLf
+    
+    
+    outStr = outStr & "|=======================" + vbCrLf
+    For r = 1 To selra.Rows.Count
+        For c = 1 To colNum
+
+
+            'cell背景色 DocBookのみ？
+            Dim colorStr As String, oldColorStr As String
+                
+            colorStr = ""
+            If cellColorSW Then
+                cellColor = selra(r, c).Interior.Color
+                colorStr = "{set:cellbgcolor:#" _
+                    & WorksheetFunction.Dec2Hex(cellColor Mod 256, 2) _
+                    & WorksheetFunction.Dec2Hex((cellColor \ 256) Mod 256, 2) _
+                    & WorksheetFunction.Dec2Hex((cellColor \ 65536) Mod 256, 2) _
+                    & "}"
+            End If
+            If selra(r, c).Interior.Pattern = xlPatternNone Then
+                 colorStr = "{set:cellbgcolor:!}"
+            End If
+            
+            
+            '「|」エスケープ
+            tmpStr = Replace(selra(r, c).Text, "|", "\|")
+            
+            
+            
+            If selra(r, c).MergeCells Then '結合セル対応
+                ca = selra(r, c).MergeArea.Columns.Count
+                ra = selra(r, c).MergeArea.Rows.Count
+            
+                If selra(r, c).MergeArea(1, 1).Address = selra(r, c).Address Then
+                    If colorStr = oldColorStr Then
+                        colorStr = ""
+                    Else
+                        oldColorStr = colorStr
+                    End If
+                
+                    outStr = outStr & " " & ca & "." & ra _
+                                & "+^.^" & "|" & colorStr & tmpStr
+
+                End If
+            Else
+                If colorStr = oldColorStr Then
+                    colorStr = ""
+                Else
+                    oldColorStr = colorStr
+                End If
+                
+                outStr = outStr & "|" & colorStr & tmpStr
+            End If
+            
+        
+        Next c
+        outStr = outStr & vbCrLf
+    Next r
+
+    outStr = outStr & "|=======================" + vbCrLf
+
+
+
+    Dim CB As New DataObject
+    With CB
+        .SetText outStr     ''変数のデータをDataObjectに格納する
+        .PutInClipboard     ''DataObjectのデータをクリップボードに格納する
+'       .GetFromClipboard   ''クリップボードからDataObjectにデータを取得する
+'       buf2 = .GetText     ''DataObjectのデータを変数に取得する
+    End With
+End Sub
+----
+
+[NOTE]
+====
+マクロでクリップボード操作を有効化 +
+https://www.sejuku.net/blog/68255
+====
 
 
 === 外部ファイル

@@ -46,9 +46,9 @@
 //著者
 :author:
 //改定番号
-:revnumber: K1.0.0
+:revnumber: K1.0
 //改定日
-:revdate: 2019/10/21
+:revdate: 2019/10/25
 //改定番号のラベル
 :version-label:
 //ロゴ画像
@@ -290,10 +290,6 @@ https://qiita.com/konta220/items/95b40b4647a737cb51aa
 ----
 . ユーザーアカウント制御の許可のポップアップが出るので `はい` をクリック
 
-. コマンドプロンプトの画面内にて、OSのバージョンがWindows10かどうか聞かれるので、Windouws10であれば `y` 、Windows7であれば `n` を入力して kbd:[Enter] を押す +
-`y` の場合 ： 次の手順へ +
-`n` の場合 ： コマンドプロンプトの画面内に書いてある手順に従う +
-
 . コマンドプロンプトが表示されて処理が進むのでしばらく待つ（20分程度かかります）
 
 . 下記画面が表示されたら `ライセンスに同意します` にチェックを入れて `次へ` をクリック +
@@ -371,7 +367,7 @@ image::Sourcetree15.png[width="250",align="left"]
 
 . Sourcetreeが起動したら、一旦閉じる +
 
-. コマンドプロンプトの画面内にて、Atlassianアカウントを作成完了したか聞かれるので、少なくとも手順11まで完了していれば `y` 、完了していなければ `n` を入力して kbd:[Enter] を押す +
+. コマンドプロンプトの画面内にて、Atlassianアカウントを作成完了したか聞かれるので、少なくとも手順10まで完了していれば `y` 、完了していなければ `n` を入力して kbd:[Enter] を押す +
 `y` の場合 ： コマンドプロンプトが表示されて処理が進むので自動的に閉じたら完了（5分程度かかります） +
 `n` の場合 ： コマンドプロンプトの画面内に書いてある手順に従う（再度、kbd:[Enter] を押すと画面が閉じる） +
 
@@ -401,7 +397,7 @@ cinst sourcetree --version 2.5.5 -y //<7>
 <1> Ruby （AsciiDoc関連ツールを利用するのに必要）
 <2> Graphviz （PlantUMLのレンダリングライブラリとして必要）
 <3> Java （PlantUMLの動作環境として必要）
-<4> Maven （Javaのプロジェクト管理ツールでPlantUMLサーバー立ち上げに必要）
+<4> Maven （Javaのプロジェクト管理ツールで、PlantUMLサーバー立ち上げに必要）
 <5> Visual Studio Code （AsciiDocをプレビュー可能なテキストエディタ）
 <6> Winmerge （コードの差分比較ツール）
 <7> SourceTree （GitのGUIツール）
@@ -542,7 +538,7 @@ https://qiita.com/Kosen-amai/items/03632dee2e1694652f06 +
 
 VScodeにProxyを設定する方法 +
 https://qiita.com/cointoss1973/items/b3c84daeed90fd183501 +
-※最後にProxyの設定を元に戻すのは、この先の手順でPlantUMLサーバーを使うため
+※最後にProxyの設定を元に戻すのは、この先の手順でPlantUMLサーバーで同じポートを使うため
 ====
 
 
@@ -614,10 +610,14 @@ C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-pdf-1.5.0.beta.2\data\theme
 +
 [NOTE]
 ====
-デフォルトのスタイルを適用するだけなら、`:stylesdir:` をアトリビュートに指定するだけでOK +
-今回展開するtemplateではメタ情報の埋め込みやレイアウト修正を施したスタイルを使用します
+デフォルトのスタイルを適用するだけなら、以下のいずれかの対応でもOK +
 
-公式サイト +
+* `:stylesdir:` をアトリビュートに指定
+* VScodeの設定で、`Asciidoc > Preview: UseEditorStyle` のチェックを外す
+
+今回展開するtemplateではメタ情報の埋め込みやレイアウト修正を施したスタイルを作成し使用
+
+Styleについて +
 https://github.com/asciidoctor/asciidoctor-pdf/blob/master/docs/theming-guide.adoc +
 
 //以下は最新Verだと対応が入っているようなので実施不要
@@ -753,6 +753,48 @@ image::TestPreviewResult.png[width="600",align="left"]
 解決策： +
 
 * プレビュー用のPlantUMLサーバーをローカルに立ち上げ、PlantUMLプラグインを使ってプレビューを行う
++
+//エラー：Failed to retrieve plugin:jetty-maven-plugin・・・ （plugin関連の取得に失敗等）が発生した場合はProxy設定不備の可能性大
+. Proxy環境化の場合、MavenにProxyの設定を行う
+
+.. `C:\ProgramData\chocolatey\lib\maven\apache-maven-3.6.2\conf` にある `Settings.xml` を適当なテキストエディタ（VScodeで良い）で開く
+
+.. 以下の部分を編集してProxyの設定を行う（Proxyの確認手順は先述の通り）
+
+... 変更前
++
+----
+  <proxies>
+    <!-- proxy
+     | Specification for one proxy, to be used ・・・
+     |
+    <proxy>
+      <id>optional</id>
+      <active>true</active>
+      <protocol>http</protocol>
+      <username>proxyuser</username>
+      <password>proxypass</password>
+      <host>proxy.host.net</host>
+      <port>80</port>
+      <nonProxyHosts>local.net|・・・</nonProxyHosts>
+    </proxy>
+    -->
+  </proxies>
+----
+
+... 変更後
++
+----
+  <proxies>
+    <proxy>
+      <id>optional</id>
+      <active>true</active>
+      <protocol>http</protocol>
+      <host>proxy.example.co.jp</host>
+      <port>8080</port>
+    </proxy>
+  </proxies>
+----
 
 . 以下から、PlantUML Server リポジトリをローカルPCの適当な場所にクローン（初回のみ実施） +
 https://github.com/plantuml/plantuml-server
@@ -777,6 +819,25 @@ mvn jetty:run
 ----
 [INFO] Starting scanner at interval of 5 secounds.
 ----
++
+[NOTE]
+====
+エラー：Addres already in use が発生した場合
+
+. コマンドプロンプトで8080番を使っているプロセスがないか確認する
++
+----
+netstat -aon | find "8080"
+TCP x.x.x.x:8080 LISTENING aaaa
+----
+//意図して使っている場合を除き、コマンドの処理が走ったままで正常に終了させなかった場合とかにこの状態になるっぽい
+. 上記の場合、aaaaのプロセスが8080版ポートを使ったままということなのでプロセスを終了させる
++
+----
+taskkill /F /pid aaaa
+成功: PID aaaa のプロセスは強制終了されました。 
+----
+====
 
 . VScodeにて、ショートカット kbd:[Ctrl+,] で設定を開き、`plantuml` を検索し、以下を設定（初回のみ実施）
 +

@@ -442,8 +442,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h1>AsciiDoc ユーザーマニュアル</h1>
 <div class="details">
 <span id="author" class="author"></span><br>
-<span id="revnumber"> K1.0.0,</span>
-<span id="revdate">2019/10/21</span>
+<span id="revnumber"> K1.0,</span>
+<span id="revdate">2019/10/25</span>
 </div>
 <div id="toc" class="toc">
 <div id="toctitle">目次</div>
@@ -980,11 +980,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>ユーザーアカウント制御の許可のポップアップが出るので <code>はい</code> をクリック</p>
 </li>
 <li>
-<p>コマンドプロンプトの画面内にて、OSのバージョンがWindows10かどうか聞かれるので、Windouws10であれば <code>y</code> 、Windows7であれば <code>n</code> を入力して <kbd>Enter</kbd> を押す<br>
-<code>y</code> の場合 ： 次の手順へ<br>
-<code>n</code> の場合 ： コマンドプロンプトの画面内に書いてある手順に従う<br></p>
-</li>
-<li>
 <p>コマンドプロンプトが表示されて処理が進むのでしばらく待つ（20分程度かかります）</p>
 </li>
 <li>
@@ -1138,7 +1133,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Sourcetreeが起動したら、一旦閉じる<br></p>
 </li>
 <li>
-<p>コマンドプロンプトの画面内にて、Atlassianアカウントを作成完了したか聞かれるので、少なくとも手順11まで完了していれば <code>y</code> 、完了していなければ <code>n</code> を入力して <kbd>Enter</kbd> を押す<br>
+<p>コマンドプロンプトの画面内にて、Atlassianアカウントを作成完了したか聞かれるので、少なくとも手順10まで完了していれば <code>y</code> 、完了していなければ <code>n</code> を入力して <kbd>Enter</kbd> を押す<br>
 <code>y</code> の場合 ： コマンドプロンプトが表示されて処理が進むので自動的に閉じたら完了（5分程度かかります）<br>
 <code>n</code> の場合 ： コマンドプロンプトの画面内に書いてある手順に従う（再度、<kbd>Enter</kbd> を押すと画面が閉じる）<br></p>
 </li>
@@ -1181,7 +1176,7 @@ cinst sourcetree --version 2.5.5 -y <i class="conum" data-value="7"></i><b>(7)</
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Maven （Javaのプロジェクト管理ツールでPlantUMLサーバー立ち上げに必要）</td>
+<td>Maven （Javaのプロジェクト管理ツールで、PlantUMLサーバー立ち上げに必要）</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
@@ -1385,7 +1380,7 @@ code --install-extension jebbs.plantuml ^ <i class="conum" data-value="3"></i><b
 <div class="paragraph">
 <p>VScodeにProxyを設定する方法<br>
 <a href="https://qiita.com/cointoss1973/items/b3c84daeed90fd183501" class="bare">https://qiita.com/cointoss1973/items/b3c84daeed90fd183501</a><br>
-※最後にProxyの設定を元に戻すのは、この先の手順でPlantUMLサーバーを使うため</p>
+※最後にProxyの設定を元に戻すのは、この先の手順でPlantUMLサーバーで同じポートを使うため</p>
 </div>
 </td>
 </tr>
@@ -1457,11 +1452,23 @@ C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-pdf-1.5.0.beta.2\data\theme
 </td>
 <td class="content">
 <div class="paragraph">
-<p>デフォルトのスタイルを適用するだけなら、<code>:stylesdir:</code> をアトリビュートに指定するだけでOK<br>
-今回展開するtemplateではメタ情報の埋め込みやレイアウト修正を施したスタイルを使用します</p>
+<p>デフォルトのスタイルを適用するだけなら、以下のいずれかの対応でもOK<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>:stylesdir:</code> をアトリビュートに指定</p>
+</li>
+<li>
+<p>VScodeの設定で、<code>Asciidoc &gt; Preview: UseEditorStyle</code> のチェックを外す</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>公式サイト<br>
+<p>今回展開するtemplateではメタ情報の埋め込みやレイアウト修正を施したスタイルを作成し使用</p>
+</div>
+<div class="paragraph">
+<p>Styleについて<br>
 <a href="https://github.com/asciidoctor/asciidoctor-pdf/blob/master/docs/theming-guide.adoc" class="bare">https://github.com/asciidoctor/asciidoctor-pdf/blob/master/docs/theming-guide.adoc</a><br></p>
 </div>
 </td>
@@ -1606,6 +1613,62 @@ Windowsのスタートメニューから <code>Visual Studio Code</code> （以�
 <div class="olist arabic">
 <ol class="arabic">
 <li>
+<p>Proxy環境化の場合、MavenにProxyの設定を行う</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><code>C:\ProgramData\chocolatey\lib\maven\apache-maven-3.6.2\conf</code> にある <code>Settings.xml</code> を適当なテキストエディタ（VScodeで良い）で開く</p>
+</li>
+<li>
+<p>以下の部分を編集してProxyの設定を行う（Proxyの確認手順は先述の通り）</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>変更前</p>
+<div class="listingblock">
+<div class="content">
+<pre>  &lt;proxies&gt;
+    &lt;!-- proxy
+     | Specification for one proxy, to be used ・・・
+     |
+    &lt;proxy&gt;
+      &lt;id&gt;optional&lt;/id&gt;
+      &lt;active&gt;true&lt;/active&gt;
+      &lt;protocol&gt;http&lt;/protocol&gt;
+      &lt;username&gt;proxyuser&lt;/username&gt;
+      &lt;password&gt;proxypass&lt;/password&gt;
+      &lt;host&gt;proxy.host.net&lt;/host&gt;
+      &lt;port&gt;80&lt;/port&gt;
+      &lt;nonProxyHosts&gt;local.net|・・・&lt;/nonProxyHosts&gt;
+    &lt;/proxy&gt;
+    --&gt;
+  &lt;/proxies&gt;</pre>
+</div>
+</div>
+</li>
+<li>
+<p>変更後</p>
+<div class="listingblock">
+<div class="content">
+<pre>  &lt;proxies&gt;
+    &lt;proxy&gt;
+      &lt;id&gt;optional&lt;/id&gt;
+      &lt;active&gt;true&lt;/active&gt;
+      &lt;protocol&gt;http&lt;/protocol&gt;
+      &lt;host&gt;proxy.example.co.jp&lt;/host&gt;
+      &lt;port&gt;8080&lt;/port&gt;
+    &lt;/proxy&gt;
+  &lt;/proxies&gt;</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
 <p>以下から、PlantUML Server リポジトリをローカルPCの適当な場所にクローン（初回のみ実施）<br>
 <a href="https://github.com/plantuml/plantuml-server" class="bare">https://github.com/plantuml/plantuml-server</a></p>
 </li>
@@ -1639,6 +1702,42 @@ Windowsのスタートメニューから <code>Visual Studio Code</code> （以�
 <div class="content">
 <pre>[INFO] Starting scanner at interval of 5 secounds.</pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>エラー：Addres already in use が発生した場合</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>コマンドプロンプトで8080番を使っているプロセスがないか確認する</p>
+<div class="listingblock">
+<div class="content">
+<pre>netstat -aon | find "8080"
+TCP x.x.x.x:8080 LISTENING aaaa</pre>
+</div>
+</div>
+</li>
+<li>
+<p>上記の場合、aaaaのプロセスが8080版ポートを使ったままということなのでプロセスを終了させる</p>
+<div class="listingblock">
+<div class="content">
+<pre>taskkill /F /pid aaaa
+成功: PID aaaa のプロセスは強制終了されました。</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </li>
 </ol>
@@ -2115,8 +2214,8 @@ asciidoctor-pdf -r asciidoctor-diagram -r asciidoctor-pdf-cjk -o *.pdf *.adoc <i
 </div>
 <div id="footer">
 <div id="footer-text">
- K1.0.0<br>
-Last updated 2019-10-23 02:18:28 +0900
+ K1.0<br>
+Last updated 2019-10-25 11:32:19 +0900
 </div>
 </div>
 </body>
