@@ -61,6 +61,46 @@ base:
   border_color: [87,86,79]
   border_radius: 2
   border_width: 0.5
+#------
+# role Section
+#------
+role:
+  big:
+    font_size: $base_font_size_large
+  small:
+    font_size: $base_font_size_small
+  white:
+    font_color: #ffffff
+  silver:
+    font_color: #c0c0c0
+  gray:
+    font_color: #808080
+  black:
+    font_color: #000000
+  red:
+    font_color: #ff0000
+  maroon:
+    font_color: #800000
+  yellow:
+    font_color: #ffff00
+  olive:
+    font_color: #808000
+  lime:
+    font_color: #00ff00
+  green:
+    font_color: #008000
+  aqua:
+    font_color: #00ffff
+  teal:
+    font_color: #008080
+  blue:
+    font_color: #0000ff
+  navy:
+    font_color: #000080
+  fucsia:
+    font_color: #ff00ff
+  purple:
+    font_color: #800080
 # FIXME vertical_rhythm is weird; we should think in terms of ems
 #vertical_rhythm: $base_line_height_length * 2 / 3
 # correct line height for Noto Serif metrics (comes with built-in line height)
@@ -68,7 +108,6 @@ vertical_rhythm: $base_line_height_length
 horizontal_rhythm: $base_line_height_length
 # QUESTION should vertical_spacing be block_spacing instead?
 vertical_spacing: $vertical_rhythm
-#------
 #------
 # Title Page Section
 #------
@@ -175,6 +214,35 @@ link:
 literal:
   font_color: $heading_font_color
   font_family: M+ 1mn
+#------
+# Button Section
+#------
+button:
+  content: "[\u2009%s\u2009]"
+  font_style: bold
+  font_family: $literal_font_family
+#------
+# Key Section
+#------
+key:
+  background_color: f5f5f5
+  border_color: cccccc
+  border_offset: 1.5
+  border_radius: 2
+  border_width: 0.375
+  font_family: $literal_font_family
+  separator: "\u2009+\u2009"
+#------
+# Mark Section
+#------
+mark:
+  background_color: ffff00
+  border_offset: 0.5
+#------
+# Menu Section
+#------
+menu:
+  caret_content: " <font size=\"1.15em\"><color rgb=\"b12146\">\u203a</color></font> "
 #------
 # Code section
 # ... code is used for source blocks (perhaps change to source or listing?)

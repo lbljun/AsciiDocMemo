@@ -620,7 +620,7 @@ C:\tools\ruby26\lib\ruby\gems\2.6.0\gems\asciidoctor-pdf-1.5.0.beta.2\data\theme
 Styleについて +
 https://github.com/asciidoctor/asciidoctor-pdf/blob/master/docs/theming-guide.adoc +
 
-//以下は最新Verだと対応が入っているようなので実施不要
+//以下は最新VerだとStyleファイルにて指定できるようになったので実施不要
 //PDF化時に文字の色が変わるようにする +
 //https://blog.siwa32.com/asciidoctor_pdf_color/ +
 //→「2.2 asciidoctor-pdfのソースを修正する」
