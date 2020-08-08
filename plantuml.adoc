@@ -1,40 +1,46 @@
-//画像ファイル格納先
-:imagesdir: ./images
-
-
-//////////////////////////////////////////////////////////////////////
-// * 編集時ははAsciiDocのプレビューでなく、PlantUMLのプレビューを使った方が反応が圧倒的に早い
-// * 編集後は@startumlと@endumlを削除して、AsciiDocのプレビュー実行でpng作成とする
-// * 作成したpngをAsciiDoc内でimageとして取り込むこととする
-// * Planetulのプレビュー機能のショートカットは、Alt + D
-// * 参考サイトは以下
-//      <PlantUML爆速プレビュー>
-//          https://qiita.com/Ping/items/64930e8c21fb95bec095
-//      <PlantUML書き方>
-//          https://qiita.com/ogomr/items/0b5c4de7f38fd1482a48
-//          http://yohshiy.blog.fc2.com/blog-category-22.html
-//////////////////////////////////////////////////////////////////////
 
 
 
 
 
 
-[plantuml, Git]
+[plantuml, git]
 --
 @startuml
 
-database リポジトリ #dcdcdc {
+
+left to right direction
+
+
+database リポジトリ #98fb98 {
 }
 
-package ディレクトリ {
-    class ファイルX << (X,#00ff7f) >> {
-    }
-    class ファイルY << (Y,#ff00ff) >> {
-    }
+
+skinparam interface {
+    borderColor<<master>> #0000ff
 }
 
-リポジトリ <- ディレクトリ : 状態を保存
+skinparam component {
+    ArrowColor #0000ff
+}
+
+
+() "<b>コミット</b>\n 2020.08.01\n 14:00\n 担当者A" as m1<<master>> #00ffff
+note top : ファイル作成
+() "<b>コミット</b>\n 2020.08.01\n 14:28\n 担当者A" as m2<<master>> #00ffff
+note top : 初期値変更
+() "<b>コミット</b>\n 2020.08.02\n 11:15\n 担当者A" as m3<<master>> #00ffff
+note top : 範囲追加
+() "<b>コミット</b>\n 2020.08.02\n 16:03\n 担当者A" as m4<<master>> #00ffff
+note top : 備考追加\n (HEAD)
+
+
+リポジトリ ~~ m1
+m1 --> m2
+m2 --> m3
+m3 --> m4
+
+
 
 @enduml
 --
@@ -42,40 +48,9 @@ package ディレクトリ {
 
 
 
-[plantuml, Commit]
---
-@startuml
-
-database リポジトリ #dcdcdc {
-    namespace ディレクトリ #ffffff {
-        class ファイルX << (X,#00ff7f) >> {
-        }
-        note right : コミットされるのは変更の入ったファイルのみ
-        class ファイルY << (Y,#ff00ff) >> {
-        }
-    }
-}
-
-namespace インデックス {
-    class ファイルX << (X,#00ff7f) >> {
-    }
-    note right : コミットメッセージを付ける
-}
-
-namespace 作業ツリー {
-    class ファイルX << (X,#00ff7f) >> {
-    }
-    note right : このファイルを編集
-    class ファイルY << (Y,#ff00ff) >> {
-    }
-}
 
 
-インデックス.ファイルX <-up- 作業ツリー.ファイルX : インデックスに追加
-ディレクトリ.ファイルX <-up- インデックス.ファイルX : コミット
 
-@enduml
---
 
 
 
@@ -92,76 +67,19 @@ cloud GitLab {
 frame 担当者A-PC {
     database ローカルリポジトリA #98fb98 {
     }
+    control 修正
 }
 frame 担当者B-PC {
     database ローカルリポジトリB #98fb98 {
     }
 }
 
-control check
-
-リモートリポジトリ -down-> ローカルリポジトリA : プル
-リモートリポジトリ -down-> ローカルリポジトリB : プル
-リモートリポジトリ <-up- ローカルリポジトリA : プッシュ
-リモートリポジトリ <.up. check : マージ
-check <.up. ローカルリポジトリB : プルリクエスト
-
-@enduml
---
-
-
-
-
-[plantuml, Flow]
---
-@startuml
-
-box PC
-    participant ローカルリポジトリ as local #98fb98
-    participant ブランチ as branch
-end box
-
-box GitLab
-    participant リモートリポジトリ as remote #ffdead
-end box
-
-
-== 初回 ==
-
-
-activate remote
-local <- remote : クローン
-note right : K2.0
-note left : K2.0
-
-
-== 次回以降 ==
-
-
-activate local
-local <- remote : プル
-note right : K2.1
-note left : K2.1
-create branch
-local -> branch : ブランチ
-activate branch
-branch -> branch : コミット(2019/9/15 13:02)
-note left : K2.1.1
-branch --> branch : コミット(2019/9/15 19:36)
-note left : K2.1.2
-branch --> branch : コミット(2019/9/28 14:20)
-note left : K2.1.3
-local <- remote : プル
-note right : K2.2
-note left : K2.2
-local <- branch : マージ
-deactivate branch
-destroy branch
-local --> local : コンフリクト解消
-local -> remote : プッシュ
-note right : K2.3
-deactivate local
-deactivate remote
+リモートリポジトリ -down-> ローカルリポジトリA : <b>プル</b>
+リモートリポジトリ <-up- ローカルリポジトリA : <b>プッシュ</b>
+リモートリポジトリ -down-> ローカルリポジトリA : <b>クローン</b>\n（初回のみ）
+リモートリポジトリ -down-> ローカルリポジトリB
+リモートリポジトリ <-up- ローカルリポジトリB
+修正 -right-> ローカルリポジトリA : <b>コミット</b>
 
 @enduml
 --
@@ -171,24 +89,578 @@ deactivate remote
 
 
 
-[plantuml, Tag]
+
+
+
+
+
+
+
+[plantuml, worktree]
 --
 @startuml
 
-(a) -> (b)
-note top : ProductA_K0.0.0
-(b) -> (c) 
-note bottom #98fb98 : ProductB_K0.0.0
-(c) -> (d) 
-note top #98fb98 : ProductB_K0.0.1
-(d) -> (e) 
-note bottom #98fb98 : ProductB_K0.0.2
-(e) -> (f)
-(f) -> (g)
-note top : ProductA_K1.0.0
-(g) -> (h)
-note bottom #98fb98 : ProductB_K0.0.3
-(h) -> (i)
+
+namespace 作業ツリー_編集前 {
+file test1b [
+    <b>test1.adoc</b>
+    ====
+    初期値は不変です。
+
+]
+
+file test2b [
+    <b>test2.adoc</b>
+    ====
+    初期値はTBDです。
+    ....
+    ～
+    ....
+    単位はmmです。
+
+]
+
+skinparam file {
+    backgroundColor<<empty_w>> #ffffff
+    borderColor<<empty_w>> #ffffff
+    FontColor<<empty_w>> #fffff
+    Shadowing false
+}
+file test3b<<empty_w>> [
+    <b>test3.adoc</b>
+    ====
+    <b>新規に作成です。</b>
+
+]
+}
+
+
+namespace 作業ツリー_編集後 {
+file test3a #ee82ee [
+    <b>test3.adoc</b>
+    ====
+    <b>新規に作成です。</b>
+
+]
+
+file test1a [
+    <b>test1.adoc</b>
+    ====
+    初期値は不変です。
+
+]
+
+file test2a #ffd700 [
+    <b>test2.adoc</b>
+    ====
+    初期値は<b>300</b>です。
+    ....
+    ～
+    ....
+    単位はmmです。
+    <b>範囲はxxxxです。</b>
+]
+}
+
+
+test1b -[hidden]right-> test2b
+test2b -[hidden]right-> test3b
+test1a -[hidden]right-> test2a
+test2a -[hidden]right-> test3a
+test1b ..> test1a : <b>変更無し</b>
+test2b --> test2a : <b>変更有り</b>\n（修正）
+test3b --> test3a : <b>変更有り</b>\n（新規追加）
+
+
+@enduml
+--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[plantuml, commit_1]
+--
+@startuml
+
+
+file test1r [
+    <b>test1.adoc</b>
+    ====
+    初期値は不変です。
+
+]
+
+file test2r [
+    <b>test2.adoc</b>
+    ====
+    初期値はTBDです。
+    ....
+    ～
+    ....
+    単位はmmです。
+
+]
+
+database ローカルリポジトリ #98fb98 [
+    ローカルリポジトリ
+    ....
+    （⇐最新コミットの状態）
+]
+
+
+
+namespace インデックスにステージしたファイル {
+    skinparam file {
+        backgroundColor<<empty_i>> #ffffff
+        borderColor<<empty_i>> #ffffff
+        FontColor<<empty_i>> #fffff
+        Shadowing false
+    }
+
+    file test2i<<empty_i>> [
+    <b>test2.adoc</b>
+    ====
+    ....
+    ～
+    ....
+    単位はmmです。
+    <b>範囲はxxxxです。</b>
+    ]
+}
+
+
+namespace 作業ツリーのファイル {
+file test1w [
+    <b>test1.adoc</b>
+    ====
+    初期値は不変です。
+
+]
+
+file test2w [
+    <b>test2.adoc</b>
+    ====
+    初期値はTBDです。
+    ....
+    ～
+    ....
+    単位はmmです。
+
+]
+
+skinparam file {
+    backgroundColor<<empty_w>> #ffffff
+    borderColor<<empty_w>> #ffffff
+    FontColor<<empty_w>> #fffff
+    Shadowing false
+}
+file test3w<<empty_w>> [
+    <b>test3.adoc</b>
+    ====
+    <b>新規に作成です。</b>
+
+]
+}
+
+
+test2w -[hidden]up- test2i
+test2i -[hidden]up- test2r
+test1w .[hidden]right. test2w
+test2w .[hidden]right. test3w
+test1r .right. test2r
+test2r .right. ローカルリポジトリ
+
+
+@enduml
+--
+
+
+
+
+
+
+
+
+
+
+
+[plantuml, commit_2]
+--
+@startuml
+
+
+file test1r [
+    <b>test1.adoc</b>
+    ====
+    初期値は不変です。
+
+]
+
+file test2r [
+    <b>test2.adoc</b>
+    ====
+    初期値はTBDです。
+    ....
+    ～
+    ....
+    単位はmmです。
+
+]
+
+database ローカルリポジトリ #98fb98 [
+    ローカルリポジトリ
+    ....
+    （⇐最新コミットの状態）
+]
+
+
+namespace インデックスにステージしたファイル {
+    skinparam file {
+        backgroundColor<<empty_i>> #ffffff
+        borderColor<<empty_i>> #ffffff
+        FontColor<<empty_i>> #fffff
+        Shadowing false
+    }
+
+    file test2i<<empty_i>> [
+    <b>test2.adoc</b>
+    ====
+    ....
+    ～
+    ....
+    単位はmmです。
+    <b>範囲はxxxxです。</b>
+    ]
+}
+
+
+namespace 作業ツリーのファイル {
+file test1w [
+    <b>test1.adoc</b>
+    ====
+    初期値は不変です。
+
+]
+
+file test2w #ffd700 [
+    <b>test2.adoc</b>
+    ====
+    初期値は<b>300</b>です。
+    ....
+    ～
+    ....
+    単位はmmです。
+    <b>範囲はxxxxです。</b>
+]
+
+file test3w #ee82ee [
+    <b>test3.adoc</b>
+    ====
+    <b>新規に作成です。</b>
+
+]
+}
+
+
+test2w -[hidden]up- test2i
+test2i -[hidden]up- test2r
+test1w .[hidden]right. test2w
+test2w .[hidden]right. test3w
+test1r .right. test2r
+test2r .right. ローカルリポジトリ
+
+
+@enduml
+--
+
+
+
+
+
+
+
+
+
+
+
+[plantuml, commit_3]
+--
+@startuml
+
+
+file test1r [
+    <b>test1.adoc</b>
+    ====
+    初期値は不変です。
+
+]
+
+file test2r #ffd700 [
+    <b>test2.adoc</b>
+    ====
+    初期値は<b>300</b>です。
+    ....
+    ～
+    ....
+    単位はmmです。
+    <b>範囲はxxxxです。</b>
+]
+
+database ローカルリポジトリ #98fb98 [
+    ローカルリポジトリ
+    ....
+    （⇐コミット後の状態）
+]
+
+
+namespace インデックスにステージしたファイル {
+file test2i #ffd700 [
+    <b>test2.adoc</b>
+    ====
+    初期値は<b>300</b>です。
+    ....
+    ～
+    ....
+    単位はmmです。
+    <b>範囲はxxxxです。</b>
+]
+}
+
+
+namespace 作業ツリーのファイル {
+file test1w [
+    <b>test1.adoc</b>
+    ====
+    初期値は不変です。
+
+]
+
+file test2w #ffd700 [
+    <b>test2.adoc</b>
+    ====
+    初期値は<b>300</b>です。
+    ....
+    ～
+    ....
+    単位はmmです。
+    <b>範囲はxxxxです。</b>
+]
+
+file test3w #ee82ee [
+    <b>test3.adoc</b>
+    ====
+    <b>新規に作成です。</b>
+
+]
+}
+
+
+test2w -up-> test2i : <b>選択をインデックスに追加</b>（※ファイル単位）
+test2i -up-> test2r : <b>コミット</b>：「初期値変更と範囲追加」
+test1w .[hidden]right. test2w
+test2w .[hidden]right. test3w
+test1r .right. test2r
+test2r .right. ローカルリポジトリ
+
+
+@enduml
+--
+
+
+
+
+
+
+
+
+
+
+
+[plantuml, commit_4]
+--
+@startuml
+
+
+file test1r [
+    <b>test1.adoc</b>
+    ====
+    初期値は不変です。
+
+]
+
+file test2r #ffd700 [
+    <b>test2.adoc</b>
+    ====
+    初期値は<b>300</b>です。
+    ....
+    ～
+    ....
+    単位はmmです。
+
+]
+
+database ローカルリポジトリ #98fb98 [
+    ローカルリポジトリ
+    ....
+    （⇐コミット後の状態）
+]
+
+
+namespace インデックスにステージしたファイル {
+file test2i #ffd700 [
+    <b>test2.adoc</b>
+    ====
+    初期値は<b>300</b>です。
+    ....
+    ～
+    ....
+    単位はmmです。
+
+]
+}
+
+
+namespace 作業ツリーのファイル {
+file test1w [
+    <b>test1.adoc</b>
+    ====
+    初期値は不変です。
+
+]
+
+file test2w #ffd700 [
+    <b>test2.adoc</b>
+    ====
+    初期値は<b>300</b>です。
+    ....
+    ～
+    ....
+    単位はmmです。
+    <b>範囲はxxxxです。</b>
+]
+
+file test3w #ee82ee [
+    <b>test3.adoc</b>
+    ====
+    <b>新規に作成です。</b>
+
+]
+}
+
+
+test2w -up-> test2i : <b>Hunkをステージへ移動</b>（※変更箇所単位）
+test2i -up-> test2r : <b>コミット</b>：「初期値変更」
+test1w .[hidden]right. test2w
+test2w .[hidden]right. test3w
+test1r .right. test2r
+test2r .right. ローカルリポジトリ
+
+
+@enduml
+--
+
+
+
+
+
+
+
+
+
+[plantuml, commit_5]
+--
+@startuml
+
+
+file test1r [
+    <b>test1.adoc</b>
+    ====
+    初期値は不変です。
+
+]
+
+file test2r [
+    <b>test2.adoc</b>
+    ====
+    初期値は<b>300</b>です。
+    ....
+    ～
+    ....
+    単位はmmです。
+    <b>範囲はxxxxです。</b>
+]
+
+file test3r #ee82ee [
+    <b>test3.adoc</b>
+    ====
+    <b>新規に作成です。</b>
+
+]
+
+database ローカルリポジトリ #98fb98 [
+    ローカルリポジトリ
+    ....
+    （⇐コミット後の状態）
+]
+
+
+namespace インデックスにステージしたファイル {
+file test3i #ee82ee [
+    <b>test3.adoc</b>
+    ====
+    <b>新規に作成です。</b>
+
+]
+}
+
+
+namespace 作業ツリーのファイル {
+file test1w [
+    <b>test1.adoc</b>
+    ====
+    初期値は不変です。
+
+]
+
+file test2w [
+    <b>test2.adoc</b>
+    ====
+    初期値は<b>300</b>です。
+    ....
+    ～
+    ....
+    単位はmmです。
+    <b>範囲はxxxxです。</b>
+]
+
+file test3w #ee82ee [
+    <b>test3.adoc</b>
+    ====
+    <b>新規に作成です。</b>
+
+]
+}
+
+
+test3w -up-> test3i : <b>選択をインデックスに追加</b>（※ファイル単位）
+test3i -up-> test3r : <b>コミット</b>：「ファイル追加」
+test1w .[hidden]right. test2w
+test2w .[hidden]right. test3w
+test1r .right. test2r
+test2r .right. test3r
+test3r .right. ローカルリポジトリ
+
 
 @enduml
 --

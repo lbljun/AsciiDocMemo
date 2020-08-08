@@ -941,62 +941,24 @@ https://www.adminweb.jp/command/display/index5.html +
 
 
 
+
 <<<
 :sectnums:
 === AsciiDocで書いた文章をGitで管理する
 
 
-==== Gitとは？
-分散型バージョン管理システムの一つです。 +
-**リポジトリ**と呼ばれる記録場所に、管理したい**ファイルやディレクトリの状態を記録（変更履歴を保存）**することができます。 +
-リポジトリを複数用意できる（開発者がそれぞれのローカルにリポジトリを持てる）ので、分散型と呼ばれています。
+下記のサイトを読むこと。
 
-image::Git.png[]
-
-以降では簡単な説明にとどめますので、以下のサイトも参考にして下さい。 +
-
-＜サルでもわかるGit入門＞ +
-https://backlog.com/ja/git-tutorial/
-
-
-
-
-
-
-
-
-
-
-<<<
-==== 状態の変化を記録するコミット
-**コミット**と呼ばれる操作により、変更作業により発生したファイルやディレクトリの状態の変化をリポジトリに記録します。
-
-. 管理下に置かれた作業ディレクトリ（**作業ツリー**）から、コミット予定エリア（**インデックス**）に、変更したファイルを**追加（ステージング）**します。
-
-. **コミットメッセージ**を付けることができ、**コミット**を実行すると、前回コミットした時の状態から現在の状態までの差分を記録したコミットが作成されます。
+* Gitとは？
 +
-----
-//コミットメッセージ
-1行目 : コミットでの変更内容の要約
-2行目 : 空行
-3行目以降 : 変更した理由
-----
+https://backlog.com/ja/git-tutorial/[サル先生のGit入門 ～バージョン管理を使いこなそう～]
 
-image::Commit.png[]
 
 
-[NOTE]
-====
-* このようにインデックスを挟むことで、変更されてないファイルを含めずにコミットでき、また、ファイルの一部の変更だけを追加してコミットすることもできたりします。
-* コミットするとリポジトリで管理されている対象の全てのファイルが記録されていきます。 +
-バージョン管理をしたくないファイルが存在する場合は、コミット対象外とするための「.gitignore」ファイルでの指定を行ってください（一度プッシュ済みのファイルは後からは除外できなくなるので注意してください）。 +
-<https://qiita.com/hainare/items/81435ac6912f2976cc9f>
-====
 
-過去のコミットを辿れば、過去の状態に一時的に戻したり参照したりすることができます。 +
-そのため、バックアップ用のファイルを別名で残す必要はありません。
 
 
+以下に各章と、それに対する補足、および、対応するSourceTreeでの操作について説明します。
 
 
 
@@ -1004,65 +966,70 @@ image::Commit.png[]
 
 
 
+＜入門編＞::
 
 
-<<<
-==== 履歴を管理するリポジトリ
-リポジトリには2種類あります。
 
-* **リモートリポジトリ**
-** 専用のサーバに配置して複数人で共有するためのリポジトリ
-* **ローカルリポジトリ**
-** ユーザ一人ひとりが利用するために、自分の手元のPC上に配置するリポジトリ
 
-普段の作業はローカルリポジトリで行い、作業が完了したらリモートリポジトリにアップロード（**プッシュ**）して公開します。 +
-リモートリポジトリを通して公開された最新のディレクトリの状態を別の開発者が取得（**プル**）することもできます。
+Gitの基本：:::
 
-image::Repository.png[]
+https://backlog.com/ja/git-tutorial/intro/01/[Gitを使ったバージョン管理]::::
 
-[NOTE]
-====
-リモートリポジトリには、無料で使えるがインターネット上に一般公開されるGitHubと、自前のサーバーに立ててプライベートリポジトリとして使えるGitLabがある（自社では後者を使用する）
-====
+https://backlog.com/ja/git-tutorial/intro/02/[履歴を管理するリポジトリ]::::
++
+* リモートリポジトリとして、Gitを利用した開発者を支援するホスティングサービスであるGitLabを利用する。
+* リモートリポジトリには、URL（https://gitlab.xxx/yyy）でアクセス可能。
+* リモートリポジトリをサーバ上に置き、開発者それぞれが作業のためのリポジトリをローカルに持つという構成は、分散型と呼ばれる。
+* 分散型では、共有しているリモートリポジトリを汚すことなく、またリモートリポジトリにアクセスできない環境（ネットに繋がらない等）でもローカルで作業を進めることが可能。
 
-なお、プッシュの代わりに、**プルリクエスト**を使うことで組織にレビューの文化を根付かせることも可能です。 +
-プルリクエストは次のような機能を提供します。
+https://backlog.com/ja/git-tutorial/intro/03/[変更を記録するコミット]::::
 
-* 機能追加や改修など、作業内容がレビュー・マージ担当者やその他関係者に通知される
-* ソースコードの変更箇所がわかりやすく表示される
-* ソースコードに関するコミュニケーションの場が提供される
+https://backlog.com/ja/git-tutorial/intro/04/[作業ツリーとインデックス]::::
+* SourceTree上でのコミット操作
++
+image::sourcetree_commit.png[width=700]
++
+* 任意のファイルだけを追加（**選択をインデックスに追加**）
+* 任意のファイル内の一部の変更だけを追加（**Hunkをステージへ移動**）
+* **コミットメッセージ**は、"なぜ（Why）" 変更したかがわかるように付ける
 
-上記のようなやりとりを経て、最終的にマージされるソースコードの品質を高めることが可能です。
 
 
 
+リポジトリの共有：:::
 
+https://backlog.com/ja/git-tutorial/intro/09/[リモートリポジトリにプッシュする]::::
+* SourceTree上でのプッシュ操作
++
+image::sourcetree_push.png[width=700]
 
+https://backlog.com/ja/git-tutorial/intro/10/[リモートリポジトリをクローンする]::::
+* SourceTree上でのクローン操作（GitLabからクローン、実施必要なのは初回のみ）
++
+image::sourcetree_clone.png[width=900]
 
+https://backlog.com/ja/git-tutorial/intro/11/[リモートリポジトリからプルする]::::
+* SourceTree上でのプル操作
++
+image::sourcetree_pull.png[width=700]
 
 
 
 
+変更履歴の統合：:::
 
+https://backlog.com/ja/git-tutorial/intro/17/[変更履歴のマージ]::::
+* SourceTree上でのマージ操作
++
+https://qiita.com/masatomix/items/07a37ee8d141ceb4fa6f[こちらのサイトを参考]
 
-<<<
-==== 運用フロー
-初めにリモートリポジトリをローカルに複製（**クローン**）します。 +
-以降はローカルリポジトリにて変更作業を行っていきますが、自社では以下の手順を遵守することとします。 +
+https://backlog.com/ja/git-tutorial/intro/18/[競合の解決]::::
+* SourceTree上での競合の解決操作（マージ操作後、競合が発生したファイルを作業ツリーのアイコンで確認）
++
+https://qiita.com/ymiyamae/items/ad3ec3d7242ee4ea451a[こちらのサイトを参考]
 
-. 変更作業を始める前に、最新の状態をリモートリポジトリから**プルし直す**
-. 変更作業はmasterブランチでは行わず、**ブランチを切って移動**して行う
-. 移動先のブランチ内にて、変更作業を行い、**変更箇所ごとに都度コミット**を実行する
-. 全ての変更作業を終えたら、masterブランチに移動し、最新の状態をリモートリポジトリから**プルし直す**
-. 変更作業中のブランチに再び移動し、**masterブランチへのマージ**を行う
-. マージの際に、他の開発者による変更との競合が発生した場合は、**競合内容を確認し修正をコミット**する
-. リモートリポジトリへ**プッシュする**（または、プルリクエストを行う）
 
-image::Flow.png[]
 
-この運用の一番の目的は、**リモートリポジトリは常にリリースできる状態に保つこと**、です。 +
-そのため、**ローカルリポジトリのmasterブランチは最新に保つ**ことを心掛け、**編集はブランチを切って行います** 。 +
-リモートリポジトリの最新の状態（origin/masterブランチ）より**先行した状態にしてから**リモートリポジトリにプッシュします。
 
 
 
@@ -1070,76 +1037,133 @@ image::Flow.png[]
 
 
 
+＜発展編＞::
+※複数人で並行して同一ファイルを修正するようなケースがある場合はブランチを作成して編集作業すること
 
 
 
 
-<<<
-==== ドキュメントのバージョン管理
-gitではコミットに対してコミットメッセージとは別にタグを付けることができます（後付け可能）。 +
-変更履歴上の重要なポイントへの印として一覧表示で参照も可能で、主にリリースポイントとして使われます。 +
+ブランチ：:::
 
-自社では、タグにバージョンを明記して管理することとします。 +
+https://backlog.com/ja/git-tutorial/stepup/01/[ブランチとは]::::
 
-タグ記載ルール 「a_**K**x.y.z」
+https://backlog.com/ja/git-tutorial/stepup/02/[ブランチの運用]::::
 
-* a : プロダクト名
-* x : 正式発行ver（0:Draft、1:初期提示、2～:フェーズ移行で発行依頼があれば改版）
-* y : 仕様変更ver（0:xが改版時、1～:仕変時に改版）
-* z : 開発管理ver（0:yが改版時、1～:仕変前の編集時等に改版）
+https://backlog.com/ja/git-tutorial/stepup/03/[ブランチの切り替え]::::
 
-image::Tag.png[]
+https://backlog.com/ja/git-tutorial/stepup/04/[ブランチの統合（マージ、リベース）]::::
 
-上記のように、コミットに対してタグを付けて、どのコミットまでの変更が各プロダクトに適用される仕様かを識別します。
+https://backlog.com/ja/git-tutorial/stepup/05/[トピックブランチと統合ブランチでの運用例]::::
+* SourceTree上でのブランチ操作
++
+https://qiita.com/inabe49/items/be38f569040aed7d85b0[こちらのサイトを参考]
++
+* お役立ち情報
++
+https://laraweb.net/environment/1687/[3種類のブランチ]
++
+https://qiita.com/phi/items/42492a01c7b249e78dd3[ローカルに残ってしまっているリモートブランチを一括削除]
 
-前提として、標準仕様とバイプロ仕様のように仕様書を別管理としていた従来のやり方はやめます。 +
-仕様書は一つのドキュメントで管理し、`ifdef ～ endif` で条件によって表示/非表示を切り替えることで、プロダクト別の仕様書に早変わりできるような作りにします（ifdefの使い方はテストサンプル参照）。
 
-従って、仕様の記載を追加することはあっても削除することはできない（許されない）ので、常に他のプロダクトの仕様を参照しながら作成し、仕様の水平展開や標準化を意識した作りを心掛けてください。
 
-実際にソフト屋さんに展開する際は、表紙やヘッダーに付く改訂情報も合わせて修正してPDF化して展開することも可能です。
-----
-例）
-//ドキュメントタイトル、表紙に入る
-= AsciiDoc ユーザーマニュアル
-//ドキュメントタイトル、ヘッダーに入る
-:docname: AsciiDoc ユーザーマニュアル
-//改定番号
-:revnumber: K1.0.0
-//改定日
-:revdate: 2019/10/15
-----
 
+リモートリポジトリ：:::
 
+https://backlog.com/ja/git-tutorial/stepup/14/[プル]::::
 
+https://backlog.com/ja/git-tutorial/stepup/15/[フェッチ]::::
 
+https://backlog.com/ja/git-tutorial/stepup/16/[プッシュ]::::
 
 
 
 
+タグ：:::
 
-<<<
-==== SourceTreeを使って運用する
-. SourceTreeにGitLabアカウントを登録します。 +
+https://backlog.com/ja/git-tutorial/stepup/17/[タグ]::::
+* SourceTree上でのタグ付け操作
++
+image::sourcetree_tag.png[width=700]
+
+
+
+
+コミットの書き換え：:::
+
+https://backlog.com/ja/git-tutorial/stepup/22/[直前のコミットを修正する]::::
+
+https://backlog.com/ja/git-tutorial/stepup/23/[過去のコミットを打ち消す]::::
+
+https://backlog.com/ja/git-tutorial/stepup/24/[コミットを捨てる]::::
+
+https://backlog.com/ja/git-tutorial/stepup/25/[コミットを抜き取る]::::
+
+https://backlog.com/ja/git-tutorial/stepup/26/[コミットの履歴を書き換える]::::
+
+https://backlog.com/ja/git-tutorial/stepup/27/[ブランチ上のコミットを一つにまとめてマージする]::::
+* SourceTree上でのコミット書き換え操作
++
+https://qiita.com/nnishimura/items/b5410e35f3a292a55244[こちらのサイトを参考]
++
+https://ics.media/entry/1365/[こちらのサイトを参考]
+
+
+
+
+プルリクエスト：:::
+
+https://backlog.com/ja/git-tutorial/pull-request/01/[プルリクエストとは？]::::
+
+https://backlog.com/ja/git-tutorial/pull-request/02/[プルリクエストのメリット]::::
+
+https://backlog.com/ja/git-tutorial/pull-request/03/[プルリクエストを使った開発プロセス]::::
+* GitLab上でのマージリクエスト（プルリクエスト）操作
++
+https://note.sngklab.jp/?p=465[こちらのサイトを参考]
++
+* GitLab上でのレビュー・承認操作
++
+https://qiita.com/chaspy/items/a4fe44fecf6b8fb0e587[こちらのサイトを参考]
+
+
+
+
+マージできない場合は？：:::
+
+https://backlog.com/ja/git-tutorial/pull-request/09/[競合の発生]::::
+
+https://backlog.com/ja/git-tutorial/pull-request/10/[競合の解決]::::
+
+
+
+
+
+
+
+
+
+ ＜その他参考＞::
+* SourceTreeを使ってGitを操作
++
+https://qiita.com/hassoubeat/items/280005bc3af3f059d3c8[SourceTree操作チートシート]
++
+https://haniwaman.com/sourcetree/[誰でも簡単！GitHubで管理するためのSourcetreeの最低限の使い方]
+
+
+
+* SourceTreeにGitLabアカウントを登録
++
 [ツール]→[オプション]のデフォルトユーザー情報に、GitLabで登録したユーザー名とメールアドレスを入力します。
 +
 image::SourcetreeUserInfo.png[width="600",align="left"]
 
-. これまで説明してきた作業は、GitのGUIツールであるSourceTreeを使用して行いますが、 +
-以下の参考サイトに初心者でもわかるようにまとまっているので説明は割愛します。 +
-+
-＜誰でも簡単！GitHubで管理するためのSourcetreeの最低限の使い方＞ +
-https://haniwaman.com/sourcetree/ +
-+
-＜SourceTreeの使い方|初心者が習得するべき基本操作＞ +
-https://ics.media/entry/1365/ 
 
-[NOTE]
-====
-（お役立ち情報）外部diffを使って、コミット間の差分を見やすく表示する方法 +
-https://blog.stedplay.com/how-to-use-sourcetree-with-p4merge/ +
-※本手順書内ではバッチファイルで、P4Mergeの代わりにWinmergeをインストール済みです
-====
+
+* 外部diffを使ってコミット間の差分を見やすく表示
++
+https://blog.stedplay.com/how-to-use-sourcetree-with-p4merge/[diffツール「P4Merge」で差分を横並びで表示させる方法]
++
+※本手順書内ではバッチファイルで、P4Mergeの代わりにWinmergeをインストール済み
 
 
 
