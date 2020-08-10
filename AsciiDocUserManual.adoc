@@ -947,18 +947,23 @@ https://www.adminweb.jp/command/display/index5.html +
 === AsciiDocで書いた文章をGitで管理する
 
 
-下記のサイトを読むこと。
+下記のサイトを読むと良い。
 
 * Gitとは？
 +
 https://backlog.com/ja/git-tutorial/[サル先生のGit入門 ～バージョン管理を使いこなそう～]
 
+** ただ、自分はサル以下かも知れないと思うので、まずはこのエントリーを読むと良い。
++
+https://kaizentech.hatenablog.com/entry/2018/07/19/132022[「サルでもわかる」が分からなかった時に読むGit、SorceTreeの超訳]
 
 
 
 
 
-以下に各章と、それに対する補足、および、対応するSourceTreeでの操作について説明します。
+
+以下に上記サイトから抜粋した各章と、それに対する補足、対応するSourceTreeでの操作について説明する。 +
+一行ずつ参照リンクが異なるので、順番にクリックして読むと良い。
 
 
 
@@ -974,6 +979,8 @@ https://backlog.com/ja/git-tutorial/[サル先生のGit入門 ～バージョン
 Gitの基本：:::
 
 https://backlog.com/ja/git-tutorial/intro/01/[Gitを使ったバージョン管理]::::
++
+* バージョン管理がしっかりできる、というだけでなく、オリジナルのファイルの格納場所が一意に定まる（後述するリモートリポジトリになる）という点も、仕様書の所在など管理が全くできていないチームには有効だと思われる（自虐）。
 
 https://backlog.com/ja/git-tutorial/intro/02/[履歴を管理するリポジトリ]::::
 +
@@ -983,6 +990,11 @@ https://backlog.com/ja/git-tutorial/intro/02/[履歴を管理するリポジト�
 * 分散型では、共有しているリモートリポジトリを汚すことなく、またリモートリポジトリにアクセスできない環境（ネットに繋がらない等）でもローカルで作業を進めることが可能。
 
 https://backlog.com/ja/git-tutorial/intro/03/[変更を記録するコミット]::::
+* 誰がコミットしたのかわかるようにSourceTreeにGitLabアカウントを登録
++
+（[ツール]→[オプション]のデフォルトユーザー情報に、GitLabで登録したユーザー名とメールアドレスを入力）
++
+image::SourcetreeUserInfo.png[width="600",align="left"]
 
 https://backlog.com/ja/git-tutorial/intro/04/[作業ツリーとインデックス]::::
 * SourceTree上でのコミット操作
@@ -996,37 +1008,53 @@ image::sourcetree_commit.png[width=700]
 
 
 
+
+
 リポジトリの共有：:::
 
 https://backlog.com/ja/git-tutorial/intro/09/[リモートリポジトリにプッシュする]::::
 * SourceTree上でのプッシュ操作
 +
+（後述の、ブランチを作成して運用する、ということをやらない限りは、②の選択はデフォルトのままでOK）
++
 image::sourcetree_push.png[width=700]
 
 https://backlog.com/ja/git-tutorial/intro/10/[リモートリポジトリをクローンする]::::
-* SourceTree上でのクローン操作（GitLabからクローン、実施必要なのは初回のみ）
+* SourceTree上でのクローン操作
++
+（GitLabからクローン、実施必要なのはプロジェクト毎（=リポジトリ毎=仕様書パッケージ毎）に初回のみ）
 +
 image::sourcetree_clone.png[width=900]
 
 https://backlog.com/ja/git-tutorial/intro/11/[リモートリポジトリからプルする]::::
 * SourceTree上でのプル操作
 +
+（後述の、ブランチを作成して運用する、ということをやらない限りは、②の選択はデフォルトのままでOK）
++
 image::sourcetree_pull.png[width=700]
++
+* ただし、、、**ブランチを作成して運用する場合は、このプル操作は使わない方が良い。**
++
+理由は、ローカルリポジトリとリモートリポジトリ間の操作において、**プッシュの反対はプル"ではない"**、から（詳細はブランチの章にて説明）。
+
+
+
 
 
 
 
 変更履歴の統合：:::
+※まぁ、一人さみしく仕様書作成している限りは以下は発生しない（自虐）。
 
 https://backlog.com/ja/git-tutorial/intro/17/[変更履歴のマージ]::::
-* SourceTree上でのマージ操作
-+
-https://qiita.com/masatomix/items/07a37ee8d141ceb4fa6f[こちらのサイトを参考]
+* https://yttm-work.jp/git/git_0012.html[SourceTree上でのマージ操作]
 
 https://backlog.com/ja/git-tutorial/intro/18/[競合の解決]::::
-* SourceTree上での競合の解決操作（マージ操作後、競合が発生したファイルを作業ツリーのアイコンで確認）
-+
-https://qiita.com/ymiyamae/items/ad3ec3d7242ee4ea451a[こちらのサイトを参考]
+* https://yttm-work.jp/git/git_0011.html[SourceTree上での競合の解決操作]
+
+
+
+
 
 
 
@@ -1038,7 +1066,7 @@ https://qiita.com/ymiyamae/items/ad3ec3d7242ee4ea451a[こちらのサイトを�
 
 
 ＜発展編＞::
-※複数人で並行して同一ファイルを修正するようなケースがある場合はブランチを作成して編集作業すること
+※複数人で並行して同一ファイルを修正するようなケースが有り得る場合や、きちんと修正内容のレビュー/検仕をして責任者や検仕者にリモートリポジトリoriginのmasterブランチに反映してもらうような運用をする場合には、ローカルでブランチを作成して（切って）作業する。てか、そうすべき。
 
 
 
@@ -1048,26 +1076,36 @@ https://qiita.com/ymiyamae/items/ad3ec3d7242ee4ea451a[こちらのサイトを�
 https://backlog.com/ja/git-tutorial/stepup/01/[ブランチとは]::::
 
 https://backlog.com/ja/git-tutorial/stepup/02/[ブランチの運用]::::
+* https://laraweb.net/environment/1687/[SourceTree上でのブランチ操作]
+** https://shinmedia20.com/git-remote-tracking[追跡ブランチとリモートブランチは別物！]
+*** https://qiita.com/uasi/items/69368c17c79e99aaddbf[追跡ブランチのもっと正確な言葉の使い方]
+*** https://qiita.com/onikan/items/9804231b451a145994d6[追跡ブランチとフェッチとマージの関係]
+*** https://qiita.com/usamik26/items/28be7d2c221a7a53c2c3[プルではなくフェッチとマージを使え]
 
 https://backlog.com/ja/git-tutorial/stepup/03/[ブランチの切り替え]::::
+* https://qiita.com/inabe49/items/be38f569040aed7d85b0[SourceTree上でのブランチの切り替え（チェックアウト）操作]
+** https://noumenon-th.net/programming/2018/12/24/git-fetch/[リモートにあるブランチが表示されてなければフェッチ]
+*** https://qiita.com/phi/items/42492a01c7b249e78dd3[ローカルに残ってしまっているリモートブランチを一括削除]
+** https://qiita.com/ymzk-jp/items/00ff664da60c37458aaa[GitのHEADとは何者なのか]
+** https://yu8mada.com/2018/05/31/detached-head-state-and-its-caution-in-git/[Gitの"detached HEAD"状態とその注意点]
+** https://ics.media/entry/1365/[SourceTree上でのスタッシュ操作] 
+*** 特定のコミット間の差分を見るのに便利なdiff操作も見ておくと良い。 
+**** https://blog.stedplay.com/how-to-use-sourcetree-with-p4merge/[さらに外部diffを使ってさらに見やすく表示する]
++
+※本手順書内ではバッチファイルで、P4Mergeの代わりにWinmergeをインストール済み。
 
 https://backlog.com/ja/git-tutorial/stepup/04/[ブランチの統合（マージ、リベース）]::::
+* https://qiita.com/masatomix/items/07a37ee8d141ceb4fa6f[SourceTree上でのマージ、リベース操作]
 
 https://backlog.com/ja/git-tutorial/stepup/05/[トピックブランチと統合ブランチでの運用例]::::
-* SourceTree上でのブランチ操作
-+
-https://qiita.com/inabe49/items/be38f569040aed7d85b0[こちらのサイトを参考]
-+
-* お役立ち情報
-+
-https://laraweb.net/environment/1687/[3種類のブランチ]
-+
-https://qiita.com/phi/items/42492a01c7b249e78dd3[ローカルに残ってしまっているリモートブランチを一括削除]
+* ゴリゴリのソフトウェア開発じゃなければMasterとDevelop（ここで作業）があれば十分
+
 
 
 
 
 リモートリポジトリ：:::
+※ブランチの概念を理解した上で基本編のおさらい
 
 https://backlog.com/ja/git-tutorial/stepup/14/[プル]::::
 
@@ -1078,12 +1116,12 @@ https://backlog.com/ja/git-tutorial/stepup/16/[プッシュ]::::
 
 
 
+
 タグ：:::
 
 https://backlog.com/ja/git-tutorial/stepup/17/[タグ]::::
-* SourceTree上でのタグ付け操作
-+
-image::sourcetree_tag.png[width=700]
+* https://ics.media/entry/1365/[SourceTree上でのタグ付け操作]
+
 
 
 
@@ -1101,11 +1139,9 @@ https://backlog.com/ja/git-tutorial/stepup/25/[コミットを抜き取る]::::
 https://backlog.com/ja/git-tutorial/stepup/26/[コミットの履歴を書き換える]::::
 
 https://backlog.com/ja/git-tutorial/stepup/27/[ブランチ上のコミットを一つにまとめてマージする]::::
-* SourceTree上でのコミット書き換え操作
-+
-https://qiita.com/nnishimura/items/b5410e35f3a292a55244[こちらのサイトを参考]
-+
-https://ics.media/entry/1365/[こちらのサイトを参考]
+* https://qiita.com/nnishimura/items/b5410e35f3a292a55244[SourceTree上でのコミット書き換え操作]
+
+
 
 
 
@@ -1117,18 +1153,15 @@ https://backlog.com/ja/git-tutorial/pull-request/01/[プルリクエストとは
 https://backlog.com/ja/git-tutorial/pull-request/02/[プルリクエストのメリット]::::
 
 https://backlog.com/ja/git-tutorial/pull-request/03/[プルリクエストを使った開発プロセス]::::
-* GitLab上でのマージリクエスト（プルリクエスト）操作
-+
-https://note.sngklab.jp/?p=465[こちらのサイトを参考]
-+
-* GitLab上でのレビュー・承認操作
-+
-https://qiita.com/chaspy/items/a4fe44fecf6b8fb0e587[こちらのサイトを参考]
+* https://note.sngklab.jp/?p=465[GitLab上でのマージリクエスト（プルリクエスト）操作]
+* https://qiita.com/chaspy/items/a4fe44fecf6b8fb0e587[GitLab上でのレビュー・承認操作]
+
 
 
 
 
 マージできない場合は？：:::
+※ブランチの概念を理解した上で基本編のおさらい
 
 https://backlog.com/ja/git-tutorial/pull-request/09/[競合の発生]::::
 
@@ -1136,34 +1169,6 @@ https://backlog.com/ja/git-tutorial/pull-request/10/[競合の解決]::::
 
 
 
-
-
-
-
-
-
- ＜その他参考＞::
-* SourceTreeを使ってGitを操作
-+
-https://qiita.com/hassoubeat/items/280005bc3af3f059d3c8[SourceTree操作チートシート]
-+
-https://haniwaman.com/sourcetree/[誰でも簡単！GitHubで管理するためのSourcetreeの最低限の使い方]
-
-
-
-* SourceTreeにGitLabアカウントを登録
-+
-[ツール]→[オプション]のデフォルトユーザー情報に、GitLabで登録したユーザー名とメールアドレスを入力します。
-+
-image::SourcetreeUserInfo.png[width="600",align="left"]
-
-
-
-* 外部diffを使ってコミット間の差分を見やすく表示
-+
-https://blog.stedplay.com/how-to-use-sourcetree-with-p4merge/[diffツール「P4Merge」で差分を横並びで表示させる方法]
-+
-※本手順書内ではバッチファイルで、P4Mergeの代わりにWinmergeをインストール済み
 
 
 
